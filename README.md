@@ -1,5 +1,5 @@
 # [meta]
-A _ framework.
+A framework.
 
 ## What is [meta]?
 [meta] is a framework for building apps that can do anything.
