@@ -9,3 +9,12 @@ We built [meta] out of the idea that a single framework could be used to build a
 
 ## [meta] Internals
 [meta] is built using Clojure(Script) for Node.js/Electron and wraps many common libraries such as Hoplon and Feathers.js.
+
+## Concepts in [meta]
+[meta] provides a few built in features:
+- [ ] Custom Clojure(Script) DSL files
+- [ ] Client Application Domain Actions
+- [ ] Server CRUD Events
+- [ ] Authentication
+- [ ] DOM Elements / Events
+- [ ] State
