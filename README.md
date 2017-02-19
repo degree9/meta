@@ -44,7 +44,17 @@ To use [meta] `require` it in your build.boot file.
 
 <img src="http://hoplon.io/images/logos/hoplon-logo.png" width="250" alt="Hoplon Logo" align="left">
 ## [meta] Web Apps ... with Hoplon
-We believe in using universal technologies and the web is the most accessible and universal platform available. [meta] builds upon Hoplon to provide abstractions over DOM Elements and Events. It manages local application state in a spreadsheet-like dataflow. This enables rapid development of constraint-based logic, and seamless state management across client and server instances.
+We believe in using universal technologies and the web is the most accessible and universal platform available. [meta] builds upon Hoplon to provide abstractions over DOM Elements and Events. 
+
+```clojure
+(page "index.html")
+
+(html
+  (head
+    (title "[meta]"))
+  (body
+    (p "[meta]")))
+```
 
 ***
 
