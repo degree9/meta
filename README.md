@@ -16,6 +16,18 @@ We built [meta] out of the idea that a single framework could be used to build a
 - [x] [Electron][5] - Build cross platform desktop apps with JavaScript, HTML, and CSS.
 - [x] [Atom][6] - A hackable text editor for the 21st Century.
 
+<img src="http://boot-clj.com/assets/images/logos/boot-logo-3.png" width="250" alt="Boot Logo" align="right">
+## Using [meta] ... with Boot
+[meta] is powered by Boot, an environment for building applications using clojure.
+To use [meta] `require` it in your build.boot file.
+
+```clojure
+(set-env! :dependencies '[[degree9/meta "0.0.0"]])
+(require '[meta.boot :as meta])
+
+(meta/init!)
+```
+
 ## Concepts in [meta]
 [meta] provides a few built in features:
 - [ ] Custom Clojure(Script) DSL files
