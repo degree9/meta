@@ -1,6 +1,6 @@
 # [meta] [![Clojars Project][7]][8][![CircleCI][9]][10][![Downloads][13]][14]
 <!---[![Dependencies Status][11]][12]--->
-A framework.
+A stack.
 
 <img src="https://raw.githubusercontent.com/cljs/logo/master/cljs.png" width="100" alt="CLJS Logo">
 <img src="http://boot-clj.com/assets/images/logos/boot-logo-3.png" width="100" alt="Boot Logo">
@@ -13,10 +13,10 @@ A framework.
 ***
 
 ## What is [meta]?
-[meta] is a framework for building tech startups using Clojure(Script).
+[meta] is a stack for building tech startups using Clojure(Script).
 
 ## Why [meta]?
-We built [meta] out of the idea that a single framework could be used to build a startup. We named it [meta] as a reminder that software does not take any single form and, like a startup should continuously evolve.
+We built [meta] out of the idea that an Open Source stack could be used to build a startup. We named it [meta] as a reminder that software does not take one form and like ideas, should continuously evolve. [meta] is an attempt and building the quickest path from idea to startup.
 
 <img src="https://raw.githubusercontent.com/cljs/logo/master/cljs.png" width="240" alt="CLJS Logo" align="left">
 ## [meta] Internals
@@ -33,7 +33,7 @@ We built [meta] out of the idea that a single framework could be used to build a
 <img src="http://boot-clj.com/assets/images/logos/boot-logo-3.png" width="250" alt="Boot Logo" align="right">
 ## Using [meta] ... with Boot
 [meta] is powered by Boot, an environment for building applications using clojure.
-To use [meta] `require` it in your build.boot file.
+To use [meta] `require` it in your build.boot file. Thanks to Boot, [meta] is built with itself.
 
 ```clojure
 (set-env! :dependencies '[[degree9/meta "0.0.0"]])
@@ -45,8 +45,8 @@ To use [meta] `require` it in your build.boot file.
 ***
 
 <img src="http://hoplon.io/images/logos/hoplon-logo.png" width="250" alt="Hoplon Logo" align="left">
-## Web Apps ... with Hoplon
-We believe in building universal technologies and the web is the most accessible platform available. [meta] builds upon Hoplon to provide abstractions over DOM Elements and Events. 
+## ClojureScript in the Browser ... with Hoplon
+We believe in building universal technologies and the web is the most accessible platform available. [meta] builds upon Hoplon to provide abstractions for the DOM.
 
 ```clojure
 (page "index.html")
@@ -62,18 +62,35 @@ We believe in building universal technologies and the web is the most accessible
 
 <img src="http://s32.postimg.org/4k9q912x1/aar_QEIys.jpg" width="250" alt="Feathers.js Logo" align="right">
 ## Realtime Communication ... with Feathers.js
-[meta] provides both REST and Realtime communication via FeatherScript, a wrapper around Feathers.js implemented in ClojureScript. Feathers enables event-based communication between clients and servers.
+[meta] provides both REST and Realtime communication via FeatherScript, a wrapper around Feathers.js implemented in ClojureScript. Feathers enables event-based communication between clients and servers and other API's including persistent data stores.
+```clojure
+```
 
 ***
 
-## Concepts in [meta]
-[meta] provides a few built in features:
-- [ ] Custom Clojure(Script) DSL files
-- [ ] Client Application Domain Actions
-- [ ] Server CRUD Events
-- [ ] Authentication
-- [ ] DOM Elements / Events
-- [ ] State
+<img src="https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg" width="180" alt="Node.js Logo" align="left">
+## ClojureScript on the Server ... with Node.js
+[meta] is built entirely out of Clojure(Script) including the backend. This means compiling to JavaScript and running on Node.js.
+```clojure
+```
+
+***
+
+<img src="https://camo.githubusercontent.com/79904b8ba0d1bce43022bbd5710f0ea1db33f54f/68747470733a2f2f7261776769742e636f6d2f73696e647265736f726875732f617765736f6d652d656c656374726f6e2f6d61737465722f656c656374726f6e2d6c6f676f2e737667" width="180" alt="Electron Logo" align="right">
+## ClojureScript on the Client ... with Electron
+[meta] can package Client/Server applications with Electron. Building cross-platform Clojure(Script) applications.
+```clojure
+```
+
+***
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Atom_editor_logo.svg/2000px-Atom_editor_logo.svg.png" width="180" alt="Atom Logo" align="left">
+## Developed ... with Atom
+[meta] is being cultivated within the Atom text editor.
+```clojure
+```
+
+***
 
 [1]: http://boot-clj.com
 [2]: http://hoplon.io
