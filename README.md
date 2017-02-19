@@ -45,8 +45,8 @@ To use [meta] `require` it in your build.boot file.
 ***
 
 <img src="http://hoplon.io/images/logos/hoplon-logo.png" width="250" alt="Hoplon Logo" align="left">
-## [meta] Web Apps ... with Hoplon
-We believe in using universal technologies and the web is the most accessible and universal platform available. [meta] builds upon Hoplon to provide abstractions over DOM Elements and Events. 
+## Web Apps ... with Hoplon
+We believe in building universal technologies and the web is the most accessible platform available. [meta] builds upon Hoplon to provide abstractions over DOM Elements and Events. 
 
 ```clojure
 (page "index.html")
@@ -55,13 +55,13 @@ We believe in using universal technologies and the web is the most accessible an
   (head
     (title "[meta]"))
   (body
-    (p "[meta]")))
+    (p "Hello!")))
 ```
 
 ***
 
 <img src="http://s32.postimg.org/4k9q912x1/aar_QEIys.jpg" width="250" alt="Feathers.js Logo" align="right">
-## Realtime [meta] Communication ... with Feathers.js
+## Realtime Communication ... with Feathers.js
 [meta] provides both REST and Realtime communication via FeatherScript, a wrapper around Feathers.js implemented in ClojureScript. Feathers enables event-based communication between clients and servers.
 
 ***
