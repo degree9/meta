@@ -16,7 +16,7 @@ A framework.
 ## Why [meta]?
 We built [meta] out of the idea that a single framework could be used to build a startup. We named it [meta] as a reminder that software does not take any single form and, like a startup should continuously evolve.
 
-<img src="https://raw.githubusercontent.com/cljs/logo/master/cljs.png" width="250" alt="CLJS Logo" align="left">
+<img src="https://raw.githubusercontent.com/cljs/logo/master/cljs.png" width="240" alt="CLJS Logo" align="left">
 ## [meta] Internals
 [meta] is written in Clojure(Script) and built using: 
 - [Boot][1] - Build tooling for Clojure.
