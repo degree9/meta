@@ -26,6 +26,7 @@ We built [meta] out of the idea that a single framework could be used to build a
 - [Electron][5] - Build cross platform desktop apps with JavaScript, HTML, and CSS.
 - [Atom][6] - A hackable text editor for the 21st Century.
 
+
 <img src="http://boot-clj.com/assets/images/logos/boot-logo-3.png" width="250" alt="Boot Logo" align="right">
 ## Using [meta] ... with Boot
 [meta] is powered by Boot, an environment for building applications using clojure.
@@ -37,6 +38,17 @@ To use [meta] `require` it in your build.boot file.
 
 (meta/init!)
 ```
+
+
+<img src="http://hoplon.io/images/logos/hoplon-logo.png" width="250" alt="Hoplon Logo" align="left">
+# Web Apps
+We believe in using universal technologies and the web is the most accessible and universal platform available. [meta] builds upon Hoplon to provide abstractions over DOM Elements and Events. It manages local application state in a spreadsheet-like dataflow. This enables rapid development of constraint-based logic, and seamless state management across client and server instances.
+
+
+<img src="http://s32.postimg.org/4k9q912x1/aar_QEIys.jpg" width="250" alt="Feathers.js Logo" align="right">
+# Realtime [meta] Communication ... with Feathers.js
+[meta] provides both REST and Realtime communication via FeatherScript, a wrapper around Feathers.js implemented in ClojureScript. Feathers enables event-based communication between clients and servers.
+
 
 ## Concepts in [meta]
 [meta] provides a few built in features:
