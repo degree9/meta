@@ -6,7 +6,8 @@
 <img src="https://camo.githubusercontent.com/79904b8ba0d1bce43022bbd5710f0ea1db33f54f/68747470733a2f2f7261776769742e636f6d2f73696e647265736f726875732f617765736f6d652d656c656374726f6e2f6d61737465722f656c656374726f6e2d6c6f676f2e737667" width="90" alt="Electron Logo">
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Atom_editor_logo.svg/2000px-Atom_editor_logo.svg.png" width="100" alt="Atom Logo">
 
-# [meta] [![Clojars Project][7]][8][![CircleCI][9]][10][![Dependencies Status][11]][12][![Downloads][13]][14]
+# [meta] [![Clojars Project][7]][8][![CircleCI][9]][10][![Downloads][13]][14]
+<!---[![Dependencies Status][11]][12]--->
 A framework.
 ***
 
