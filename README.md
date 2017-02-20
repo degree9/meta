@@ -9,6 +9,7 @@ A stack.
 <img src="https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg" width="90" alt="Node.js Logo">
 <img src="https://camo.githubusercontent.com/79904b8ba0d1bce43022bbd5710f0ea1db33f54f/68747470733a2f2f7261776769742e636f6d2f73696e647265736f726875732f617765736f6d652d656c656374726f6e2f6d61737465722f656c656374726f6e2d6c6f676f2e737667" width="90" alt="Electron Logo">
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Atom_editor_logo.svg/2000px-Atom_editor_logo.svg.png" width="100" alt="Atom Logo">
+<img src="https://cdn.worldvectorlogo.com/logos/docker.svg" width="100" alt="Docker Logo">
 
 ***
 
@@ -30,7 +31,7 @@ We built [meta] out of the idea that an Open Source stack could be used to build
 
 ***
 
-<img src="http://boot-clj.com/assets/images/logos/boot-logo-3.png" width="250" alt="Boot Logo" align="right">
+<img src="http://boot-clj.com/assets/images/logos/boot-logo-3.png" width="180" alt="Boot Logo" align="right">
 ## Using [meta] ... with Boot
 [meta] is powered by Boot, an environment for building applications using clojure.
 To use [meta] `require` it in your build.boot file. Thanks to Boot, [meta] is built with itself.
@@ -44,7 +45,7 @@ To use [meta] `require` it in your build.boot file. Thanks to Boot, [meta] is bu
 
 ***
 
-<img src="http://hoplon.io/images/logos/hoplon-logo.png" width="250" alt="Hoplon Logo" align="left">
+<img src="http://hoplon.io/images/logos/hoplon-logo.png" width="220" alt="Hoplon Logo" align="left">
 ## ClojureScript in the Browser ... with Hoplon
 We believe in building universal technologies and the web is the most accessible platform available. [meta] builds upon Hoplon to provide abstractions for the DOM.
 
@@ -60,7 +61,7 @@ We believe in building universal technologies and the web is the most accessible
 
 ***
 
-<img src="http://s32.postimg.org/4k9q912x1/aar_QEIys.jpg" width="250" alt="Feathers.js Logo" align="right">
+<img src="http://s32.postimg.org/4k9q912x1/aar_QEIys.jpg" width="180" alt="Feathers.js Logo" align="right">
 ## Realtime Communication ... with Feathers.js
 [meta] provides both REST and Realtime communication via FeatherScript, a wrapper around Feathers.js implemented in ClojureScript. Feathers enables event-based communication between clients and servers and other API's including persistent data stores.
 ```clojure
@@ -87,6 +88,14 @@ We believe in building universal technologies and the web is the most accessible
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Atom_editor_logo.svg/2000px-Atom_editor_logo.svg.png" width="180" alt="Atom Logo" align="left">
 ## Developed ... with Atom
 [meta] is being cultivated within the Atom text editor.
+```clojure
+```
+
+***
+
+<img src="https://cdn.worldvectorlogo.com/logos/docker.svg" width="180" alt="Docker Logo" align="right">
+## Containerization ... with Docker
+[meta] server applications can be containerized for scalability through docker.
 ```clojure
 ```
 
