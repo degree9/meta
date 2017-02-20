@@ -20,16 +20,33 @@
   (read-file "./env.boot"))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Meta Boot Public API ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defn init! []
-  (util/info "Initializing...")
-  (let [env (merge (boot/get-env) (read-env))]
+;; Meta Boot Internal API ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defn- get-env []
+  (merge (boot/get-env) (read-env)))
+
+(defn- load-defaults []
+  (let [env (get-env)]
     (doseq [[key val] env]
       (let [conf (-> key name str)
             contents (read-file (str "./" conf ".boot"))]
         (when contents
-          (util/info "Loading" (str (s/capitalize conf) "..."))
+          (util/info (str "Loading " (s/capitalize conf) "..."))
           (boot/set-env! key contents))))))
+
+(defn- require-defaults []
+  (require '[adzerk.bootlaces :refer :all]
+           '[degree9.boot-semver :refer :all]
+           '[degree9.boot-semgit :refer :all]
+           '[degree9.boot-semgit.workflow :refer :all]))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+;; Meta Boot Public API ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defn init! []
+  (util/info "Initializing...")
+  (load-defaults)
+  (require-defaults))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;(defn- write-manifest!
 ;  [fileset dir]
