@@ -16,7 +16,7 @@ A stack.
 [meta] is a stack for building tech startups using Clojure(Script).
 
 ## Why [meta]?
-We built [meta] out of the idea that an Open Source stack could be used to build a startup. We named it [meta] as a reminder that software does not take one form and like ideas, should continuously evolve. [meta] is an attempt and building the quickest path from idea to startup.
+We built [meta] out of the idea that an Open Source stack could be used to build a startup. We named it [meta] as a reminder that software does not take one form and like ideas, should continuously evolve. [meta] is an attempt at building the quickest path from idea to startup.
 
 <img src="https://raw.githubusercontent.com/cljs/logo/master/cljs.png" width="240" alt="CLJS Logo" align="left">
 ## [meta] Internals
