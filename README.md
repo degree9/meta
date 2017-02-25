@@ -95,6 +95,7 @@ We believe in building universal technologies and the web is the most accessible
 [meta] can package Client/Server applications with Electron. Building cross-platform Clojure(Script) applications.
 ```clojure
 ```
+- [electron-cljs][22] - Electron bindings for CLJS.
 
 ***
 
@@ -135,3 +136,4 @@ We believe in building universal technologies and the web is the most accessible
 [19]: https://github.com/degree9/boot-npm
 [20]: https://github.com/degree9/featherscript
 [21]: https://github.com/degree9/nodejs-cljs
+[22]: https://github.com/degree9/electron-cljs
