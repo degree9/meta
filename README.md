@@ -22,18 +22,17 @@ We built [meta] out of the idea that an Open Source stack could be used to build
 ## When should I use [meta]?
 Any time Lisp is the answer.
 
+***
+
 <img src="https://raw.githubusercontent.com/cljs/logo/master/cljs.png" width="240" alt="CLJS Logo" align="left">
 ## [meta] Internals
 [meta] is written in Clojure(Script) and built using:
-
-| Project          | Description                                                          |
-| :--------------: | :------------------------------------------------------------------: |
-| [Boot][1]        | Build tooling for Clojure.                                           |
-| [Hoplon][2]      | ClojureScript Web Framework.                                         |
-| [Feathers.js][3] | An open source REST and realtime API layer for modern applications.  |
-| [Node.js][4]     | JavaScript runtime built on Chrome's V8 JavaScript engine.           |
-| [Electron][5]    | Build cross platform desktop apps with JavaScript, HTML, and CSS.    |
-| [Atom][6]        | A hackable text editor for the 21st Century.                         |
+- [Boot][1] - Build tooling for Clojure.
+- [Hoplon][2] - ClojureScript Web Framework.
+- [Feathers.js][3] - An open source REST and realtime API layer for modern applications.
+- [Node.js][4] - JavaScript runtime built on Chrome's V8 JavaScript engine.
+- [Electron][5] - Build cross platform desktop apps with JavaScript, HTML, and CSS.
+- [Atom][6] - A hackable text editor for the 21st Century.
 
 ***
 
