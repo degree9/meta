@@ -47,6 +47,11 @@ To use [meta] `require` it in your build.boot file. Thanks to Boot, [meta] is bu
 
 (meta/init!)
 ```
+- [boot-exec][15] - Boot-clj external process execution using Apache Commons Exec.
+- [boot-nodejs][16] - Node.js wrapper task for boot-clj.
+- [boot-semver][17] - Semantic Versioning for boot projects.
+- [boot-semgit][18] - Semantic Git access from boot tasks.
+
 
 ***
 
@@ -120,3 +125,7 @@ We believe in building universal technologies and the web is the most accessible
 [12]: https://jarkeeper.com/degree9/meta
 [13]: https://jarkeeper.com/degree9/meta/downloads.svg
 [14]: https://jarkeeper.com/degree9/meta
+[15]: https://github.com/degree9/boot-exec
+[16]: https://github.com/degree9/boot-nodejs
+[17]: https://github.com/degree9/boot-semver
+[18]: https://github.com/degree9/boot-semgit
