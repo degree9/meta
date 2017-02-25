@@ -49,6 +49,7 @@ To use [meta] `require` it in your build.boot file. Thanks to Boot, [meta] is bu
 ```
 - [boot-exec][15] - Boot-clj external process execution using Apache Commons Exec.
 - [boot-nodejs][16] - Node.js wrapper task for boot-clj.
+- [boot-npm][19] - Node Package Manager (NPM) wrapper task for boot-clj.
 - [boot-semver][17] - Semantic Versioning for boot projects.
 - [boot-semgit][18] - Semantic Git access from boot tasks.
 
@@ -76,6 +77,7 @@ We believe in building universal technologies and the web is the most accessible
 [meta] provides both REST and Realtime communication via FeatherScript, a wrapper around Feathers.js implemented in ClojureScript. Feathers enables event-based communication between clients and servers and other API's including persistent data stores.
 ```clojure
 ```
+- [featherscript][20] - A feathers.js wrapper for ClojureScript.
 
 ***
 
@@ -129,3 +131,5 @@ We believe in building universal technologies and the web is the most accessible
 [16]: https://github.com/degree9/boot-nodejs
 [17]: https://github.com/degree9/boot-semver
 [18]: https://github.com/degree9/boot-semgit
+[19]: https://github.com/degree9/boot-npm
+[20]: https://github.com/degree9/featherscript
