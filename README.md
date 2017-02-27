@@ -103,7 +103,7 @@ We believe in building universal technologies and the web is the most accessible
 ## Developed ... with Atom
 [meta] is being cultivated within the Atom text editor.
 
-[![Atom][23]][24]
+[![Atom][25]][26] [![Atom][23]][24]
 
 ***
 
@@ -139,3 +139,5 @@ We believe in building universal technologies and the web is the most accessible
 [22]: https://github.com/degree9/electron-cljs
 [23]: https://img.shields.io/github/downloads/atom/atom/latest/total.svg
 [24]: https://github.com/atom/atom/releases
+[25]: https://img.shields.io/badge/Editor-Atom.io-blue.svg
+[26]: https://atom.io
