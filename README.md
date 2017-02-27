@@ -101,7 +101,8 @@ We believe in building universal technologies and the web is the most accessible
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Atom_editor_logo.svg/2000px-Atom_editor_logo.svg.png" width="180" alt="Atom Logo" align="left">
 ## Developed ... with Atom
-[meta] is being cultivated within the Atom text editor.
+[meta] is being cultivated within Atom, a hackable text editor
+for the 21st Century.
 
 [![Atom][25]][26] [![Atom][23]][24]
 
