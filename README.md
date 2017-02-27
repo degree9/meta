@@ -102,8 +102,8 @@ We believe in building universal technologies and the web is the most accessible
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Atom_editor_logo.svg/2000px-Atom_editor_logo.svg.png" width="180" alt="Atom Logo" align="left">
 ## Developed ... with Atom
 [meta] is being cultivated within the Atom text editor.
-```clojure
-```
+
+[![Atom][23]][24]
 
 ***
 
@@ -137,3 +137,5 @@ We believe in building universal technologies and the web is the most accessible
 [20]: https://github.com/degree9/featherscript
 [21]: https://github.com/degree9/nodejs-cljs
 [22]: https://github.com/degree9/electron-cljs
+[23]: https://img.shields.io/github/downloads/atom/atom/latest/total.svg
+[24]: https://github.com/atom/atom/releases
