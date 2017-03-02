@@ -106,10 +106,7 @@ for the 21st Century.
 
 [![Atom][25]][26] [![Atom][23]][24]
 
-- [ink][28] - IDE toolkit for Atom.
-- [proto-repl][29] - A Clojure Development Environment package for the Atom.
-- [proto-repl-charts][30] - An Atom Plugin extension for Proto REPL that allows displaying graphs.
-- [tool-bar][31] - Package providing customisable toolbar for Atom.
+- [proto-repl][28] - A Clojure Development Environment package for the Atom.
 
 ***
 
@@ -149,6 +146,4 @@ for the 21st Century.
 [25]: https://img.shields.io/badge/Editor-Atom.io-blue.svg
 [26]: https://atom.io
 [27]: https://github.com/degree9/boot-docker
-[28]: https://github.com/JunoLab/atom-ink
-[29]: https://github.com/jasongilman/proto-repl
-[30]: https://github.com/jasongilman/proto-repl-charts
+[28]: https://github.com/jasongilman/proto-repl
