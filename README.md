@@ -113,7 +113,7 @@ for the 21st Century.
 [meta] server applications can be containerized for scalability through docker.
 ```clojure
 ```
-
+- [boot-docker][22] - Docker wrapper for boot-clj.
 ***
 
 [1]: http://boot-clj.com
@@ -142,3 +142,4 @@ for the 21st Century.
 [24]: https://github.com/atom/atom/releases
 [25]: https://img.shields.io/badge/Editor-Atom.io-blue.svg
 [26]: https://atom.io
+[27]: https://github.com/degree9/boot-docker
