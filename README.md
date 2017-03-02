@@ -113,7 +113,7 @@ for the 21st Century.
 [meta] server applications can be containerized for scalability through docker.
 ```clojure
 ```
-- [boot-docker][22] - Docker wrapper for boot-clj.
+- [boot-docker][27] - Docker wrapper for boot-clj.
 
 ***
 
