@@ -86,7 +86,7 @@ We believe in building universal technologies and the web is the most accessible
 [meta] is built entirely out of Clojure(Script) including the backend. This means compiling to JavaScript and running on Node.js.
 ```clojure
 ```
-- [nodejs-cljs][21] - CLJS wrappers for the Node.js API.
+- [nodejs-cljs][21] - CLJS bindings for the Node.js API.
 
 ***
 
