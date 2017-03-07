@@ -113,11 +113,9 @@ We believe in building universal technologies and the web is the most accessible
 [meta] is being cultivated within Atom, a hackable text editor
 for the 21st Century.
 
-[![Atom][25]][26] [![Atom][23]][24]
-
 - [proto-repl][28] - A Clojure Development Environment package for the Atom.
 
-[![Clojars Project](https://img.shields.io/clojars/v/proto-repl.svg)](https://clojars.org/proto-repl)
+[![Atom][25]][26][![Clojars Project](https://img.shields.io/clojars/v/proto-repl.svg)](https://clojars.org/proto-repl)
 
 ***
 
@@ -153,8 +151,6 @@ for the 21st Century.
 [20]: https://github.com/degree9/featherscript
 [21]: https://github.com/degree9/nodejs-cljs
 [22]: https://github.com/degree9/electron-cljs
-[23]: https://img.shields.io/github/downloads/atom/atom/latest/total.svg
-[24]: https://github.com/atom/atom/releases
 [25]: https://img.shields.io/badge/Editor-Atom.io-blue.svg
 [26]: https://atom.io
 [27]: https://github.com/degree9/boot-docker
