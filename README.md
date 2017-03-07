@@ -48,8 +48,6 @@ To use [meta] `require` it in your build.boot file. Thanks to Boot, [meta] is bu
 (meta/init!)
 ```
 - [boot-exec][15] - Boot-clj external process execution using Apache Commons Exec.
-- [boot-nodejs][16] - Node.js wrapper task for boot-clj.
-- [boot-npm][19] - Node Package Manager (NPM) wrapper task for boot-clj.
 - [boot-semver][17] - Semantic Versioning for boot projects.
 - [boot-semgit][18] - Semantic Git access from boot tasks.
 
@@ -84,9 +82,15 @@ We believe in building universal technologies and the web is the most accessible
 <img src="https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg" width="180" alt="Node.js Logo" align="left">
 ## ClojureScript on the Server ... with Node.js
 [meta] is built entirely out of Clojure(Script) including the backend. This means compiling to JavaScript and running on Node.js.
-```clojure
-```
+
+[![Clojars Project](https://img.shields.io/clojars/v/degree9/boot-nodejs.svg)](https://clojars.org/degree9/boot-nodejs)
+[![Clojars Project](https://img.shields.io/clojars/v/degree9/boot-npm.svg)](https://clojars.org/degree9/boot-npm)
+[![Clojars Project](https://img.shields.io/clojars/v/degree9/nodejs-cljs.svg)](https://clojars.org/degree9/nodejs-cljs)
+
+- [boot-nodejs][16] - Node.js wrapper task for boot-clj.
+- [boot-npm][19] - Node Package Manager (NPM) wrapper task for boot-clj.
 - [nodejs-cljs][21] - CLJS bindings for the Node.js API.
+<!--- [![Clojars Project](https://img.shields.io/clojars/v/degree9/boot-nodejs.svg)](https://clojars.org/degree9/boot-nodejs) --->
 
 ***
 
