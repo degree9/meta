@@ -77,8 +77,6 @@ We believe in building universal technologies and the web is the most accessible
 <img src="http://s32.postimg.org/4k9q912x1/aar_QEIys.jpg" width="180" alt="Feathers.js Logo" align="right">
 ## Realtime Communication ... with Feathers.js
 [meta] provides both REST and Realtime communication via FeatherScript, a wrapper around Feathers.js implemented in ClojureScript. Feathers enables event-based communication between clients and servers and other API's including persistent data stores.
-```clojure
-```
 
 - [featherscript][20] - A feathers.js wrapper for ClojureScript.
 
@@ -103,8 +101,6 @@ We believe in building universal technologies and the web is the most accessible
 <img src="https://camo.githubusercontent.com/79904b8ba0d1bce43022bbd5710f0ea1db33f54f/68747470733a2f2f7261776769742e636f6d2f73696e647265736f726875732f617765736f6d652d656c656374726f6e2f6d61737465722f656c656374726f6e2d6c6f676f2e737667" width="180" alt="Electron Logo" align="right">
 ## ClojureScript on the Client ... with Electron
 [meta] can package Client/Server applications with Electron. Building cross-platform Clojure(Script) applications.
-```clojure
-```
 
 - [electron-cljs][22] - Electron bindings for CLJS.
 
@@ -128,8 +124,6 @@ for the 21st Century.
 <img src="https://cdn.worldvectorlogo.com/logos/docker.svg" width="180" alt="Docker Logo" align="right">
 ## Containerization ... with Docker
 [meta] server applications can be containerized for scalability through docker.
-```clojure
-```
 
 - [boot-docker][27] - Docker wrapper for boot-clj.
 
