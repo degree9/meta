@@ -47,10 +47,14 @@ To use [meta] `require` it in your build.boot file. Thanks to Boot, [meta] is bu
 
 (meta/init!)
 ```
+
 - [boot-exec][15] - Boot-clj external process execution using Apache Commons Exec.
 - [boot-semver][17] - Semantic Versioning for boot projects.
 - [boot-semgit][18] - Semantic Git access from boot tasks.
 
+[![Clojars Project](https://img.shields.io/clojars/v/degree9/boot-exec.svg)](https://clojars.org/degree9/boot-exec)
+[![Clojars Project](https://img.shields.io/clojars/v/degree9/boot-semver.svg)](https://clojars.org/degree9/boot-semver)
+[![Clojars Project](https://img.shields.io/clojars/v/degree9/boot-semgit.svg)](https://clojars.org/degree9/boot-semgit)
 
 ***
 
@@ -75,7 +79,10 @@ We believe in building universal technologies and the web is the most accessible
 [meta] provides both REST and Realtime communication via FeatherScript, a wrapper around Feathers.js implemented in ClojureScript. Feathers enables event-based communication between clients and servers and other API's including persistent data stores.
 ```clojure
 ```
+
 - [featherscript][20] - A feathers.js wrapper for ClojureScript.
+
+[![Clojars Project](https://img.shields.io/clojars/v/degree9/featherscript.svg)](https://clojars.org/degree9/featherscript)
 
 ***
 
@@ -98,7 +105,10 @@ We believe in building universal technologies and the web is the most accessible
 [meta] can package Client/Server applications with Electron. Building cross-platform Clojure(Script) applications.
 ```clojure
 ```
+
 - [electron-cljs][22] - Electron bindings for CLJS.
+
+[![Clojars Project](https://img.shields.io/clojars/v/degree9/electron-cljs.svg)](https://clojars.org/degree9/electron-cljs)
 
 ***
 
@@ -111,6 +121,8 @@ for the 21st Century.
 
 - [proto-repl][28] - A Clojure Development Environment package for the Atom.
 
+[![Clojars Project](https://img.shields.io/clojars/v/proto-repl.svg)](https://clojars.org/proto-repl)
+
 ***
 
 <img src="https://cdn.worldvectorlogo.com/logos/docker.svg" width="180" alt="Docker Logo" align="right">
@@ -118,7 +130,10 @@ for the 21st Century.
 [meta] server applications can be containerized for scalability through docker.
 ```clojure
 ```
+
 - [boot-docker][27] - Docker wrapper for boot-clj.
+
+[![Clojars Project](https://img.shields.io/clojars/v/degree9/boot-docker.svg)](https://clojars.org/degree9/boot-docker)
 
 ***
 
