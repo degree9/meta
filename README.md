@@ -83,14 +83,13 @@ We believe in building universal technologies and the web is the most accessible
 ## ClojureScript on the Server ... with Node.js
 [meta] is built entirely out of Clojure(Script) including the backend. This means compiling to JavaScript and running on Node.js.
 
-[![Clojars Project](https://img.shields.io/clojars/v/degree9/boot-nodejs.svg)](https://clojars.org/degree9/boot-nodejs)
-[![Clojars Project](https://img.shields.io/clojars/v/degree9/boot-npm.svg)](https://clojars.org/degree9/boot-npm)
-[![Clojars Project](https://img.shields.io/clojars/v/degree9/nodejs-cljs.svg)](https://clojars.org/degree9/nodejs-cljs)
-
 - [boot-nodejs][16] - Node.js wrapper task for boot-clj.
 - [boot-npm][19] - Node Package Manager (NPM) wrapper task for boot-clj.
 - [nodejs-cljs][21] - CLJS bindings for the Node.js API.
-<!--- [![Clojars Project](https://img.shields.io/clojars/v/degree9/boot-nodejs.svg)](https://clojars.org/degree9/boot-nodejs) --->
+
+[![Clojars Project](https://img.shields.io/clojars/v/degree9/boot-nodejs.svg)](https://clojars.org/degree9/boot-nodejs)
+[![Clojars Project](https://img.shields.io/clojars/v/degree9/boot-npm.svg)](https://clojars.org/degree9/boot-npm)
+[![Clojars Project](https://img.shields.io/clojars/v/degree9/nodejs-cljs.svg)](https://clojars.org/degree9/nodejs-cljs)
 
 ***
 
