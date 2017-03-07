@@ -115,7 +115,8 @@ for the 21st Century.
 
 - [proto-repl][28] - A Clojure Development Environment package for the Atom.
 
-[![Atom][25]][26][![Clojars Project](https://img.shields.io/clojars/v/proto-repl.svg)](https://clojars.org/proto-repl)
+[![Atom][25]][26]
+[![Clojars Project](https://img.shields.io/clojars/v/proto-repl.svg)](https://clojars.org/proto-repl)
 
 ***
 
