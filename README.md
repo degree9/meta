@@ -152,7 +152,7 @@ for the 21st Century.
 [20]: https://github.com/degree9/featherscript
 [21]: https://github.com/degree9/nodejs-cljs
 [22]: https://github.com/degree9/electron-cljs
-[25]: https://img.shields.io/badge/Editor-Atom.io-blue.svg
+[25]: https://img.shields.io/badge/editor-atom-blue.svg
 [26]: https://atom.io
 [27]: https://github.com/degree9/boot-docker
 [28]: https://github.com/jasongilman/proto-repl
