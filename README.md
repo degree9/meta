@@ -139,7 +139,7 @@ for the 21st Century.
 [6]: http://atom.io
 [7]: https://img.shields.io/clojars/v/degree9/meta.svg
 [8]: https://clojars.org/degree9/meta
-[9]: https://circleci.com/gh/degree9/meta.svg?style=svg
+[9]: https://circleci.com/gh/degree9/meta.svg?style=shield
 [10]: https://circleci.com/gh/degree9/meta
 [11]: https://jarkeeper.com/degree9/meta/status.svg
 [12]: https://jarkeeper.com/degree9/meta
