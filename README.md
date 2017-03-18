@@ -39,9 +39,10 @@ Any time Lisp is the answer.
 
 <img src="http://boot-clj.com/assets/images/logos/boot-logo-3.png" width="180" alt="Boot Logo" align="right">
 
-## Using [meta] ... with Boot ##
+## Using [meta] ... with Boot [![Boot][24]][1] ##
 [meta] is powered by Boot, an environment for building applications using clojure.
-To use [meta] `require` it in your build.boot file. Thanks to Boot, [meta] is built with itself.
+To use [meta] `require` it in your build.boot file. 
+Thanks to Boot, [meta] is built with itself.
 
 ```clojure
 (set-env! :dependencies '[[degree9/meta "0.0.0"]])
@@ -62,7 +63,7 @@ To use [meta] `require` it in your build.boot file. Thanks to Boot, [meta] is bu
 
 <img src="http://hoplon.io/images/logos/hoplon-logo.png" width="220" alt="Hoplon Logo" align="left">
 
-## ClojureScript in the Browser ... with Hoplon ##
+## ClojureScript in the Browser ... with Hoplon [![Hoplon][23]][2] ##
 We believe in building universal technologies and the web is the most accessible platform available. [meta] builds upon Hoplon to provide abstractions for the DOM.
 
 ```clojure
@@ -116,13 +117,12 @@ We believe in building universal technologies and the web is the most accessible
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Atom_editor_logo.svg/2000px-Atom_editor_logo.svg.png" width="180" alt="Atom Logo" align="left">
 
-## Developed ... with Atom ##
+## Developed ... with Atom [![Atom][25]][26] ##
 [meta] is being cultivated within Atom, a hackable text editor
 for the 21st Century.
 
 - [proto-repl][28] - A Clojure Development Environment package for Atom.
 
-[![Atom][25]][26]
 [![Clojars Project](https://img.shields.io/clojars/v/proto-repl.svg)](https://clojars.org/proto-repl)
 
 ***
@@ -160,7 +160,10 @@ for the 21st Century.
 [20]: https://github.com/degree9/featherscript
 [21]: https://github.com/degree9/nodejs-cljs
 [22]: https://github.com/degree9/electron-cljs
-[25]: https://img.shields.io/badge/editor-atom-blue.svg
+[23]: https://img.shields.io/badge/hoplon-v6.0.0--alpha17-orange.svg
+<!--- [23]: https://img.shields.io/github/release/hoplon/hoplon.svg?colorB=fe7d37&label=hoplon --->
+[24]: https://img.shields.io/github/release/boot-clj/boot.svg?colorB=dfb317&label=boot
+[25]: https://img.shields.io/github/release/atom/atom.svg?label=atom
 [26]: https://atom.io
 [27]: https://github.com/degree9/boot-docker
 [28]: https://github.com/jasongilman/proto-repl
