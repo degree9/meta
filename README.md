@@ -1,4 +1,4 @@
-# [meta] [![Clojars Project][7]][8][![CircleCI][9]][10][![Downloads][13]][14]
+# [meta] [![Clojars Project][7]][8] [![CircleCI][9]][10] [![Downloads][13]][14]
 <!---[![Dependencies Status][11]][12]--->
 A stack.
 
