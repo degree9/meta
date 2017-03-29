@@ -73,7 +73,7 @@ We believe in building universal technologies and the web is the most accessible
 
 <img src="http://s32.postimg.org/4k9q912x1/aar_QEIys.jpg" width="180" alt="Feathers.js Logo" align="right">
 
-## Realtime Communication ... with Feathers.js ##
+## Realtime Communication ... with Feathers.js [![Feathers][31]][3] ##
 [meta] provides both REST and Realtime communication via FeatherScript, a wrapper around Feathers.js implemented in ClojureScript. Feathers enables event-based communication between clients and servers and other API's including persistent data stores.
 
 - [featherscript][20] - A feathers.js wrapper for ClojureScript.
@@ -84,7 +84,7 @@ We believe in building universal technologies and the web is the most accessible
 
 <img src="https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg" width="180" alt="Node.js Logo" align="left">
 
-## ClojureScript on the Server ... with Node.js ##
+## ClojureScript on the Server ... with Node.js [![Node][29]][4] ##
 [meta] is built entirely out of Clojure(Script) including the backend. This means compiling to JavaScript and running on Node.js.
 
 - [boot-nodejs][16] - Node.js wrapper task for boot-clj.
@@ -99,7 +99,7 @@ We believe in building universal technologies and the web is the most accessible
 
 <img src="https://camo.githubusercontent.com/79904b8ba0d1bce43022bbd5710f0ea1db33f54f/68747470733a2f2f7261776769742e636f6d2f73696e647265736f726875732f617765736f6d652d656c656374726f6e2f6d61737465722f656c656374726f6e2d6c6f676f2e737667" width="180" alt="Electron Logo" align="right">
 
-## ClojureScript on the Client ... with Electron ##
+## ClojureScript on the Client ... with Electron [![Electron][30]][5] ##
 [meta] can package Client/Server applications with Electron. Building cross-platform Clojure(Script) applications.
 
 - [electron-cljs][22] - Electron bindings for CLJS.
@@ -160,3 +160,6 @@ for the 21st Century.
 [26]: https://atom.io
 [27]: https://github.com/degree9/boot-docker
 [28]: https://github.com/jasongilman/proto-repl
+[29]: https://img.shields.io/badge/node-v7.7.4-yellowgreen.svg
+[30]: https://img.shields.io/badge/electron-v1.6.2-blue.svg
+[31]: https://img.shields.io/badge/feathers-v2.1.1-lightgrey.svg
