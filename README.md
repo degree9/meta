@@ -69,6 +69,10 @@ We believe in building universal technologies and the web is the most accessible
     (p "Hello!")))
 ```
 
+- [material-hl][32] - Material Design Components for Hoplon
+
+[![Clojars Project](https://img.shields.io/clojars/v/degree9/material-hl.svg)](https://clojars.org/degree9/material-hl)
+
 ***
 
 <img src="http://s32.postimg.org/4k9q912x1/aar_QEIys.jpg" width="180" alt="Feathers.js Logo" align="right">
@@ -163,3 +167,5 @@ for the 21st Century.
 [29]: https://img.shields.io/badge/node-v7.7.4-yellowgreen.svg
 [30]: https://img.shields.io/badge/electron-v1.6.2-blue.svg
 [31]: https://img.shields.io/badge/feathers-v2.1.1-lightgrey.svg
+[32]: https://github.com/degree9/material-hl
+
