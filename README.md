@@ -137,6 +137,15 @@ for the 21st Century.
 
 ***
 
+<img src="https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_copyright_black_24px.svg" width="160" alt="Info" align="left">
+
+## Appreciation ... with Credits ##
+[meta] would not exist without the fine work of all the technologies mentioned and their respective communities. We encourage you to join one.
+
+- [x] All images/logo's are owned by their respective projects/communities.
+
+***
+
 [1]: http://boot-clj.com
 [2]: http://hoplon.io
 [3]: http://feathersjs.com
