@@ -86,7 +86,7 @@ We believe in building universal technologies and the web is the most accessible
 
 ***
 
-<img src="https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg" width="180" alt="Node.js Logo" align="left">
+<img src="https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg" width="160" alt="Node.js Logo" align="left">
 
 ## ClojureScript on the Server ... with Node.js [![Node][29]][4] ##
 [meta] is built entirely out of Clojure(Script) including the backend. This means compiling to JavaScript and running on Node.js.
