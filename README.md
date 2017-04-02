@@ -110,6 +110,7 @@ We believe in building universal technologies and the web is the most accessible
 - [boot-electron][33] - Electron tasks for boot-clj.
 
 [![Clojars Project](https://img.shields.io/clojars/v/degree9/electron-cljs.svg)](https://clojars.org/degree9/electron-cljs)
+[![Clojars Project](https://img.shields.io/clojars/v/degree9/boot-electron.svg)](https://clojars.org/degree9/boot-electron)
 
 ***
 
