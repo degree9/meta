@@ -91,7 +91,7 @@ We believe in building universal technologies and the web is the most accessible
 ## ClojureScript on the Server ... with Node.js [![Node][29]][4] ##
 [meta] is built entirely out of Clojure(Script) including the backend. This means compiling to JavaScript and running on Node.js.
 
-- [boot-nodejs][16] - Node.js wrapper task for boot-clj.
+- [boot-nodejs][16] - Node.js tasks for boot-clj.
 - [boot-npm][19] - Node Package Manager (NPM) wrapper task for boot-clj.
 - [nodejs-cljs][21] - CLJS bindings for the Node.js API.
 
@@ -107,6 +107,7 @@ We believe in building universal technologies and the web is the most accessible
 [meta] can package Client/Server applications with Electron. Building cross-platform Clojure(Script) applications.
 
 - [electron-cljs][22] - Electron bindings for CLJS.
+- [boot-electron][33] - Electron tasks for boot-clj.
 
 [![Clojars Project](https://img.shields.io/clojars/v/degree9/electron-cljs.svg)](https://clojars.org/degree9/electron-cljs)
 
@@ -168,4 +169,4 @@ for the 21st Century.
 [30]: https://img.shields.io/badge/electron-v1.6.2-blue.svg
 [31]: https://img.shields.io/badge/feathers-v2.1.1-lightgrey.svg
 [32]: https://github.com/degree9/material-hl
-
+[33]: https://github.com/degree9/boot-electron
