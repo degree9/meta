@@ -13,7 +13,7 @@ A stack. A framework. A conversation.
 We built [meta] out of the idea that Open Source could be used to build a startup. We named it [meta] as a reminder that software takes many forms and like ideas, should continuously evolve. [meta] is an attempt at building the quickest path from idea to startup.
 
 ## When should I use [meta]? ##
-Any time Lisp is the answer.
+[Always.](https://twitter.com/degree9io/status/848972601091346433)
 
 ***
 
