@@ -1,51 +1,109 @@
 (ns meta.boot
   {:boot/export-tasks true}
   (:require [boot.core :as boot]
-            [meta.boot.util :as util]
             [boot.pod :as pod]
             [boot.file :as file]
+            [boot.task.built-in :as task]
+            [meta.boot.util :as util]
             [clojure.java.io :as io]
             [clojure.string :as s]))
 
+;; Meta Boot ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defn welcome  []
+  (util/info (str #"      ___           ___           ___          ___      "))
+  (util/info (str #"     /\  \         /\__\         /\__\        /\  \     "))
+  (util/info (str #"    |::\  \       /:/ _/_       /:/  /       /::\  \    "))
+  (util/info (str #"    |:|:\  \     /:/ /\__\     /:/__/       /:/\:\  \   "))
+  (util/info (str #"  __|:|\:\  \   /:/ /:/ _/_   /::\  \      /:/ /::\  \  "))
+  (util/info (str #" /::::|_\:\__\ /:/_/:/ /\__\ /:/\:\  \    /:/_/:/\:\__\ "))
+  (util/info (str #" \:\--\  \/__/ \:\/:/ /:/  / \/__\:\  \   \:\/:/  \/__/ "))
+  (util/info (str #"  \:\  \        \::/_/:/  /       \:\  \   \::/__/      "))
+  (util/info (str #"   \:\  \        \:\/:/  /         \:\  \   \:\  \      "))
+  (util/info (str #"    \:\__\        \::/  /           \:\__\   \:\__\     "))
+  (util/info (str #"     \/__/         \/__/             \/__/    \/__/     "))
+  (util/info "\n"))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; Meta Boot Utils ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Files
 (defn read-file [file]
   (when (.exists (io/file file))
     (util/info-item file)
     (read-string (slurp file))))
 
-;; Environment
 (defn read-env []
   (read-file "./env.boot"))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Meta Boot Internal API ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defn- get-env []
-  (merge (boot/get-env) (read-env)))
+(defn- load-env []
+  (doseq [[key val] (read-env)
+    :let [conf (-> key name str)]]
+    (util/info "Loading" (str conf "..."))
+    (boot/set-env! key val)))
 
 (defn- load-defaults []
-  (let [env (get-env)]
-    (doseq [[key val] env]
-      (let [conf (-> key name str)
-            contents (read-file (str "./" conf ".boot"))]
-        (when contents
-          (util/info (str "Loading " (s/capitalize conf) "..."))
-          (boot/set-env! key contents))))))
+  (doseq [[key val] (boot/get-env)
+    :let [conf (-> key name str)
+          contents (read-file (str "./" conf ".boot"))]]
+    (when contents
+      (util/info "Loading" (str (s/capitalize conf) "..."))
+      (boot/set-env! key contents))))
 
 (defn- require-defaults []
-  (require '[adzerk.bootlaces :refer :all]
-           '[degree9.boot-semver :refer :all]
-           '[degree9.boot-semgit :refer :all]
-           '[degree9.boot-semgit.workflow :refer :all]))
+  (require '[adzerk.boot-cljs             :refer [cljs]]
+           '[adzerk.boot-reload           :refer [reload]]
+           '[adzerk.bootlaces             :refer :all]
+           '[degree9.boot-exec            :refer [exec]]
+           '[degree9.boot-nodejs          :refer [nodejs serve]]
+           '[degree9.boot-npm             :refer [npm]]
+           '[degree9.boot-semver          :refer [version]]
+           '[degree9.boot-semgit          :refer :all]
+           '[degree9.boot-semgit.workflow :refer :all]
+           '[feathers.boot-feathers       :refer [feathers]]
+           ))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Meta Boot Tasks ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(boot/deftask initialize
+  "Initialize [meta]."
+  []
+  (welcome)
+  (util/info "Initializing...")
+  (load-env)
+  (load-defaults)
+  (require-defaults)
+  identity)
+
+(def init initialize)
+
+(boot/deftask proto
+  "Configure [meta] for Proto-REPL."
+  []
+  (util/info "Configuring Proto-REPL...")
+  (boot/set-env! :dependencies #(into % '[[org.clojure/tools.namespace "0.2.11"]]))
+  (require 'clojure.tools.namespace.repl)
+  (eval '(apply clojure.tools.namespace.repl/set-refresh-dirs
+                (get-env :directories)))
+  identity)
+
+(boot/deftask develop
+  "Build project for local development."
+  []
+  (comp ;(git-pull :branch "origin/master")
+        (watch)))
+
+(def dev develop)
+
+(boot/deftask deploy
+  "Deploy project to clojars."
+  []
+  identity)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Meta Boot Public API ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defn init! []
-  (util/info "Initializing...")
-  (load-defaults)
-  (require-defaults))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;(defn- write-manifest!
