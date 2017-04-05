@@ -2,9 +2,7 @@
 
 (require '[meta.boot :as meta])
 
-(meta/init!)
-
-(require '[adzerk.bootlaces :refer :all])
+(meta/initialize)
 
 (task-options!
   pom {:project 'degree9/meta
@@ -13,4 +11,10 @@
 (deftask testing
   ""
   []
+  (prn "in testing")
   identity)
+
+(deftask dev
+  ""
+  []
+  (meta/proto))
