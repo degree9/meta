@@ -3,24 +3,25 @@
   (:require [boot.core :as boot]
             [boot.pod :as pod]
             [boot.file :as file]
+            [boot.util :as util]
             [boot.task.built-in :as task]
-            [meta.boot.util :as util]
+            [meta.boot.util :as mutil]
             [clojure.java.io :as io]
             [clojure.string :as s]))
 
 ;; Meta Boot ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn welcome  []
-  (util/info (str #"      ___           ___           ___          ___      "))
-  (util/info (str #"     /\  \         /\__\         /\__\        /\  \     "))
-  (util/info (str #"    |::\  \       /:/ _/_       /:/  /       /::\  \    "))
-  (util/info (str #"    |:|:\  \     /:/ /\__\     /:/__/       /:/\:\  \   "))
-  (util/info (str #"  __|:|\:\  \   /:/ /:/ _/_   /::\  \      /:/ /::\  \  "))
-  (util/info (str #" /::::|_\:\__\ /:/_/:/ /\__\ /:/\:\  \    /:/_/:/\:\__\ "))
-  (util/info (str #" \:\--\  \/__/ \:\/:/ /:/  / \/__\:\  \   \:\/:/  \/__/ "))
-  (util/info (str #"  \:\  \        \::/_/:/  /       \:\  \   \::/__/      "))
-  (util/info (str #"   \:\  \        \:\/:/  /         \:\  \   \:\  \      "))
-  (util/info (str #"    \:\__\        \::/  /           \:\__\   \:\__\     "))
-  (util/info (str #"     \/__/         \/__/             \/__/    \/__/     "))
+  (util/info (str #"      ___           ___           ___          ___      " "\n"))
+  (util/info (str #"     /\  \         /\__\         /\__\        /\  \     " "\n"))
+  (util/info (str #"    |::\  \       /:/ _/_       /:/  /       /::\  \    " "\n"))
+  (util/info (str #"    |:|:\  \     /:/ /\__\     /:/__/       /:/\:\  \   " "\n"))
+  (util/info (str #"  __|:|\:\  \   /:/ /:/ _/_   /::\  \      /:/ /::\  \  " "\n"))
+  (util/info (str #" /::::|_\:\__\ /:/_/:/ /\__\ /:/\:\  \    /:/_/:/\:\__\ " "\n"))
+  (util/info (str #" \:\--\  \/__/ \:\/:/ /:/  / \/__\:\  \   \:\/:/  \/__/ " "\n"))
+  (util/info (str #"  \:\  \        \::/_/:/  /       \:\  \   \::/__/      " "\n"))
+  (util/info (str #"   \:\  \        \:\/:/  /         \:\  \   \:\  \      " "\n"))
+  (util/info (str #"    \:\__\        \::/  /           \:\__\   \:\__\     " "\n"))
+  (util/info (str #"     \/__/         \/__/             \/__/    \/__/     " "\n"))
   (util/info "\n"))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -28,7 +29,7 @@
 
 (defn read-file [file]
   (when (.exists (io/file file))
-    (util/info-item file)
+    (mutil/info-item file)
     (read-string (slurp file))))
 
 (defn read-env []
@@ -39,7 +40,7 @@
 (defn- load-env []
   (doseq [[key val] (read-env)
     :let [conf (-> key name str)]]
-    (util/info "Loading" (str conf "..."))
+    (util/info "Loading %s...\n" conf)
     (boot/set-env! key val)))
 
 (defn- load-defaults []
@@ -47,7 +48,7 @@
     :let [conf (-> key name str)
           contents (read-file (str "./" conf ".boot"))]]
     (when contents
-      (util/info "Loading" (str (s/capitalize conf) "..."))
+      (util/info "Loading %s...\n" (s/capitalize conf))
       (boot/set-env! key contents))))
 
 (defn- require-defaults []
@@ -71,7 +72,7 @@
   "Initialize [meta]."
   []
   (welcome)
-  (util/info "Initializing...")
+  (util/info "Initializing... \n")
   (load-env)
   (load-defaults)
   (require-defaults)
@@ -82,7 +83,7 @@
 (boot/deftask proto
   "Configure [meta] for Proto-REPL."
   []
-  (util/info "Configuring Proto-REPL...")
+  (util/info "Configuring Proto-REPL... \n")
   (boot/set-env! :dependencies #(into % '[[org.clojure/tools.namespace "0.2.11"]]))
   (require 'clojure.tools.namespace.repl)
   (eval '(apply clojure.tools.namespace.repl/set-refresh-dirs
@@ -93,7 +94,7 @@
   "Build project for local development."
   []
   (comp ;(git-pull :branch "origin/master")
-        (watch)))
+        (task/watch)))
 
 (def dev develop)
 
@@ -106,19 +107,6 @@
 ;; Meta Boot Public API ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;(defn- write-manifest!
-;  [fileset dir]
-;  (let [msg (delay )
-;        out (io/file dir "hoplon" "manifest.edn")]
-;    (when-let [hls (seq (->> fileset
-;                             boot/output-files
-;                             (boot/by-ext [".hl"])
-;                             (map (comp fspath->jarpath boot/tmp-path))))]
-;      @msg
-;      (doseq [h hls] (util/info "• %s\n" h))
-;      (spit (doto out io/make-parents) (pr-str (vec hls))))
-;    (boot/add-resource fileset dir)))
-
 ;(boot/deftask manifest
 ;  "Write a DSL manifest file."
 ;  [d dsl      VAL str    "DSL name."
@@ -130,13 +118,13 @@
 ;    (let [tmp     (boot/tmp-dir!)
 ;          dslname (:dsl *opts*)
 ;          ext     (:ext *opts*)
-;          out     (io/file tmp dslname "manifest.edn")]
+;          out     (io/file tmp dslname "manifest.edn")
+;          fspath->jarpath #(->> % file/split-path (s/join "/") boot/tmp-path)]
 ;      (when-let [dsl (->> fileset
 ;                          boot/output-files
 ;                          (boot/by-ext [ext])
-;                          (mapv (comp #(->> % file/split-path (string/join "/"))
-;                                      boot/tmp-path)))]
+;                          (map fspath->jarpath))]
 ;        (util/info "Writing DSL manifest...\n")
-;        (doseq [s (seq dsl)] (util/info (str "• " d "\n")))
-;        (spit (doto out io/make-parents) dsl))
-;      (-> fileset (boot/add-resource dir) boot/commit!))))
+;        (doseq [d dsl] (util/info "• %s \n" d))
+;        (spit (doto out io/make-parents) (pr-str (vec dsl))))
+;      (-> fileset (boot/add-resource tmp) boot/commit!))))
