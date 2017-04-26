@@ -15,4 +15,5 @@
  [degree9/electron-cljs       "0.1.0"    ]
  [degree9/featherscript       "0.4.0-SNAPSHOT"    ]
  ;[degree9/nodejs-cljs         "0.1.0-SNAPSHOT"    ]
+ [hoplon/hoplon               "7.0.0-SNAPSHOT"]
  ]

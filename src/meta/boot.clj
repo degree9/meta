@@ -29,29 +29,51 @@
 
 (defn read-file [file]
   (when (.exists (io/file file))
-    (mutil/info-item file)
+  (prn (io/file file))
     (read-string (slurp file))))
 
-(defn read-env []
-  (read-file "./env.boot"))
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Meta Boot Internal API ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defn- load-env []
-  (doseq [[key val] (read-env)
-    :let [conf (-> key name str)]]
-    (util/info "Loading %s...\n" conf)
+;load-env>default-env>verify-env>set-env!
+
+(defn default-env []
+  (read-file (io/resource "meta/environment.edn")))
+
+(defn project-env []
+  (read-file "./meta.boot"))
+
+(defn get-env []
+  (merge
+    (boot/get-env)
+    (default-env)
+    (project-env)))
+
+(defn merge-env! [key val]
+  (case key
+    :dependencies (boot/set-env! key #(conj % val))
     (boot/set-env! key val)))
 
-(defn- load-defaults []
+(defn verify-env [key val]
+  (case key
+    true))
+
+(defn load-env []
+  (doseq [[key val] (get-env)]
+    (when (verify-env key val)
+      (boot/set-env! key val))))
+
+(defn- load-project []
   (doseq [[key val] (boot/get-env)
     :let [conf (-> key name str)
           contents (read-file (str "./" conf ".boot"))]]
     (when contents
       (util/info "Loading %s...\n" (s/capitalize conf))
-      (boot/set-env! key contents))))
+      (merge-env! key contents))))
 
-(defn- require-defaults []
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Meta Boot Internal API ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defn- load-tasks []
   (require '[adzerk.boot-cljs             :refer [cljs]]
            '[adzerk.boot-reload           :refer [reload]]
            '[adzerk.bootlaces             :refer :all]
@@ -62,6 +84,7 @@
            '[degree9.boot-semgit          :refer :all]
            '[degree9.boot-semgit.workflow :refer :all]
            '[feathers.boot-feathers       :refer [feathers]]
+           '[hoplon.boot-hoplon           :refer [hoplon]]
            ))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -74,8 +97,8 @@
   (welcome)
   (util/info "Initializing... \n")
   (load-env)
-  (load-defaults)
-  (require-defaults)
+  (load-project)
+  ;(load-tasks)
   identity)
 
 (def init initialize)
@@ -86,15 +109,19 @@
   (util/info "Configuring Proto-REPL... \n")
   (boot/set-env! :dependencies #(into % '[[org.clojure/tools.namespace "0.2.11"]]))
   (require 'clojure.tools.namespace.repl)
-  (eval '(apply clojure.tools.namespace.repl/set-refresh-dirs
-                (get-env :directories)))
+  (eval '(apply clojure.tools.namespace.repl/set-refresh-dirs (get-env :directories)))
   identity)
 
 (boot/deftask develop
   "Build project for local development."
   []
   (comp ;(git-pull :branch "origin/master")
-        (task/watch)))
+;        (feathers)
+        (task/watch)
+;        (hoplon)
+;        (nodejs)
+;        (cljs)
+        (task/target)))
 
 (def dev develop)
 

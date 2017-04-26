@@ -18,3 +18,8 @@
   ""
   []
   (meta/proto))
+
+(deftask develop
+  ""
+  []
+  (meta/develop))
