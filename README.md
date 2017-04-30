@@ -38,10 +38,10 @@ To use [meta] `require` it in your build.boot file.
 Thanks to Boot, [meta] is built with itself.
 
 ```clojure
-(set-env! :dependencies '[[degree9/meta "0.0.0"]])
-(require '[meta.boot :as meta])
+(set-env! :dependencies [[degree9/meta "0.1.0-SNAPSHOT"]])
+(require '[meta.boot :refer :all])
 
-(meta/init!)
+(initialize)
 ```
 
 - [boot-exec][15] - Boot-clj external process execution using Apache Commons Exec.
