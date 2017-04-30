@@ -6,99 +6,21 @@
             [boot.util :as util]
             [boot.task.built-in :as task]
             [meta.boot.util :as mutil]
+            [meta.boot.impl :as impl]
             [clojure.java.io :as io]
             [clojure.string :as s]))
 
 ;; Meta Boot ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defn welcome  []
-  (util/info (str #"      ___           ___           ___          ___      " "\n"))
-  (util/info (str #"     /\  \         /\__\         /\__\        /\  \     " "\n"))
-  (util/info (str #"    |::\  \       /:/ _/_       /:/  /       /::\  \    " "\n"))
-  (util/info (str #"    |:|:\  \     /:/ /\__\     /:/__/       /:/\:\  \   " "\n"))
-  (util/info (str #"  __|:|\:\  \   /:/ /:/ _/_   /::\  \      /:/ /::\  \  " "\n"))
-  (util/info (str #" /::::|_\:\__\ /:/_/:/ /\__\ /:/\:\  \    /:/_/:/\:\__\ " "\n"))
-  (util/info (str #" \:\--\  \/__/ \:\/:/ /:/  / \/__\:\  \   \:\/:/  \/__/ " "\n"))
-  (util/info (str #"  \:\  \        \::/_/:/  /       \:\  \   \::/__/      " "\n"))
-  (util/info (str #"   \:\  \        \:\/:/  /         \:\  \   \:\  \      " "\n"))
-  (util/info (str #"    \:\__\        \::/  /           \:\__\   \:\__\     " "\n"))
-  (util/info (str #"     \/__/         \/__/             \/__/    \/__/     " "\n"))
-  (util/info "\n"))
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; Meta Boot Utils ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(defn read-file [file]
-  (when (.exists (io/file file))
-  (prn (io/file file))
-    (read-string (slurp file))))
-
-
-;load-env>default-env>verify-env>set-env!
-
-(defn default-env []
-  (read-file (io/resource "meta/environment.edn")))
-
-(defn project-env []
-  (read-file "./meta.boot"))
-
-(defn get-env []
-  (merge
-    (boot/get-env)
-    (default-env)
-    (project-env)))
-
-(defn merge-env! [key val]
-  (case key
-    :dependencies (boot/set-env! key #(conj % val))
-    (boot/set-env! key val)))
-
-(defn verify-env [key val]
-  (case key
-    true))
-
-(defn load-env []
-  (doseq [[key val] (get-env)]
-    (when (verify-env key val)
-      (boot/set-env! key val))))
-
-(defn- load-project []
-  (doseq [[key val] (boot/get-env)
-    :let [conf (-> key name str)
-          contents (read-file (str "./" conf ".boot"))]]
-    (when contents
-      (util/info "Loading %s...\n" (s/capitalize conf))
-      (merge-env! key contents))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Meta Boot Internal API ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(defn- load-tasks []
-  (require '[adzerk.boot-cljs             :refer [cljs]]
-           '[adzerk.boot-reload           :refer [reload]]
-           '[adzerk.bootlaces             :refer :all]
-           '[degree9.boot-exec            :refer [exec]]
-           '[degree9.boot-nodejs          :refer [nodejs serve]]
-           '[degree9.boot-npm             :refer [npm]]
-           '[degree9.boot-semver          :refer [version]]
-           '[degree9.boot-semgit          :refer :all]
-           '[degree9.boot-semgit.workflow :refer :all]
-           '[feathers.boot-feathers       :refer [feathers]]
-           '[hoplon.boot-hoplon           :refer [hoplon]]
-           ))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Meta Boot Tasks ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (boot/deftask initialize
   "Initialize [meta]."
   []
-  (welcome)
-  (util/info "Initializing... \n")
-  (load-env)
-  (load-project)
-  ;(load-tasks)
+  (impl/init-impl)
   identity)
 
 (def init initialize)
@@ -106,17 +28,14 @@
 (boot/deftask proto
   "Configure [meta] for Proto-REPL."
   []
-  (util/info "Configuring Proto-REPL... \n")
-  (boot/set-env! :dependencies #(into % '[[org.clojure/tools.namespace "0.2.11"]]))
-  (require 'clojure.tools.namespace.repl)
-  (eval '(apply clojure.tools.namespace.repl/set-refresh-dirs (get-env :directories)))
+  (impl/proto-impl)
   identity)
 
 (boot/deftask develop
   "Build project for local development."
   []
   (comp ;(git-pull :branch "origin/master")
-;        (feathers)
+        ;(feathers)
         (task/watch)
 ;        (hoplon)
 ;        (nodejs)
