@@ -8,7 +8,7 @@
 (impl/init-impl)
 
 ;; Load public tasks
-(require '[meta.boot :refer [proto]])
+(require '[meta.boot :refer [proto circle test]])
 
 ;; project tasks
 (deftask develop
