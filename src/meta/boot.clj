@@ -54,6 +54,18 @@
   "Deploy project to clojars."
   []
   identity)
+
+(boot/deftask circle
+  "Preload dependencies for Circle CI."
+  []
+  (util/info "Hello Circle CI!")
+  identity)
+
+(boot/deftask test
+  "Run project tests."
+  []
+  (util/info "Running Tests...")
+  identity)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Meta Boot Public API ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

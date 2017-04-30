@@ -1,0 +1,20 @@
+machine:
+  java:
+    version: oraclejdk8
+  environment:
+    _JAVA_OPTIONS: "-Xms512m -Xmx2048m"
+dependencies:
+  pre:
+    - curl -L https://github.com/boot-clj/boot-bin/releases/download/latest/boot.sh -o ~/bin/boot
+    - chmod +x ~/bin/boot
+  override:
+    - boot circle
+  cache_directories:
+    - "~/bin"
+    - "~/.m2"
+    - "~/.boot/cache/bin"
+    - "~/.boot/cache/lib"
+
+test:
+  override:
+    - boot test
