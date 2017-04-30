@@ -32,7 +32,7 @@ We built [meta] out of the idea that Open Source could be used to build a startu
 
 <img src="http://boot-clj.com/assets/images/logos/boot-logo-3.png" width="180" alt="Boot Logo" align="right">
 
-## Using [meta] ... with Boot [![Boot][24]][1] ##
+## Using [meta] ... with Boot [![Boot][24]][1] [![Wiki][34]][35] ##
 [meta] is powered by Boot, an environment for building applications using clojure.
 To use [meta] `require` it in your build.boot file. 
 Thanks to Boot, [meta] is built with itself.
@@ -168,8 +168,7 @@ for the 21st Century.
 [20]: https://github.com/degree9/featherscript
 [21]: https://github.com/degree9/nodejs-cljs
 [22]: https://github.com/degree9/electron-cljs
-[23]: https://img.shields.io/badge/hoplon-v6.0.0--alpha17-orange.svg
-<!--- [23]: https://img.shields.io/github/release/hoplon/hoplon.svg?colorB=fe7d37&label=hoplon --->
+[23]: https://img.shields.io/badge/hoplon-v7.0.0--SNAPSHOT-orange.svg
 [24]: https://img.shields.io/github/release/boot-clj/boot.svg?colorB=dfb317&label=boot
 [25]: https://img.shields.io/github/release/atom/atom.svg?label=atom
 [26]: https://atom.io
@@ -180,3 +179,5 @@ for the 21st Century.
 [31]: https://img.shields.io/badge/feathers-v2.1.1-lightgrey.svg
 [32]: https://github.com/degree9/material-hl
 [33]: https://github.com/degree9/boot-electron
+[34]: https://img.shields.io/badge/wiki-boot-lightgrey.svg
+[35]: https://github.com/degree9/meta/wiki/Boot
