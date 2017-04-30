@@ -8,7 +8,13 @@
             [meta.boot.util :as mutil]
             [meta.boot.impl :as impl]
             [clojure.java.io :as io]
-            [clojure.string :as s]))
+            [clojure.string :as s]
+            [adzerk.boot-cljs :as cljs]
+            [degree9.boot-nodejs :as nj]
+            [degree9.boot-semgit :as sg]
+            [degree9.boot-semgit.workflow :as wf]
+            [feathers.boot-feathers :as fs]
+            [hoplon.boot-hoplon :as bh]))
 
 ;; Meta Boot ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -34,12 +40,12 @@
 (boot/deftask develop
   "Build project for local development."
   []
-  (comp ;(git-pull :branch "origin/master")
-        ;(feathers)
+  (comp (sg/git-pull :branch "origin/master")
+        (fs/feathers)
         (task/watch)
-;        (hoplon)
-;        (nodejs)
-;        (cljs)
+        (bh/hoplon)
+        (nj/nodejs)
+        (cljs/cljs)
         (task/target)))
 
 (def dev develop)

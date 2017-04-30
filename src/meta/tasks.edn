@@ -4,7 +4,7 @@
  [degree9.boot-exec            :refer [exec]]
  [degree9.boot-nodejs          :refer [nodejs serve]]
  [degree9.boot-npm             :refer [npm]]
- [degree9.boot-semver          :refer [version]]
+ [degree9.boot-semver          :refer :all]
  [degree9.boot-semgit          :refer :all]
  [degree9.boot-semgit.workflow :refer :all]
  [feathers.boot-feathers       :refer [feathers]]

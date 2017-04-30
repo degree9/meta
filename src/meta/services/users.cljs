@@ -1,5 +1,6 @@
 (ns meta.services.users
-  (:require [meta.services :as services]
+  (:require [feathers.app :as feathers]
+            [meta.services :as services]
             [meta.services.hooks :as hooks]))
 
 (def pre-hooks {:all    []

@@ -1,6 +1,6 @@
 (ns meta.services.hooks
   (:require [feathers.authentication :as auth]))
 
-(defn auth (:authenticate auth/hooks)
+(def auth (:authenticate auth/hooks))
 
-(defn hashpass (:hashPassword auth/hooks))
+(def hashpass (:hashPassword auth/hooks))

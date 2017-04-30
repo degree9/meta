@@ -1,4 +1,5 @@
 (ns meta.client
+  (:refer-clojure :exclude [find get update remove])
   (:require [cljsjs.socket-io]
             [goog.object :as obj]
             [feathers.client :as feathers]
@@ -56,7 +57,7 @@
   ([app]
     (feathers/logout app)))
 
-(defn auth! []
+(defn auth!
   ([]
     (auth! *app*))
   ([app]
