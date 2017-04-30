@@ -137,7 +137,16 @@ for the 21st Century.
 
 ***
 
-<img src="https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_copyright_black_24px.svg" width="160" alt="Info" align="left">
+<img src="https://www.gitcheese.com/images/logo.svg" width="160" alt="GitCheese" align="left">
+
+## Donations ... with Cheese ##
+If you would like to support this project give us a :star: or consider donating some cheese.
+
+[![gitcheese.com](https://s3.amazonaws.com/gitcheese-ui-master/images/badge.svg)](https://www.gitcheese.com/donate/users/147004/repos/82129902)
+
+***
+
+<img src="https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_copyright_black_24px.svg" width="160" alt="Info" align="right">
 
 ## Appreciation ... with Credits ##
 [meta] would not exist without the fine work of all the technologies mentioned and their respective communities. We encourage you to join one.
