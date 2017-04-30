@@ -14,9 +14,11 @@
 (deftask develop
   ""
   []
-  identity)
+  (comp
+    (version :develop true :minor 'inc :pre-release 'snapshot)
+    (watch)
+    (build-jar)))
 
 ;; set project options
 (task-options!
-  pom {:project 'degree9/meta
-       :version "0.0.0"})
+  pom {:project 'degree9/meta})
