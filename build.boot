@@ -1,20 +1,22 @@
+;; Add src to classpath
 (set-env! :resource-paths #{"src"})
 
-(require '[meta.boot :as meta])
+;; Load from classpath
+(require '[meta.boot.impl :as impl])
 
-(meta/initialize)
+;; initialize internally
+(impl/init-impl)
 
+;; Load public tasks
+(require '[meta.boot :refer [proto]])
+
+;; project tasks
+(deftask develop
+  ""
+  []
+  identity)
+
+;; set project options
 (task-options!
   pom {:project 'degree9/meta
        :version "0.0.0"})
-
-(deftask testing
-  ""
-  []
-  (prn "in testing")
-  identity)
-
-(deftask dev
-  ""
-  []
-  (meta/proto))

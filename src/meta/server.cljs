@@ -4,11 +4,11 @@
 
 (enable-console-print!)
 
-(def app (feathers/feathers))
+(def ^:dynamic *app* (feathers/feathers))
 
 (def public (str js/__dirname "/../../")) ;; could possibly be ./
 
-(-> app
+(-> *app*
     (feathers/configuration public)
     feathers/compress
     feathers/cors
@@ -22,11 +22,11 @@
     services/users)
 
 (defn api
-  ([path store hooks] (api app path store hooks))
-  ([app path store hooks] (feathers/api app path (store) hooks)))
+  ([path svc hooks] (api *app* path svc hooks))
+  ([app path svc hooks] (feathers/api app path (svc) hooks)))
 
 (defn listen
-  ([port] (feathers/listen app port))
+  ([port] (feathers/listen *app* port))
   ([app port] (listen app port)))
 
 (defn init! [fname]
