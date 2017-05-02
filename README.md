@@ -17,7 +17,7 @@ We built [meta] out of the idea that Open Source could be used to build a startu
 
 ***
 
-<img src="https://raw.githubusercontent.com/cljs/logo/master/cljs.png" width="180" alt="CLJS Logo" align="right">
+<img src="https://raw.githubusercontent.com/cljs/logo/master/cljs.png" width="180" alt="CLJS Logo" align="left">
 
 ## [meta] Internals ##
 [meta] is written in Clojure(Script) and built using:
@@ -54,7 +54,7 @@ Thanks to Boot, [meta] is built with itself.
 
 ***
 
-<img src="http://hoplon.io/images/logos/hoplon-logo.png" width="180" alt="Hoplon Logo" align="right">
+<img src="http://hoplon.io/images/logos/hoplon-logo.png" width="220" alt="Hoplon Logo" align="left">
 
 ## ClojureScript in the Browser ... with Hoplon [![Hoplon][23]][2] ##
 We believe in building universal technologies and the web is the most accessible platform available. [meta] builds upon Hoplon to provide abstractions for the DOM.
@@ -86,7 +86,7 @@ We believe in building universal technologies and the web is the most accessible
 
 ***
 
-<img src="https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg" width="160" alt="Node.js Logo" align="right">
+<img src="https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg" width="180" alt="Node.js Logo" align="left">
 
 ## ClojureScript on the Server ... with Node.js [![Node][29]][4] ##
 [meta] is built entirely out of Clojure(Script) including the backend. This means compiling to JavaScript and running on Node.js.
@@ -114,7 +114,7 @@ We believe in building universal technologies and the web is the most accessible
 
 ***
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Atom_editor_logo.svg/2000px-Atom_editor_logo.svg.png" width="180" alt="Atom Logo" align="right">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Atom_editor_logo.svg/2000px-Atom_editor_logo.svg.png" width="180" alt="Atom Logo" align="left">
 
 ## Developed ... with Atom [![Atom][25]][26] ##
 [meta] is being cultivated within Atom, a hackable text editor
@@ -137,7 +137,7 @@ for the 21st Century.
 
 ***
 
-<img src="https://www.gitcheese.com/images/logo.svg" width="180" alt="GitCheese" align="right">
+<img src="https://www.gitcheese.com/images/logo.svg" width="180" alt="GitCheese" align="left">
 
 ## Donations ... with Cheese ##
 If you would like to support this project give us a :star: or consider donating some cheese.
@@ -146,7 +146,7 @@ If you would like to support this project give us a :star: or consider donating 
 
 ***
 
-<img src="https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_copyright_black_24px.svg" width="180" alt="Info" align="right">
+<img src="https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_copyright_black_24px.svg" width="160" alt="Info" align="right">
 
 ## Appreciation ... with Credits ##
 [meta] would not exist without the fine work of all the technologies mentioned and their respective communities. We encourage you to join one.
