@@ -44,10 +44,12 @@ Thanks to Boot, [meta] is built with itself.
 (initialize)
 ```
 
+- [boot-welcome][36] - ASCII art banners with boot-clj.
 - [boot-exec][15] - Boot-clj external process execution using Apache Commons Exec.
 - [boot-semver][17] - Semantic Versioning for boot projects.
 - [boot-semgit][18] - Semantic Git access from boot tasks.
 
+[![Clojars Project](https://img.shields.io/clojars/v/degree9/boot-welcome.svg)](https://clojars.org/degree9/boot-welcome)
 [![Clojars Project](https://img.shields.io/clojars/v/degree9/boot-exec.svg)](https://clojars.org/degree9/boot-exec)
 [![Clojars Project](https://img.shields.io/clojars/v/degree9/boot-semver.svg)](https://clojars.org/degree9/boot-semver)
 [![Clojars Project](https://img.shields.io/clojars/v/degree9/boot-semgit.svg)](https://clojars.org/degree9/boot-semgit)
@@ -190,3 +192,4 @@ If you would like to support this project give us a :star: or consider donating 
 [33]: https://github.com/degree9/boot-electron
 [34]: https://img.shields.io/badge/wiki-boot-lightgrey.svg
 [35]: https://github.com/degree9/meta/wiki/Boot
+[36]: https://github.com/degree9/boot-welcome
