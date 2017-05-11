@@ -1,12 +1,8 @@
 (ns meta.boot
   {:boot/export-tasks true}
   (:require [boot.core :as boot]
-            [boot.pod :as pod]
-            [boot.file :as file]
             [boot.util :as util]
             [boot.task.built-in :as task]
-            [clojure.java.io :as io]
-            [clojure.string :as s]
             [meta.boot.impl :as impl]
             [meta.boot.templates :as tmpl]
             [adzerk.boot-cljs :as cljs]
@@ -16,7 +12,7 @@
             [degree9.boot-semver :as ver]
             [degree9.boot-welcome :as welcome]
             [feathers.boot-feathers :as fs]
-            [hoplon.boot-hoplon :as bh]))
+            [hoplon.boot-hoplon :as hl]))
 
 ;; Meta Boot Tasks ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -32,7 +28,7 @@
         (ver/version)
         (fs/feathers)
         (task/watch)
-        (bh/hoplon)
+        (hl/hoplon)
         (nj/nodejs)
         (cljs/cljs)
         (task/target)))
