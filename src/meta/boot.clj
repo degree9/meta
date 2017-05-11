@@ -21,16 +21,37 @@
   []
   (impl/proto-impl *opts*))
 
-(boot/deftask develop
-  "Build project for local development."
+(boot/deftask build
+  "Setup project builds."
   []
   (comp (wf/sync-repo)
-        (ver/version)
-        (fs/feathers)
-        (task/watch)
-        (hl/hoplon)
-        (nj/nodejs)
+        (ver/version
+          :develop true
+          :minor inc
+          :patch ver/zero
+          :pre-release ver/snapshot)
+        (fs/feathers)))
+
+(boot/deftask client
+  "Build project client."
+  []
+  (comp (hl/hoplon)
+        ))
+
+(boot/deftask server
+  "Build project server."
+  []
+  (comp (nj/nodejs)
         (cljs/cljs)
+        ))
+
+(boot/deftask develop
+  "Build entire project for local development."
+  []
+  (comp (build)
+        (task/watch)
+        (client)
+        (server)
         (task/target)))
 
 (def dev develop)
