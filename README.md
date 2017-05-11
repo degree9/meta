@@ -42,6 +42,9 @@ We built [meta] out of the idea that Open Source could be used to build a startu
 - [Electron][5] - Build cross platform desktop apps with JavaScript, HTML, and CSS.
 - [Atom][6] - A hackable text editor for the 21st Century.
 
+[![Clojure](https://img.shields.io/badge/clojure-v1.8.0-blue.svg)](https://clojure.org)
+[![ClojureScript](https://img.shields.io/badge/clojurescript-v1.9.521-blue.svg)](https://clojurescript.org)
+
 ***
 
 <img src="http://boot-clj.com/assets/images/logos/boot-logo-3.png" width="180" alt="Boot Logo" align="right">
