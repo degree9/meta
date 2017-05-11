@@ -27,9 +27,9 @@
   (comp (wf/sync-repo)
         (ver/version
           :develop true
-          :minor inc
-          :patch ver/zero
-          :pre-release ver/snapshot)
+          :minor 'inc
+          :patch 'zero
+          :pre-release 'snapshot)
         (fs/feathers)))
 
 (boot/deftask client
@@ -41,7 +41,7 @@
 (boot/deftask server
   "Build project server."
   []
-  (comp (nj/nodejs)
+  (comp (nj/nodejs :init-fn 'app.server/init)
         (cljs/cljs)
         ))
 
@@ -50,7 +50,7 @@
   []
   (comp (build)
         (task/watch)
-        (client)
+        ;(client)
         (server)
         (task/target)))
 
@@ -85,7 +85,7 @@
   [p project VAL sym  "Current project name. (app)"
    n namespaces  VAL [sym]  "Project app namespaces. ([app.client app.server app.routing])"]
   (let [name   (:project *opts* 'app)
-        gen-ns (:namespaces *opts*  ['app.client 'app.server 'app.routing])
+        gen-ns (:namespaces *opts*  ['app.client 'app.server 'app.services 'app.routing])
         msg    (if (and name (not= 'app name)) (str name) "Welcome!")]
     (boot/set-env! :project name)
     (comp

@@ -1,11 +1,15 @@
 (ns app.server
   (:require [meta.server :as server]
-            [app.services :as services]))
+            {{#require}}
+            {{.}}
+            {{/require}}
+            ))
 
 (-> server/app
     {{#services}}
     {{.}}
-    {{/services}})
+    {{/services}}
+    )
 
 (defn- main []
   (server/listen server/app "8080"))

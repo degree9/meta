@@ -8,16 +8,7 @@
 (impl/initialize-impl)
 
 ;; Load public tasks
-(require '[meta.boot :refer [project proto circle tests]])
-
-;; project tasks
-(deftask develop
-  ""
-  []
-  (comp
-    (version :develop true :minor 'inc :pre-release 'snapshot)
-    (watch)
-    (build-jar)))
+(require '[meta.boot :refer [project proto circle tests develop]])
 
 (deftask develop-snapshot
   ""

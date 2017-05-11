@@ -1,1 +1,2 @@
-{:services [services/messages]}
+{:require  [[app.services :as services]]
+ :services [services/messages]}
