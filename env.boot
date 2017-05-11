@@ -1,3 +1,3 @@
 {:asset-paths #{}
- :resource-paths #{"src"}
+ :resource-paths #{"src" "resources"}
  :source-paths #{}}

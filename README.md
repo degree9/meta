@@ -17,7 +17,7 @@ We built [meta] out of the idea that Open Source could be used to build a startu
 
 ***
 
-<img src="https://raw.githubusercontent.com/cljs/logo/master/cljs.png" width="240" alt="CLJS Logo" align="left">
+<img src="https://raw.githubusercontent.com/cljs/logo/master/cljs.png" width="180" alt="CLJS Logo" align="left">
 
 ## [meta] Internals ##
 [meta] is written in Clojure(Script) and built using:
@@ -34,7 +34,7 @@ We built [meta] out of the idea that Open Source could be used to build a startu
 
 ## Using [meta] ... with Boot [![Boot][24]][1] [![Wiki][34]][35] ##
 [meta] is powered by Boot, an environment for building applications using clojure.
-To use [meta] `require` it in your build.boot file. 
+To use [meta] `require` it in your build.boot file.
 Thanks to Boot, [meta] is built with itself.
 
 ```clojure
@@ -88,7 +88,7 @@ We believe in building universal technologies and the web is the most accessible
 
 ***
 
-<img src="https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg" width="160" alt="Node.js Logo" align="left">
+<img src="https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg" width="180" alt="Node.js Logo" align="left">
 
 ## ClojureScript on the Server ... with Node.js [![Node][29]][4] ##
 [meta] is built entirely out of Clojure(Script) including the backend. This means compiling to JavaScript and running on Node.js.
@@ -139,7 +139,7 @@ for the 21st Century.
 
 ***
 
-<img src="https://www.gitcheese.com/images/logo.svg" width="160" alt="GitCheese" align="left">
+<img src="https://www.gitcheese.com/images/logo.svg" width="180" alt="GitCheese" align="left">
 
 ## Donations ... with Cheese ##
 If you would like to support this project give us a :star: or consider donating some cheese.
