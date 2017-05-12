@@ -1,3 +1,17 @@
+<pre align="center">
+      ___           ___           ___          ___      
+     /\  \         /\__\         /\__\        /\  \     
+    |::\  \       /:/ _/_       /:/  /       /::\  \    
+    |:|:\  \     /:/ /\__\     /:/__/       /:/\:\  \   
+  __|:|\:\  \   /:/ /:/ _/_   /::\  \      /:/ /::\  \  
+ /::::|_\:\__\ /:/_/:/ /\__\ /:/\:\  \    /:/_/:/\:\__\ 
+ \:\--\  \/__/ \:\/:/ /:/  / \/__\:\  \   \:\/:/  \/__/ 
+  \:\  \        \::/_/:/  /       \:\  \   \::/__/      
+   \:\  \        \:\/:/  /         \:\  \   \:\  \      
+    \:\__\        \::/  /           \:\__\   \:\__\     
+     \/__/         \/__/             \/__/    \/__/     
+</pre>
+
 # [meta] [![Clojars Project][7]][8] [![CircleCI][9]][10] [![Downloads][13]][14]
 <!---[![Dependencies Status][11]][12]--->
 A stack. A framework. A conversation.
@@ -27,6 +41,9 @@ We built [meta] out of the idea that Open Source could be used to build a startu
 - [Node.js][4] - JavaScript runtime built on Chrome's V8 JavaScript engine.
 - [Electron][5] - Build cross platform desktop apps with JavaScript, HTML, and CSS.
 - [Atom][6] - A hackable text editor for the 21st Century.
+
+[![Clojure](https://img.shields.io/badge/clojure-v1.8.0-blue.svg)](https://clojure.org)
+[![ClojureScript](https://img.shields.io/badge/clojurescript-v1.9.521-blue.svg)](https://clojurescript.org)
 
 ***
 
