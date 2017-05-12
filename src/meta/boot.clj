@@ -21,16 +21,27 @@
   []
   (impl/proto-impl *opts*))
 
-(boot/deftask build
-  "Setup project builds."
+(boot/deftask dependencies
+  "Download additional project dependencies."
   []
-  (comp (wf/sync-repo)
-        (ver/version
+  (comp (fs/feathers)
+        ))
+
+(def deps dependencies)
+
+(boot/deftask setup
+  "Setup cross project builds."
+  []
+  (comp (ver/version
           :develop true
-          :minor 'inc
-          :patch 'zero
           :pre-release 'snapshot)
-        (fs/feathers)))
+        (dependencies)))
+
+(boot/deftask build
+  "Build project namespaces."
+  []
+  (comp (impl/project-files :namespaces gen-ns)
+        (tmpl/project-templates :namespaces gen-ns)))
 
 (boot/deftask client
   "Build project client."
@@ -45,14 +56,18 @@
         (cljs/cljs)
         ))
 
+(boot/deftask teardown
+  "Teardown cross project builds."
+  []
+  (comp (task/target))
+
 (boot/deftask develop
   "Build entire project for local development."
   []
-  (comp (build)
-        (task/watch)
-        ;(client)
+  (comp (task/watch)
+        (client)
         (server)
-        (task/target)))
+        (teardown)))
 
 (def dev develop)
 
@@ -83,14 +98,18 @@
 (boot/deftask project
   "Load [meta] project."
   [p project VAL sym  "Current project name. (app)"
-   n namespaces  VAL [sym]  "Project app namespaces. ([app.client app.server app.routing])"]
-  (let [name   (:project *opts* 'app)
-        gen-ns (:namespaces *opts*  ['app.client 'app.server 'app.services 'app.routing])
-        msg    (if (and name (not= 'app name)) (str name) "Welcome!")]
+   n namespaces  VAL [sym]  "Project app namespaces. ([app.client app.server app.services app.routing])"]
+  (let [name    (:project *opts* 'app)
+        gen-ns  (:namespaces *opts*  ['app.client 'app.server 'app.services 'app.routing])
+        msg     (if (and name (not= 'app name)) (str name) "Welcome!")
+        dev     (:develop *opts* false)]
     (boot/set-env! :project name)
-    (comp
-      (welcome/welcome :message msg)
-      (impl/project-files :namespaces gen-ns)
-      (tmpl/project-templates :namespaces gen-ns)
-      )))
+    (cond
+      dev (comp (welcome/welcome :message msg)
+                (wf/sync-repo)
+                (setup)
+                (task/watch)
+                (build)
+                )
+      ))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
