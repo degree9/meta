@@ -1,4 +1,4 @@
-<img src="resources/logo.png" align="center" />
+<p align="center"><img src="resources/logo.png" width="575px" height="250px" /></p>
 
 # [meta] [![Clojars Project][7]][8] [![CircleCI][9]][10] [![Downloads][13]][14]
 <!---[![Dependencies Status][11]][12]--->
