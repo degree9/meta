@@ -1,0 +1,22 @@
+(ns ^{:hoplon/page "index.html"} app.index
+  (:require {{#require}}
+            {{{.}}}
+            {{/require}}
+            )
+  (:require-macros [hoplon.bidi :refer [route-tpl]]))
+
+(hl/html
+  (hl/head
+    {{{head}}})
+  (hl/body
+    ((hl/div :test1 true) :test2 false)
+    (route-tpl routing/routes
+      {{#views}}
+      {{{route}}} ({{{view}}})
+      {{/views}}
+      )))
+
+(-> (client/auth!)
+  {{#auth}}
+  {{{.}}}
+  {{/auth}})

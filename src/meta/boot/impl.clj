@@ -69,7 +69,7 @@
 
 (boot/deftask project-files
   "Load project files."
-  [n namespaces VAL [sym] "Project namespaces to generate."]
+  [n namespaces VAL [sym] "Project namespaces to validate."]
   (boot/with-pre-wrap fs
     (let [gen-ns   (:namespaces *opts*)
           tmp      (boot/tmp-dir!)
@@ -77,18 +77,19 @@
       (util/info "Loading project files...\n")
       (doseq [n gen-ns]
         (let [path      (mutil/ns->path n)
-              cljs-path (format "%s.cljs" path)]
+              cljs-path (format "%s.cljs" path)
+              tmpl-path (format "%s.mustache" path)]
           (if-let [cljs-file (->> in-files (boot/by-path [cljs-path]) first)]
             (util/info "• %s...\n" cljs-path)
-            (when-let [tmpl-file (io/resource (format "meta/%s.cljs" path))]
-              (mutil/spit-file tmp cljs-path (slurp tmpl-file))))))
+            (when-let [tmpl-file (io/resource (format "meta/%s.mustache" path))]
+              (mutil/spit-file tmp tmpl-path (slurp tmpl-file))))))
       (-> fs (boot/add-resource tmp) boot/commit!))))
 
-(defn proto-impl []
+(defn proto-impl [_]
   (util/info "Configuring Proto-REPL... \n")
   (boot/set-env! :dependencies #(into % '[[org.clojure/tools.namespace "0.2.11" :scope "test"]]))
   (require 'clojure.tools.namespace.repl)
-  (eval '(apply clojure.tools.namespace.repl/set-refresh-dirs (boot/get-env :directories)))
+  (eval '(apply clojure.tools.namespace.repl/set-refresh-dirs (boot.core/get-env :directories)))
   identity)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

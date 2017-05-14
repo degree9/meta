@@ -1,0 +1,9 @@
+{:require [[hoplon.core :as hl]
+           [hoplon.bidi]
+           [app.client :as client]
+           ;[app.chat    :as chat]
+           ;[app.views   :as view]
+           [app.routing :as routing]
+           ;[app.actions :as actions]
+           ]
+ :views [{:route :landing :view hl/div}]}
