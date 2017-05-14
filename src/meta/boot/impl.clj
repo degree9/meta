@@ -85,11 +85,11 @@
               (mutil/spit-file tmp tmpl-path (slurp tmpl-file))))))
       (-> fs (boot/add-resource tmp) boot/commit!))))
 
-(defn proto-impl []
+(defn proto-impl [_]
   (util/info "Configuring Proto-REPL... \n")
   (boot/set-env! :dependencies #(into % '[[org.clojure/tools.namespace "0.2.11" :scope "test"]]))
   (require 'clojure.tools.namespace.repl)
-  (eval '(apply clojure.tools.namespace.repl/set-refresh-dirs (boot/get-env :directories)))
+  (eval '(apply clojure.tools.namespace.repl/set-refresh-dirs (boot.core/get-env :directories)))
   identity)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

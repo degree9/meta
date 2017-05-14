@@ -51,8 +51,8 @@ We built [meta] out of the idea that Open Source could be used to build a startu
 
 ## Using [meta] ... with Boot [![Boot][24]][1] [![Wiki][34]][35] ##
 [meta] is powered by Boot, an environment for building applications using clojure.
+
 To use [meta] `require` it in your build.boot file.
-Thanks to Boot, [meta] is built with itself.
 
 ```clojure
 (set-env! :dependencies [[degree9/meta "0.1.0-SNAPSHOT"]])
@@ -60,6 +60,12 @@ Thanks to Boot, [meta] is built with itself.
 
 (initialize)
 ```
+
+Start a project development workflow:
+
+> $ boot project --develop
+
+Thanks to Boot, [meta] is built with itself.
 
 - [boot-welcome][36] - ASCII art banners with boot-clj.
 - [boot-exec][15] - Boot-clj external process execution using Apache Commons Exec.

@@ -6,13 +6,13 @@
 
 (def app (feathers/feathers))
 
-(def public (str js/__dirname "/../../")) ;; could possibly be ./
+(def public "./")
 
 (-> app
     (feathers/configuration public)
     feathers/compress
     feathers/cors
-    (feathers/favicon (str public "favicon.png"))
+    (feathers/favicon (str public "favicon.ico"))
     (feathers/static public)
     feathers/body-parser
     feathers/hooks

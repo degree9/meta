@@ -10,6 +10,14 @@
 ;; Load public tasks
 (require '[meta.boot :refer [project proto circle tests develop]])
 
+(deftask dev
+  ""
+  []
+  (comp
+    (proto)
+    (develop)))
+
+
 (deftask develop-snapshot
   ""
   []
