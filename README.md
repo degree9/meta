@@ -55,15 +55,15 @@ Start a project development workflow:
 
 Thanks to Boot, [meta] is built with itself.
 
-- [boot-welcome][36] - ASCII art banners with boot-clj.
 - [boot-exec][15] - Boot-clj external process execution using Apache Commons Exec.
 - [boot-semver][17] - Semantic Versioning for boot projects.
 - [boot-semgit][18] - Semantic Git access from boot tasks.
+- [boot-welcome][36] - ASCII art banners with boot-clj.
 
-[![Clojars Project](https://img.shields.io/clojars/v/degree9/boot-welcome.svg)](https://clojars.org/degree9/boot-welcome)
 [![Clojars Project](https://img.shields.io/clojars/v/degree9/boot-exec.svg)](https://clojars.org/degree9/boot-exec)
 [![Clojars Project](https://img.shields.io/clojars/v/degree9/boot-semver.svg)](https://clojars.org/degree9/boot-semver)
 [![Clojars Project](https://img.shields.io/clojars/v/degree9/boot-semgit.svg)](https://clojars.org/degree9/boot-semgit)
+[![Clojars Project](https://img.shields.io/clojars/v/degree9/boot-welcome.svg)](https://clojars.org/degree9/boot-welcome)
 
 ***
 
