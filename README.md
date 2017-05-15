@@ -190,7 +190,7 @@ If you would like to support this project give us a :star: or consider donating 
 [20]: https://github.com/degree9/featherscript
 [21]: https://github.com/degree9/nodejs-cljs
 [22]: https://github.com/degree9/electron-cljs
-[23]: https://img.shields.io/badge/hoplon-v7.0.0--SNAPSHOT-orange.svg
+[23]: https://img.shields.io/badge/hoplon-v7.0.1-orange.svg
 [24]: https://img.shields.io/github/release/boot-clj/boot.svg?colorB=dfb317&label=boot
 [25]: https://img.shields.io/github/release/atom/atom.svg?label=atom
 [26]: https://atom.io
