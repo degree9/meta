@@ -67,10 +67,10 @@ Thanks to Boot, [meta] is built with itself.
 
 ***
 
+<img src="http://hoplon.io/images/logos/hoplon-logo.png" width="220" alt="Hoplon Logo" align="left">
+
 ## ClojureScript in the Browser ... with Hoplon [![Hoplon][23]][2] ##
 We believe in building universal technologies and the web is the most accessible platform available. [meta] builds upon Hoplon to provide abstractions for the DOM.
-
-<img src="http://hoplon.io/images/logos/hoplon-logo.png" width="220" alt="Hoplon Logo" align="left">
 
 ```clojure
 (page "index.html")
