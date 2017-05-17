@@ -1,4 +1,4 @@
-<img src="resources/logo.png" align="center" />
+<p align="center"><img src="resources/logo.png" width="575px" height="250px" /></p>
 
 # [meta] [![Clojars Project][7]][8] [![CircleCI][9]][10] [![Downloads][13]][14]
 <!---[![Dependencies Status][11]][12]--->
@@ -31,7 +31,7 @@ We built [meta] out of the idea that Open Source could be used to build a startu
 - [Atom][6] - A hackable text editor for the 21st Century.
 
 [![Clojure](https://img.shields.io/badge/clojure-v1.8.0-blue.svg)](https://clojure.org)
-[![ClojureScript](https://img.shields.io/badge/clojurescript-v1.9.521-blue.svg)](https://clojurescript.org)
+[![ClojureScript](https://img.shields.io/badge/clojurescript-v1.9.293-blue.svg)](https://clojurescript.org)
 
 ***
 
@@ -40,30 +40,23 @@ We built [meta] out of the idea that Open Source could be used to build a startu
 ## Using [meta] ... with Boot [![Boot][24]][1] [![Wiki][34]][35] ##
 [meta] is powered by Boot, an environment for building applications using clojure.
 
-To use [meta] `require` it in your build.boot file.
+__Generate an empty project:__
+> $ boot -d degree9/meta project --generate
 
-```clojure
-(set-env! :dependencies [[degree9/meta "0.1.0-SNAPSHOT"]])
-(require '[meta.boot :refer :all])
-
-(initialize)
-```
-
-Start a project development workflow:
-
+__Start a development workflow:__
 > $ boot project --develop
 
 Thanks to Boot, [meta] is built with itself.
 
-- [boot-welcome][36] - ASCII art banners with boot-clj.
 - [boot-exec][15] - Boot-clj external process execution using Apache Commons Exec.
 - [boot-semver][17] - Semantic Versioning for boot projects.
 - [boot-semgit][18] - Semantic Git access from boot tasks.
+- [boot-welcome][36] - ASCII art banners with boot-clj.
 
-[![Clojars Project](https://img.shields.io/clojars/v/degree9/boot-welcome.svg)](https://clojars.org/degree9/boot-welcome)
 [![Clojars Project](https://img.shields.io/clojars/v/degree9/boot-exec.svg)](https://clojars.org/degree9/boot-exec)
 [![Clojars Project](https://img.shields.io/clojars/v/degree9/boot-semver.svg)](https://clojars.org/degree9/boot-semver)
 [![Clojars Project](https://img.shields.io/clojars/v/degree9/boot-semgit.svg)](https://clojars.org/degree9/boot-semgit)
+[![Clojars Project](https://img.shields.io/clojars/v/degree9/boot-welcome.svg)](https://clojars.org/degree9/boot-welcome)
 
 ***
 
@@ -190,7 +183,7 @@ If you would like to support this project give us a :star: or consider donating 
 [20]: https://github.com/degree9/featherscript
 [21]: https://github.com/degree9/nodejs-cljs
 [22]: https://github.com/degree9/electron-cljs
-[23]: https://img.shields.io/badge/hoplon-v7.0.0--SNAPSHOT-orange.svg
+[23]: https://img.shields.io/badge/hoplon-v7.0.1-orange.svg
 [24]: https://img.shields.io/github/release/boot-clj/boot.svg?colorB=dfb317&label=boot
 [25]: https://img.shields.io/github/release/atom/atom.svg?label=atom
 [26]: https://atom.io
