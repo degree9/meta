@@ -8,23 +8,30 @@
 (impl/initialize-impl)
 
 ;; Load public tasks
-(require '[meta.boot :refer [project proto circle tests develop]])
+(require '[meta.boot :refer [project proto circle tests]])
 
-(deftask dev
+(task-options!
+  pom     {:project 'degree9/meta})
+
+(deftask develop
   ""
   []
   (comp
-    (proto)
-    (develop)))
-
+    (watch)
+    (build-jar)))
 
 (deftask develop-snapshot
   ""
   []
   (comp
+    (version :develop true :pre-release 'snapshot)
     (develop)
     (push-snapshot)))
 
-;; set project options
-(task-options!
-  pom {:project 'degree9/meta})
+(deftask deploy
+  ""
+  []
+  (comp
+    (version)
+    (build-jar)
+    (push-release)))

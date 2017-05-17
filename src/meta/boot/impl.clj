@@ -22,8 +22,9 @@
         penv (mutil/read-file file)]
     (util/info "Loading project environment...\n")
     (doseq [[key val] (merge menv penv)]
-      (when (mutil/verify-env key val)
-        (boot/set-env! key val))))
+      (if (mutil/verify-env key val)
+        (boot/merge-env! key val)
+        (util/fail "Environment validation failed...: %s\n" (name key)))))
   identity)
 
 (boot/deftask initialize-settings
@@ -36,7 +37,9 @@
             contents (mutil/read-file (str "./" conf ".boot"))]]
       (when contents
         (util/info "• %s\n" conf)
-        (boot/merge-env! key contents))))
+        (if (mutil/verify-env key contents)
+          (boot/merge-env! key contents)
+          (util/fail "Environment validation failed...: %s\n" (name key))))))
   identity)
 
 (boot/deftask initialize-tasks
@@ -91,5 +94,13 @@
   (require 'clojure.tools.namespace.repl)
   (eval '(apply clojure.tools.namespace.repl/set-refresh-dirs (boot.core/get-env :directories)))
   identity)
+
+(boot/deftask info
+  "A task which displays a message."
+  [m message VAL str "Message to be displayed."]
+  (boot/with-pre-wrap fs
+    (let []
+      (util/info (str (:message *opts*) "\n"))
+      fs)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

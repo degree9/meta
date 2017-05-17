@@ -2,15 +2,16 @@
   {:boot/export-tasks true}
   (:require [boot.core :as boot]
             [boot.util :as util]
+            [boot.new :as new]
             [boot.task.built-in :as task]
             [meta.boot.impl :as impl]
             [meta.boot.templates :as tmpl]
             [adzerk.boot-cljs :as cljs]
             [degree9.boot-nodejs :as njs]
             [degree9.boot-semgit :as sg]
-            [degree9.boot-semgit.workflow :as wf]
+            [degree9.boot-semgit.workflow :refer [sync-repo]]
             [degree9.boot-semver :as ver]
-            [degree9.boot-welcome :as welcome]
+            [degree9.boot-welcome :refer [welcome]]
             [feathers.boot-feathers :as fs]
             [hoplon.boot-hoplon :as hl]))
 
@@ -96,40 +97,71 @@
    t tasks    VAL str  "EDN file containing a list of namespaces and tasks to require. (tasks.boot)"]
   (impl/initialize-impl *opts*))
 
-(defn current-workflow [{:keys [develop release]}]
+(defn current-workflow [{:keys [develop release snapshot generate]}]
   (let [not-true? (fn [& args] (not-any? true? args))
-        release (not-true? develop)
-        develop (not-true? release)
-        default (not-true? develop release)]
-    {:release release :develop develop :default default}))
+        release  (and release  (not-true? develop snapshot generate))
+        snapshot (and snapshot (not-true? develop release generate))
+        develop  (and develop  (not-true? release snapshot generate))
+        generate (and generate (not-true? release snapshot develop))
+        default  (not-true? develop release snapshot generate)]
+    {:release release :snapshot snapshot :develop develop :default default :generate generate}))
 
 (boot/deftask project
   "Load [meta] project."
   [p project     VAL sym   "Current project name. (app)"
    n namespaces  VAL [sym] "Project app namespaces. ([app.client ...])"
    d develop         bool  "Project development workflow."
-   r release         bool  "Project release workflow."]
+   r release         bool  "Project release workflow."
+   s snapshot        bool  "Project snapshot workflow."
+   g generate        bool  "Generate an empty project template."]
   (let [name    (:project *opts* 'app)
         gen-ns  (:namespaces *opts* '[app.client app.index app.server app.services app.routing])
         msg     (if (and name (not= 'app name)) (str name) "Welcome!")
-        {:keys [develop release default]} (current-workflow *opts*)]
+        wfmsg   #(format "Running Workflow...: %s" %)
+        {:keys [develop release snapshot default] :as workflows} (current-workflow *opts*)]
     (boot/set-env! :project name)
     (boot/task-options!
       impl/project-files     {:namespaces gen-ns}
       tmpl/project-templates {:namespaces gen-ns}
       njs/nodejs             {:init-fn 'app.server/init})
     (cond
-      develop (boot/task-options!
-                ver/version            {:develop true :pre-release 'snapshot}))
-    (cond-> (welcome/welcome :message msg)
-      develop     (comp (wf/sync-repo)
+      develop  (boot/task-options!
+                 impl/info              {:message "Running Workflow...: develop"}
+                 ver/version            {:develop true :pre-release 'snapshot})
+      snapshot (boot/task-options!
+                 impl/info              {:message "Running Workflow...: snapshot"}
+                 ver/version            {:develop true :pre-release 'snapshot})
+      release (boot/task-options!
+                 impl/info              {:message "Running Workflow...: release"})
+      generate (boot/task-options!
+                 impl/info              {:message "Running Workflow...: generate"}
+                 new/new                {:template "meta" :name (str name)})
+      default (boot/task-options!
+                 impl/info              {:message "Running Workflow...: default"}))
+    (cond-> (welcome :message msg)
+      develop     (comp (impl/info)
+                        (sync-repo)
                         (setup)
                         (meta.boot/develop))
-      release     (comp (setup)
+      snapshot    (comp (impl/info)
+                        (setup)
                         (build)
                         (client)
                         (server)
-                        (teardown))
-      default     (comp (setup)
+                        (teardown)
+                        (ver/build-jar)
+                        (ver/push-snapshot))
+      release     (comp (impl/info)
+                        (setup)
+                        (build)
+                        (client)
+                        (server)
+                        (teardown)
+                        (ver/build-jar)
+                        (ver/push-release))
+      generate    (comp (impl/info)
+                        (new/new))
+      default     (comp (impl/info)
+                        (setup)
                         (build)))))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
