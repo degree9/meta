@@ -43,7 +43,7 @@ We built [meta] out of the idea that Open Source could be used to build a startu
 To use [meta] `require` it in your build.boot file.
 
 ```clojure
-(set-env! :dependencies [[degree9/meta "0.1.0-SNAPSHOT"]])
+(set-env! :dependencies '[[degree9/meta "0.1.0-SNAPSHOT"]])
 (require '[meta.boot :refer :all])
 
 (initialize)
