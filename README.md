@@ -31,7 +31,7 @@ We built [meta] out of the idea that Open Source could be used to build a startu
 - [Atom][6] - A hackable text editor for the 21st Century.
 
 [![Clojure](https://img.shields.io/badge/clojure-v1.8.0-blue.svg)](https://clojure.org)
-[![ClojureScript](https://img.shields.io/badge/clojurescript-v1.9.521-blue.svg)](https://clojurescript.org)
+[![ClojureScript](https://img.shields.io/badge/clojurescript-v1.9.293-blue.svg)](https://clojurescript.org)
 
 ***
 
