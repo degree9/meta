@@ -43,14 +43,6 @@ We built [meta] out of the idea that Open Source could be used to build a startu
 __Generate an empty project:__
 > $ boot -d degree9/meta project --generate
 
-__`require` it in build.boot:__
-```clojure
-(set-env! :dependencies '[[degree9/meta "0.1.0-SNAPSHOT"]])
-(require '[meta.boot :refer :all])
-
-(initialize)
-```
-
 __Start a development workflow:__
 > $ boot project --develop
 
