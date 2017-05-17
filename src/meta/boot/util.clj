@@ -24,12 +24,22 @@
     (read-string (slurp file))))
 
 (defn read-resource [file]
-  (read-file (io/resource file)))
+  (read-string (slurp (io/resource file))))
+
+(defn validate-checkouts [chk]
+  (prn chk)
+  (vector? chk))
+
+(defn validate-folders [folders]
+  (empty? (remove true? (map #(.exists (io/file "./" %)) folders))))
 
 (defn verify-env [key val]
   (case key
-    :dependencies (vector? val)
-    :checkouts    (vector? val)
+    :asset-paths    (validate-folders val)
+    :source-paths   (validate-folders val)
+    :resource-paths (validate-folders val)
+    :dependencies   (vector? val)
+    :checkouts      (validate-checkouts val)
     true))
 
 (defn ns->path [n & [ext]]
