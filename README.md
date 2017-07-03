@@ -76,8 +76,10 @@ We believe in building universal technologies and the web is the most accessible
 ```
 
 - [material-hl][32] - Material Design Components for Hoplon
+- [uikit-hl][uikit-hl] - UIkit v3 Components for Hoplon
 
 [![Clojars Project](https://img.shields.io/clojars/v/degree9/material-hl.svg)](https://clojars.org/degree9/material-hl)
+[![Clojars Project](https://img.shields.io/clojars/v/degree9/uikit-hl.svg)](https://clojars.org/degree9/uikit-hl)
 
 ***
 
@@ -197,3 +199,4 @@ If you would like to support this project give us a :star: or consider donating 
 [34]: https://img.shields.io/badge/wiki-boot-lightgrey.svg
 [35]: https://github.com/degree9/meta/wiki/Boot
 [36]: https://github.com/degree9/boot-welcome
+[uikit-hl]: https://github.com/degree9/uikit-hl
