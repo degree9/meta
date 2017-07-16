@@ -12,7 +12,7 @@
     )
 
 (defn- main []
-  (server/listen server/app "8080"))
+  (server/listen server/app "{{{port}}}"))
 
 (defn init []
   (server/init! main))

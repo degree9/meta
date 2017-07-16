@@ -1,16 +1,15 @@
 (ns ^{:hoplon/page "index.html"} app.index
-  (:require {{#require}}
+  (:require [hoplon.core :as h]
+            [javelin.core :as j]
+            {{#require}}
             {{{.}}}
-            {{/require}}
-            )
-  (:require-macros [hoplon.bidi :refer [route-tpl]]))
+            {{/require}}))
 
-(dom/app :type :mdc :toolbar :temporary
-  ;(route-tpl routing/routes
-  ;  :login (hl/div "login!"))
-    )
+(j/defc services [{{#services}}
+                             {{{.}}}
+                             {{/services}}])
 
-(-> (client/auth!)
-  {{#auth}}
-  {{{.}}}
-  {{/auth}})
+(uikit/app
+  (uikit/dashboard :services services))
+
+(-> (client/auth!))

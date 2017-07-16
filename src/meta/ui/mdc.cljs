@@ -1,9 +1,14 @@
-(ns meta.dom.mdc
+(ns meta.ui.mdc
   (:require [hoplon.core :as h]
             [javelin.core :as j]
             [material-hl.core :as mwc]
+            [material-hl.card :as card]
+            [material-hl.button :as btn]
             [material-hl.drawer :as drawer]
-            [material-hl.toolbar :as toolbar]))
+            [material-hl.form-field :as form]
+            [material-hl.text-input :as inpt]
+            [material-hl.toolbar :as toolbar]
+            [material-hl.layout-grid :as grid]))
 
 (h/defelem temporary-drawer [attr kids]
   (drawer/temporary
@@ -30,7 +35,7 @@
       (toolbar/section kids))))
 
 (h/defelem content [attr kids]
-  (toolbar/content :fixed true))
+  (toolbar/content attr :fixed true kids))
 
 (h/defelem head [attr kids]
   (let [title (:title attr)]
@@ -56,13 +61,31 @@
 (h/defelem app [attr kids]
   (let [drawer (:drawer attr :temporary)]
     (h/html
-      (head)
-      (body attr kids))))
+      (h/head)
+      (h/body attr kids))))
+
+(h/defelem login-card [attr kids]
+  (let [title (:title attr)]
+    (card/card
+      (card/media :css {:background-image "url(http://material-components-web.appspot.com/images/16-9.jpg)"
+                        :background-size "cover"
+                        :background-repeat "no-repeat"
+                        :height "12.3rem"})
+      (card/primary
+        (card/title title)
+        (h/form
+          (form/form-field
+            (inpt/textfield
+              (inpt/input :id "email" :type "text" :name "email" :placeholder "Email")
+              (inpt/label "Email")))
+          (form/form-field
+            (inpt/textfield
+              (inpt/input :id "pass" :type "password" :name "password" :placeholder "Password")
+              (inpt/label "Password")))))
+      (card/actions kids))))
 
 
-;(route-tpl routes
-;  :chat    (chat/chat)
-;  :landing (view/landing)
-;  :login   (view/login)
-;  :signup  (view/signup)
-;  :missing "404!")
+(h/defelem login [attr kids]
+  (grid/grid
+    (grid/cell
+      (login-card kids))))

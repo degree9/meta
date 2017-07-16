@@ -1,5 +1,1 @@
-{:routes ["" {#{"" "/"} :landing
-              "chat"    :chat
-              "login"   :login
-              "signup"  :signup
-              true      :missing}]}
+{}

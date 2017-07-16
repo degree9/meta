@@ -4,7 +4,7 @@
 ;; Load from classpath
 (require '[meta.boot.impl :as impl])
 
-;; initialize internally - projects should NOT do this
+;; Initialize internally - projects should NOT do this
 (impl/initialize-impl)
 
 ;; Load public tasks
@@ -13,10 +13,14 @@
 (task-options!
   pom     {:project 'degree9/meta})
 
+;; Internal Boot Tasks
 (deftask develop
   ""
   []
   (comp
+    (version :develop true
+             :minor 'inc
+             :pre-release 'snapshot)
     (watch)
     (build-jar)))
 
@@ -24,7 +28,6 @@
   ""
   []
   (comp
-    (version :develop true :pre-release 'snapshot)
     (develop)
     (push-snapshot)))
 

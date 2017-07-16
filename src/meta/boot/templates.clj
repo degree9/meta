@@ -23,7 +23,7 @@
             (if-let [tmpl-file (->> files (boot/by-ext [".mustache"]) first)]
               (let [out-file cljs-path
                     tmpl-str (slurp (boot/tmp-file tmpl-file))
-                    edn-data (slurp (boot/tmp-file edn-file))]
+                    edn-data (read-string (slurp (boot/tmp-file edn-file)))]
                 (mutil/spit-file tmp out-file (stencil/render-string tmpl-str edn-data)))
               (util/warn "• %s... missing!\n" cljs-path))
             (when-let [edn-file (io/resource (format "meta/%s.edn" path))]
