@@ -1,25 +1,13 @@
 (ns app.services
-  (:require [meta.server :as server]
+  (:require [feathers.app :as feathers :include-macros true]
             [meta.services :as services]
-            [meta.services.hooks :as hooks]))
+            [meta.services.hooks :as hooks]
+            {{#require}}
+            {{{.}}}
+            {{/require}}))
 
-(def msg-pre-hooks {:all    []
-                    :find   [(hooks/auth. #js["jwt" "local"])]
-                    :get    [(hooks/auth. #js["jwt" "local"])]
-                    :create []
-                    :update []
-                    :patch  []
-                    :remove []})
-
-(def msg-post-hooks {:all    []
-                     :find   []
-                     :get    []
-                     :create []
-                     :update []
-                     :patch  []
-                     :remove []})
-
-(def msg-hooks {:before msg-pre-hooks :after msg-post-hooks})
-
-(defn messages [app]
-  (server/api app "messages" (:memory services/store) msg-hooks))
+{{#services}}
+(defn {{{name}}} [app & [store]]
+  (let [storef (get services/store store ({{{store}}} services/store))]
+    (feathers/api app "{{{name}}}" (storef) {{{hooks}}})))
+{{/services}}

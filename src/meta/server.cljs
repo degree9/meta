@@ -1,6 +1,7 @@
 (ns meta.server
   (:require [feathers.app :as feathers]
-            [meta.server.services :as services]))
+            [meta.server.services :as services]
+            ))
 
 (enable-console-print!)
 
@@ -19,11 +20,12 @@
     feathers/rest
     feathers/socketio
     feathers/authentication
-    services/users)
+    services/users
+    )
 
 (defn api
   ([path svc hooks] (feathers/api app path svc hooks))
-  ([app path svc hooks] (feathers/api app path (svc) hooks)))
+  ([app path svc hooks] (feathers/api app path svc hooks)))
 
 (defn listen
   ([port] (feathers/listen app port))

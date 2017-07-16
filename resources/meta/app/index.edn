@@ -1,10 +1,12 @@
-{:require [[hoplon.core :as hl]
-           [hoplon.bidi]
+{:require [[hoplon.core :as hoplon]
+           [javelin.core :as javelin]
+           [hoplon.jquery]
+           [hoplon.history :as history]
            [app.client :as client]
            ;[app.chat    :as chat]
            ;[app.views   :as view]
-           [app.routing :as routing]
+           ;[app.routing :as routing]
            ;[app.actions :as actions]
-           [meta.dom :as dom]
-           ]
- :views [{:route :landing :view hl/div}]}
+           [meta.ui.uikit :as uikit]]
+ :views []
+ :services [users]}
