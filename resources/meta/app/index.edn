@@ -2,11 +2,10 @@
            [javelin.core :as javelin]
            [hoplon.jquery]
            [hoplon.history :as history]
-           [app.client :as client]
            ;[app.chat    :as chat]
            ;[app.views   :as view]
            ;[app.routing :as routing]
            ;[app.actions :as actions]
            [meta.ui.uikit :as uikit]]
  :views []
- :services [users]}
+ :client {:services []}}

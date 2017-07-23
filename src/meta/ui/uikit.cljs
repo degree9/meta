@@ -15,12 +15,12 @@
 
 (hl/defelem dashmenu [attr kids]
   (grid/grid :child-1-2-s true :child-1-3-m true
-    (hl/for-tpl [x (:services attr)]
+    (hl/for-tpl [x (:items attr)]
       (grid/cell
         (hl/div :class [:uk-text-center]
-          (icon/icon :icon (j/cell= (:icon x)) :ratio 2)
+          (icon/icon :icon (j/cell= (:icon (val x))) :ratio 2)
           (hl/br)
-          (hl/text "~{(:title x)}"))))))
+          (hl/text "~{(:title (val x))}"))))))
 
 (hl/defelem dashnav [attr kids]
   (navbar/container
@@ -30,14 +30,19 @@
           (navbar/nav
             (navbar/toggle)
             (dropdown/dropdown :uk-dropdown {:mode "click"} :navbar true :class [:uk-width-large]
-              (dashmenu :services (:services attr)))))))))
+              (dashmenu :items (:menu attr)))
+            (:left attr)))
+        (navbar/center
+          (navbar/nav (:center attr)))
+        (navbar/right
+          (navbar/nav (:right attr)))))))
 
 (hl/defelem dashboard [attr kids]
   (hl/div :class [:uk-height-viewport]
-    (dashnav :services (:services attr))
+    (dashnav :menu (:menu attr) :left (:nav-left attr) :center (:nav-center attr) :right (:nav-right attr))
     (container/container
       (grid/grid :class [:uk-margin-top] :child-1-2-s true :child-1-3-m true
-        (hl/for-tpl [x (:services attr)]
+        (hl/for-tpl [x (:menu attr)]
           (grid/cell
             (card/card :default true
               (card/body

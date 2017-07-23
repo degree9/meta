@@ -1,15 +1,37 @@
 (ns ^{:hoplon/page "index.html"} app.index
   (:require [hoplon.core :as h]
             [javelin.core :as j]
+            [meta.core :as m]
+            [hoplon.binding :as b :include-macros true]
+            [app.client :as client]
+            [app.nobackend :as nobackend]
             {{#require}}
             {{{.}}}
             {{/require}}))
 
-(j/defc services [{{#services}}
-                             {{{.}}}
-                             {{/services}}])
+(b/binding
+  {{#client}}
+  []
+  {{/client}}
+  {{#nobackend}}
+  [m/*user*       (nobackend/user=)
+   m/*users*      (nobackend/users=)
+   m/*navigation* (nobackend/navigation=)]
+  {{/nobackend}}
+  (j/cell= (prn meta.core/*navigation*))
+  (uikit/app
+    (uikit/dashboard :menu m/*navigation* :user )))
 
-(uikit/app
-  (uikit/dashboard :services services))
+{{#client}}
+(-> (client/auth!)
+    {{#auth}}
+    ({{{.}}})
+    {{/auth}})
+{{/client}}
 
-(-> (client/auth!))
+{{#nobackend}}
+(-> (nobackend/auth!)
+    {{#auth}}
+    ({{{.}}})
+    {{/auth}})
+{{/nobackend}}

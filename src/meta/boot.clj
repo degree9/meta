@@ -66,7 +66,6 @@
   (comp (task/watch)
         (build)
         (client)
-        (teardown)
         (server)
         (njs/serve)
         ))
@@ -115,7 +114,8 @@
    s snapshot        bool  "Project snapshot workflow."
    g generate        bool  "Generate an empty project template."]
   (let [name    (:project *opts* 'app)
-        gen-ns  (:namespaces *opts* '[app.client app.index app.dashboard app.server app.services app.routing])
+        gen-ns  (:namespaces *opts* '[app.client app.index app.dashboard app.server
+                                      app.services app.routing app.nobackend])
         msg     (if (and name (not= 'app name)) (str name) "Welcome!")
         wfmsg   #(format "Running Workflow...: %s" %)
         {:keys [develop release snapshot default] :as workflows} (current-workflow *opts*)]
