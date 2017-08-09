@@ -5,22 +5,28 @@
             [hoplon.binding :as b :include-macros true]
             [app.client :as client]
             [app.nobackend :as nobackend]
+            [app.routing :as routing]
             {{#require}}
             {{{.}}}
             {{/require}}))
 
 (b/binding
+  [
+  {{#routing}}
+   m/*route*       (routing/route=)
+   m/*router*      (routing/router)
+  {{/routing}}
   {{#client}}
-  []
   {{/client}}
   {{#nobackend}}
-  [m/*user*       (nobackend/user=)
+   m/*user*       (nobackend/user=)
    m/*users*      (nobackend/users=)
-   m/*navigation* (nobackend/navigation=)]
+   m/*navigation* (nobackend/navigation=)
   {{/nobackend}}
-  (j/cell= (prn meta.core/*navigation*))
+  ]
+  (j/cell= (prn m/*route* m/*router*))
   (uikit/app
-    (uikit/dashboard :menu m/*navigation* :user )))
+    (uikit/dashboard :menu m/*navigation* :router m/*router* )))
 
 {{#client}}
 (-> (client/auth!)

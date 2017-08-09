@@ -28,7 +28,7 @@
   [] (hfb/fb-cell (settings)))
 
 (defn navigation
-  ([] (hfb/fb-ref (settings) [:navigation]))
+  ([] (hfb/fb-ref *firebase* [:navigation]))
   ([korks] (fbdb/get-in (navigation) korks)))
 
 (defn navigation=

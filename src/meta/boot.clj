@@ -123,11 +123,18 @@
     (boot/task-options!
       impl/project-files     {:namespaces gen-ns}
       tmpl/project-templates {:namespaces gen-ns}
-      njs/nodejs             {:init-fn 'app.server/init})
+      njs/nodejs             {:init-fn 'app.server/init}
+      ;cljs/cljs              {:source-map       true
+      ;                        :compiler-options {:pseudo-names true
+      ;                                           :pretty-print true
+      ;                                           :language-in :ecmascript5
+      ;                                           :parallel-build true}}
+      )
     (cond
       develop  (boot/task-options!
                  impl/info              {:message "Running Workflow...: develop"}
-                 ver/version            {:develop true :pre-release 'snapshot})
+                 ver/version            {:develop true :pre-release 'snapshot}
+                 cljs/cljs              {:optimizations :none})
       snapshot (boot/task-options!
                  impl/info              {:message "Running Workflow...: snapshot"}
                  ver/version            {:develop true :pre-release 'snapshot})

@@ -1,7 +1,12 @@
 (ns app.routing
-  (:require [hoplon.history :as history]
-            [javelin.core :as javelin]))
+  (:require [meta.routing :as routing]
+            {{#require}}
+            {{{.}}}
+            {{/require}}
+            ))
 
-(def ^:dynamic *history* (history/history-cell))
+{{#history}}
+(def route= #(routing/route= :history))
 
-(javelin/cell= (prn *history*))
+(def router #(routing/router :history))
+{{/history}}
