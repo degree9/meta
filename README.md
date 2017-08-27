@@ -1,6 +1,7 @@
 <p align="center"><img src="resources/logo.png" width="575px" height="250px" /></p>
 
 # [meta] [![Clojars Project][7]][8] [![CircleCI][9]][10] [![Downloads][13]][14]
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fdegree9%2Fmeta.svg?type=shield)](https://app.fossa.io/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fdegree9%2Fmeta?ref=badge_shield)
 <!---[![Dependencies Status][11]][12]--->
 A stack. A framework. A conversation.
 
@@ -200,3 +201,7 @@ If you would like to support this project give us a :star: or consider donating 
 [35]: https://github.com/degree9/meta/wiki/Boot
 [36]: https://github.com/degree9/boot-welcome
 [uikit-hl]: https://github.com/degree9/uikit-hl
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fdegree9%2Fmeta.svg?type=large)](https://app.fossa.io/projects/git%2Bhttps%3A%2F%2Fgithub.com%2Fdegree9%2Fmeta?ref=badge_large)
