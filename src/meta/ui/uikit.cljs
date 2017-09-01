@@ -49,8 +49,8 @@
             (card/card :default true
               (card/body
                 (card/title
-                  (icon/icon :icon (j/cell= (:icon (val x))) :ratio 2)
-                  (hl/text "~{(:title (val x))}"))))))))))
+                  (icon/icon :icon (j/cell= (when x (:icon (val x)))) :ratio 2)
+                  (hl/text "~{(when x (:title (val x)))}"))))))))))
 
 (hl/defelem login [attr kids]
   (hl/div :class [:uk-height-viewport]

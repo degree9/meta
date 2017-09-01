@@ -18,6 +18,10 @@
   (case (or provider *provider*)
     :firebase (firebase/users=)))
 
+(defn dashboard= [& [provider]]
+  (case (or provider *provider*)
+    :firebase (firebase/dashboard=)))
+
 (defn auth! [& [provider]]
   (case (or provider *provider*)
     :firebase (firebase/auth!)))

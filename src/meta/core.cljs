@@ -27,3 +27,7 @@
 (def ^:dynamic *users*
   "A thread bound formula cell containing a list of users."
   nil)
+
+(def ^:dynamic *data*
+  "A thread bound formula cell containing data to be displayed."
+  nil)

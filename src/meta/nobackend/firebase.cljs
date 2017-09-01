@@ -1,5 +1,7 @@
 (ns meta.nobackend.firebase
-  (:require [firebase-cljs.core :as fb]
+  (:require [meta.core :as m]
+            [javelin.core :as j]
+            [firebase-cljs.core :as fb]
             [firebase-cljs.database :as fbdb]
             [firebase-cljs.database.query :as fbdq]
             [firebase-cljs.database.datasnapshot :as fbsnap]
@@ -35,7 +37,7 @@
   [] (hfb/fb-cell (navigation)))
 
 (defn user=
-  [] (javelin.core/cell= (merge *user-auth* *user-fb*)))
+  [] (j/cell= (merge *user-auth* *user-fb*)))
 
 (defn users
   ([] (hfb/fb-ref *firebase* [:users]))
@@ -43,6 +45,20 @@
 
 (defn users=
   [] (hfb/fb-cell (users)))
+
+(defn dashboard
+  ([] (hfb/fb-ref *firebase* [:dashboard]))
+  ([korks] (fbdb/get-in (dashboard) korks)))
+
+(defn dashboard= []
+  (let [fbc (j/cell nil)]
+    (j/cell=
+      (fbdb/listen-once
+        (if (empty? m/*route*) (dashboard)
+          (fbdb/get-in *firebase* m/*route*))
+        "value"
+        ~#(reset! fbc (hfb/fb->clj %))))
+    (j/cell= fbc)))
 
 ;; Firebase Authentication ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (def auth! #(hfba/fb-auth! (users) {:enabled true}))

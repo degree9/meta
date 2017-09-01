@@ -24,7 +24,7 @@
     (doseq [[key val] (merge menv penv)]
       (if (mutil/verify-env key val)
         (boot/merge-env! key val)
-        (util/fail "Environment validation failed...: %s\n" (name key)))))
+        (util/fail "• %s validation failed...: %s\n" (name key) val))))
   identity)
 
 (boot/deftask initialize-settings
@@ -39,7 +39,7 @@
         (util/info "• %s\n" conf)
         (if (mutil/verify-env key contents)
           (boot/merge-env! key contents)
-          (util/fail "Environment validation failed...: %s\n" (name key))))))
+          (util/fail "• %s validation failed...: %s\n" (name key) contents)))))
   identity)
 
 (boot/deftask initialize-tasks
@@ -61,7 +61,7 @@
   ([] (initialize-impl {}))
   ([opts]
     (let [env      (:env opts "./env.boot")
-          settings (:settings opts [:dependencies :checkouts])
+          settings (:settings opts [:dependencies])
           tasks    (:tasks opts "./tasks.boot")]
       (boot/set-env! :meta {})
       (comp
