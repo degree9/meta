@@ -145,12 +145,16 @@ for the 21st Century.
 
 ***
 
-<img src="https://www.gitcheese.com/images/logo.svg" width="180" alt="GitCheese" align="left">
+<img src="https://opencollective.com/public/images/oc-logo-icon.svg" width="180" alt="OpenCollective" align="left">
 
-## Donations ... with Cheese ##
-If you would like to support this project give us a :star: or consider donating some cheese.
+## Funding ... with OpenCollective ##
+We are working on joining OpenCollective, and need your help getting 100 :star:'s on github!
 
-[![gitcheese.com](https://s3.amazonaws.com/gitcheese-ui-master/images/badge.svg)](https://www.gitcheese.com/donate/users/147004/repos/82129902)
+- [ ] 100 GitHub :star:'s
+- [ ] Set Development Goals
+- [ ] Pay Contributors!
+
+[![GitHub stars][gh-stars]](http://github.com/degree9/meta)
 
 ***
 
@@ -200,3 +204,4 @@ If you would like to support this project give us a :star: or consider donating 
 [35]: https://github.com/degree9/meta/wiki/Boot
 [36]: https://github.com/degree9/boot-welcome
 [uikit-hl]: https://github.com/degree9/uikit-hl
+[gh-stars]: https://img.shields.io/github/stars/degree9/meta.svg?style=social&label=Stars
