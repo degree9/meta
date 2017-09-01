@@ -22,7 +22,7 @@
                 [degree9/featherscript       "0.4.0-SNAPSHOT"]
                 [degree9/firebase-cljs       "1.3.0"]
                 [degree9/nodejs-cljs         "0.1.0"]
-                [degree9/meta-template       "0.1.0-SNAPSHOT"]
+                [degree9/meta-template       "0.3.0-SNAPSHOT"]
                 [hoplon/hoplon               "7.1.0-SNAPSHOT"]
                 [hoplon/brew                 "0.3.0"]
                 [degree9/material-hl         "0.10.0"]
