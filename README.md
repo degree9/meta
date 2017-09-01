@@ -150,9 +150,9 @@ for the 21st Century.
 ## Funding ... with OpenCollective ##
 We are working on joining OpenCollective, and need your help getting 100 :star:'s on github!
 
-- [ ] 100 GitHub :star:'s
-- [ ] Set Development Goals
-- [ ] Pay Contributors!
+- 100 GitHub :star:'s
+- Set Development Goals
+- Pay Contributors!
 
 [![GitHub stars][gh-stars]](http://github.com/degree9/meta)
 
