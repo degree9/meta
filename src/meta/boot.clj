@@ -66,7 +66,6 @@
   (comp (task/watch)
         (build)
         (client)
-        (teardown)
         (server)
         (njs/serve)
         ))
@@ -97,14 +96,15 @@
    t tasks    VAL str  "EDN file containing a list of namespaces and tasks to require. (tasks.boot)"]
   (impl/initialize-impl *opts*))
 
-(defn current-workflow [{:keys [develop release snapshot generate]}]
+(defn current-workflow [{:keys [develop release snapshot nobackend generate]}]
   (let [not-true? (fn [& args] (not-any? true? args))
-        release  (and release  (not-true? develop snapshot generate))
-        snapshot (and snapshot (not-true? develop release generate))
-        develop  (and develop  (not-true? release snapshot generate))
-        generate (and generate (not-true? release snapshot develop))
-        default  (not-true? develop release snapshot generate)]
-    {:release release :snapshot snapshot :develop develop :default default :generate generate}))
+        release   (and release   (not-true? develop snapshot generate nobackend))
+        snapshot  (and snapshot  (not-true? develop release  generate nobackend))
+        develop   (and develop   (not-true? release snapshot generate nobackend))
+        nobackend (and nobackend (not-true? release snapshot generate develop))
+        generate  (and generate  (not-true? release snapshot develop  nobackend))
+        default   (not-true? develop release snapshot generate nobackend)]
+    {:release release :snapshot snapshot :develop develop :default default :generate generate :nobackend nobackend}))
 
 (boot/deftask project
   "Load [meta] project."
@@ -113,31 +113,41 @@
    d develop         bool  "Project development workflow."
    r release         bool  "Project release workflow."
    s snapshot        bool  "Project snapshot workflow."
+   b nobackend       bool  "Project nobackend workflow."
    g generate        bool  "Generate an empty project template."]
   (let [name    (:project *opts* 'app)
-        gen-ns  (:namespaces *opts* '[app.client app.index app.dashboard app.server app.services app.routing])
+        gen-ns  (:namespaces *opts* '[app.client app.index app.dashboard app.server
+                                      app.services app.routing])
         msg     (if (and name (not= 'app name)) (str name) "Welcome!")
         wfmsg   #(format "Running Workflow...: %s" %)
-        {:keys [develop release snapshot default] :as workflows} (current-workflow *opts*)]
+        {:keys [develop release snapshot default generate nobackend] :as workflows} (current-workflow *opts*)]
     (boot/set-env! :project name)
     (boot/task-options!
       impl/project-files     {:namespaces gen-ns}
       tmpl/project-templates {:namespaces gen-ns}
-      njs/nodejs             {:init-fn 'app.server/init})
+      njs/nodejs             {:init-fn 'app.server/init}
+      )
     (cond
-      develop  (boot/task-options!
-                 impl/info              {:message "Running Workflow...: develop"}
-                 ver/version            {:develop true :pre-release 'snapshot})
-      snapshot (boot/task-options!
-                 impl/info              {:message "Running Workflow...: snapshot"}
-                 ver/version            {:develop true :pre-release 'snapshot})
-      release (boot/task-options!
-                 impl/info              {:message "Running Workflow...: release"})
-      generate (boot/task-options!
-                 impl/info              {:message "Running Workflow...: generate"}
-                 new/new                {:template "meta" :name (str name)})
-      default (boot/task-options!
-                 impl/info              {:message "Running Workflow...: default"}))
+      develop   (boot/task-options!
+                  impl/info              {:message "Running Workflow...: develop"}
+                  ver/version            {:develop true :pre-release 'snapshot}
+                  cljs/cljs              {:optimizations :none})
+      snapshot  (boot/task-options!
+                  impl/info              {:message "Running Workflow...: snapshot"}
+                  ver/version            {:develop true :pre-release 'snapshot})
+      release   (boot/task-options!
+                  impl/info              {:message "Running Workflow...: release"})
+      generate  (boot/task-options!
+                  impl/info              {:message "Running Workflow...: generate"}
+                  new/new                {:template "meta" :name (str name)})
+      nobackend (boot/task-options!
+                  impl/info              {:message "Running Workflow...: nobackend"}
+                  impl/project-files     {:namespaces (filter '#{app.client app.server
+                                                                 app.services app.nobackend} (conj gen-ns 'app.nobackend))}
+                  tmpl/project-templates {:namespaces (filter '#{app.client app.server
+                                                                 app.services app.nobackend} gen-ns)})
+      default   (boot/task-options!
+                  impl/info              {:message "Running Workflow...: default"}))
     (cond-> (welcome :message msg)
       develop     (comp (impl/info)
                         (sync-repo)
@@ -159,6 +169,10 @@
                         (teardown)
                         (ver/build-jar)
                         (ver/push-release))
+      nobackend   (comp (impl/info)
+                        (sync-repo)
+                        (setup)
+                        (meta.boot/develop))
       generate    (comp (impl/info)
                         (new/new))
       default     (comp (impl/info)
