@@ -117,7 +117,7 @@
    g generate        bool  "Generate an empty project template."]
   (let [name    (:project *opts* 'app)
         gen-ns  (:namespaces *opts* '[app.client app.index app.dashboard app.server
-                                      app.services app.routing app.nobackend])
+                                      app.services app.routing])
         msg     (if (and name (not= 'app name)) (str name) "Welcome!")
         wfmsg   #(format "Running Workflow...: %s" %)
         {:keys [develop release snapshot default generate nobackend] :as workflows} (current-workflow *opts*)]
@@ -143,7 +143,7 @@
       nobackend (boot/task-options!
                   impl/info              {:message "Running Workflow...: nobackend"}
                   impl/project-files     {:namespaces (filter '#{app.client app.server
-                                                                 app.services app.nobackend} gen-ns)}
+                                                                 app.services app.nobackend} (conj gen-ns 'app.nobackend))}
                   tmpl/project-templates {:namespaces (filter '#{app.client app.server
                                                                  app.services app.nobackend} gen-ns)})
       default   (boot/task-options!

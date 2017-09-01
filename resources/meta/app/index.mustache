@@ -1,8 +1,12 @@
 (ns ^{:hoplon/page "index.html"} app.index
   (:require [javelin.core :as j]
             [meta.core :as m]
+            {{#client}}
             [app.client :as client]
+            {{/client}}
+            {{#nobackend}}
             [app.nobackend :as nobackend]
+            {{/nobackend}}
             [app.routing :as routing]
             {{#require}}
             {{{.}}}
@@ -24,7 +28,7 @@
   ]
   (j/cell= (prn m/*data*))
   (uikit/app
-    (uikit/dashboard :menu m/*navigation* :router m/*router* :items (nobackend/dashboard=) )))
+    (uikit/dashboard :menu m/*navigation* :router m/*router*)))
 
 {{#client}}
 (-> (client/auth!)
