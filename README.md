@@ -150,7 +150,7 @@ for the 21st Century.
 
 ***
 
-<img src="https://opencollective.com/public/images/oc-logo-icon.svg" width="180" alt="OpenCollective" align="left">
+<img src="https://opencollective.com/public/images/oc-logo-icon.svg" width="160" alt="OpenCollective" align="left">
 
 ## Funding ... with OpenCollective ##
 We are working on joining OpenCollective, and need your help getting 100 :star:'s on github!
@@ -160,6 +160,15 @@ We are working on joining OpenCollective, and need your help getting 100 :star:'
 - Pay Contributors!
 
 [![GitHub stars][gh-stars]](http://github.com/degree9/meta)
+
+***
+
+<img src="https://degree9.io/images/degree9.png" width="200" alt="Info" align="right">
+
+## Commercialization ... with Degree9 ##
+[meta] is used extensively by the D9 Enterprise Platform. Commercial support is available for Enterprise Applications.
+
+[![Degree9 Tweet][d9-tweet]](http://twitter.com/degree9io)
 
 ***
 
@@ -210,3 +219,4 @@ We are working on joining OpenCollective, and need your help getting 100 :star:'
 [36]: https://github.com/degree9/boot-welcome
 [uikit-hl]: https://github.com/degree9/uikit-hl
 [gh-stars]: https://img.shields.io/github/stars/degree9/meta.svg?style=social&label=Stars
+[d9-tweet]: https://img.shields.io/twitter/follow/degree9io.svg?style=social&label=Follow
