@@ -9,10 +9,15 @@ A stack. A framework. A conversation.
 ***
 
 ## What is [meta]? ##
-[meta] is a stack for building tech startups using Clojure(Script).
+[meta] is a stack for building software using Clojure(Script).
 
 ## Why [meta]? ##
-We built [meta] out of the idea that Open Source could be used to build a startup. We named it [meta] as a reminder that software takes many forms and like ideas, should continuously evolve. [meta] is an attempt at building the quickest path from idea to startup.
+We built [meta] out of the idea that a single Open Source package could be used to build any tech startup. We named it [meta] as a reminder that software takes many forms and like ideas, should continuously evolve. [meta] is an attempt at building the quickest path from an idea to a startup.
+
+Things [meta] has been used for:
+
+ - Application Prototyping
+ - Enterprise Applications
 
 ## When should I use [meta]? ##
 [Always.](https://twitter.com/degree9io/status/848972601091346433)
