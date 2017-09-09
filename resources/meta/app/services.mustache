@@ -1,5 +1,5 @@
 (ns app.services
-  (:require [feathers.app :as feathers :include-macros true]
+  (:require [meta.server :as server]
             [meta.services :as services]
             [meta.services.hooks :as hooks]
             {{#require}}
@@ -8,6 +8,6 @@
 
 {{#services}}
 (defn {{{name}}} [app & [store]]
-  (let [storef (get services/store store ({{{store}}} services/store))]
-    (feathers/api app "{{{name}}}" (storef) {{{hooks}}})))
+  (let [storef (or store {{{store}}} services/memory)]
+    (server/api app "{{{name}}}" (storef) {{{hooks}}})))
 {{/services}}

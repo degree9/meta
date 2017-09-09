@@ -116,7 +116,7 @@
    b nobackend       bool  "Project nobackend workflow."
    g generate        bool  "Generate an empty project template."]
   (let [name    (:project *opts* 'app)
-        gen-ns  (:namespaces *opts* '[app.client app.index app.dashboard app.server
+        gen-ns  (:namespaces *opts* '[app.client app.index app.server
                                       app.services app.routing])
         msg     (if (and name (not= 'app name)) (str name) "Welcome!")
         wfmsg   #(format "Running Workflow...: %s" %)

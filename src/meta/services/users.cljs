@@ -22,5 +22,5 @@
 (def user-hooks {:before pre-hooks :after post-hooks})
 
 (defn users [app & [store]]
-  (let [storef (get services/store store (:memory services/store))]
+  (let [storef (or store services/memory)]
     (feathers/api app "users" (storef) user-hooks)))

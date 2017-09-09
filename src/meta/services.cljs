@@ -3,4 +3,4 @@
             [feathers.memory :as memory]
             [feathers.hooks :as hooks]))
 
-(def store {:memory memory/memory})
+(def memory memory/memory)

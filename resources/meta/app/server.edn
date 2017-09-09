@@ -1,3 +1,4 @@
-{:require  [[app.services :as services]]
- :services [services/messages]
+{:require  [[app.services :as services]
+            [meta.services.users :as users]]
+ :services [users/users services/messages]
  :port 8080}

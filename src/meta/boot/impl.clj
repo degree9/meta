@@ -75,17 +75,20 @@
   [n namespaces VAL [sym] "Project namespaces to validate."]
   (boot/with-pre-wrap fs
     (let [gen-ns   (:namespaces *opts*)
+          paths    (map mutil/ns->path gen-ns)
           tmp      (boot/tmp-dir!)
           in-files (boot/input-files fs)]
       (util/info "Loading project files...\n")
-      (doseq [n gen-ns]
-        (let [path      (mutil/ns->path n)
-              cljs-path (format "%s.cljs" path)
+      (doseq [path paths]
+        (let [cljs-path (format "%s.cljs" path)
               tmpl-path (format "%s.mustache" path)]
           (if-let [cljs-file (->> in-files (boot/by-path [cljs-path]) first)]
             (util/info "• %s...\n" cljs-path)
-            (when-let [tmpl-file (io/resource (format "meta/%s.mustache" path))]
-              (mutil/spit-file tmp tmpl-path (slurp tmpl-file))))))
+            (if-let [tmpl-file (->> in-files (boot/by-path [tmpl-path]) first)]
+              (util/info "• %s...\n" tmpl-path)
+              (if-let [tmpl-file (io/resource (format "meta/%s.mustache" path))]
+                (mutil/spit-file tmp tmpl-path (slurp tmpl-file))
+                (util/warn "• %s... missing!\n" tmpl-path))))))
       (-> fs (boot/add-resource tmp) boot/commit!))))
 
 (defn proto-impl [_]

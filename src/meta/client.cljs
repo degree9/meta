@@ -14,7 +14,7 @@
     (feathers/hooks)
     (feathers/authentication #js{:storage (obj/get js/window "localStorage")}))
 
-(def ^:dynamic *users* (feathers/service *app* "users"))
+(def ^:dynamic *users* (feathers/service *app* "/api/users"))
 
 ;; Helper Functions ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

@@ -1,6 +1,6 @@
 {:require  []
  :services [{:name messages
-             :store :memory
+             :store services/memory
              :hooks {
                :before {:find   [(hooks/auth. (clj->js ["jwt" "local"]))]
                         :get    [(hooks/auth. (clj->js ["jwt" "local"]))]}}}]}
