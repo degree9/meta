@@ -9,10 +9,15 @@ A stack. A framework. A conversation.
 ***
 
 ## What is [meta]? ##
-[meta] is a stack for building tech startups using Clojure(Script).
+[meta] is a stack for building software using Clojure(Script).
 
 ## Why [meta]? ##
-We built [meta] out of the idea that Open Source could be used to build a startup. We named it [meta] as a reminder that software takes many forms and like ideas, should continuously evolve. [meta] is an attempt at building the quickest path from idea to startup.
+We built [meta] out of the idea that a single Open Source package could be used to build any tech startup. We named it [meta] as a reminder that software takes many forms and like ideas, should continuously evolve. [meta] is an attempt at building the quickest path from an idea to a startup.
+
+Things [meta] has been used for:
+
+ - Application Prototyping
+ - Enterprise Applications
 
 ## When should I use [meta]? ##
 [Always.](https://twitter.com/degree9io/status/848972601091346433)
@@ -145,12 +150,25 @@ for the 21st Century.
 
 ***
 
-<img src="https://www.gitcheese.com/images/logo.svg" width="180" alt="GitCheese" align="left">
+<img src="https://opencollective.com/public/images/oc-logo-icon.svg" width="160" alt="OpenCollective" align="left">
 
-## Donations ... with Cheese ##
-If you would like to support this project give us a :star: or consider donating some cheese.
+## Funding ... with OpenCollective ##
+We are working on joining OpenCollective, and need your help getting 100 :star:'s on github!
 
-[![gitcheese.com](https://s3.amazonaws.com/gitcheese-ui-master/images/badge.svg)](https://www.gitcheese.com/donate/users/147004/repos/82129902)
+- 100 GitHub :star:'s
+- Set Development Goals
+- Pay Contributors!
+
+[![GitHub stars][gh-stars]](http://github.com/degree9/meta)
+
+***
+
+<img src="https://degree9.io/images/degree9.png" width="200" alt="Info" align="right">
+
+## Commercialization ... with Degree9 ##
+[meta] is used extensively by the D9 Enterprise Platform. Commercial support is available for Enterprise Applications.
+
+[![Degree9 Tweet][d9-tweet]](http://twitter.com/degree9io)
 
 ***
 
@@ -200,3 +218,5 @@ If you would like to support this project give us a :star: or consider donating 
 [35]: https://github.com/degree9/meta/wiki/Boot
 [36]: https://github.com/degree9/boot-welcome
 [uikit-hl]: https://github.com/degree9/uikit-hl
+[gh-stars]: https://img.shields.io/github/stars/degree9/meta.svg?style=social&label=Stars
+[d9-tweet]: https://img.shields.io/twitter/follow/degree9io.svg?style=social&label=Follow
