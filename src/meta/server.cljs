@@ -19,12 +19,16 @@
     feathers/socketio
     feathers/authentication)
 
+(defn using
+  ([path svc] (using app path svc))
+  ([app path svc] (feathers/using app path svc)))
+
 (defn api
-  ([path svc hooks] (feathers/api app path svc hooks))
+  ([path svc hooks] (api app path svc hooks))
   ([app path svc hooks] (feathers/api app path svc hooks)))
 
 (defn listen
-  ([port] (feathers/listen app port))
+  ([port] (listen app port))
   ([app port] (feathers/listen app port)))
 
 (defn init! [fname]
