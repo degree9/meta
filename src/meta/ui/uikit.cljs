@@ -1,5 +1,6 @@
 (ns meta.ui.uikit
   (:require [hoplon.core :as hl]
+            [hoplon.jquery]
             [javelin.core :as j]
             [meta.core :as core]
             [uikit-hl.button :as button]
@@ -7,12 +8,14 @@
             [uikit-hl.card :as card]
             [uikit-hl.container :as container]
             [uikit-hl.dropdown :as dropdown]
+            [uikit-hl.flex :as flex]
             [uikit-hl.form :as form]
             [uikit-hl.grid :as grid]
             [uikit-hl.icon :as icon]
             [uikit-hl.navbar :as navbar]
             [uikit-hl.tab :as tab]
             [uikit-hl.width :as width]
+            [uikit-hl.utility :as util]
             ))
 
 (hl/defelem dashmenu [attr kids]
@@ -53,22 +56,18 @@
                   (hl/text "~{(when x (:title (val x)))}"))))))))))
 
 (hl/defelem login [attr kids]
-  (hl/div :class [:uk-height-viewport]
-    (container/container :small true
+  (container/container :small true
+    (hl/div :uk-height-viewport true :flex true :flex-middle true :flex-center true
       (card/card :default true :small true :css {:width "350px"}
-        (card/header
+        (card/header :flex true :flex-center true
           (hl/img :class [:uk-logo] :css {:height "85px" :width "225px"} :src "https://d9lounge.firebaseapp.com/images/logo.png"))
         (card/body
           (form/form
-            (grid/grid :small true :width-expand true
-              (hl/div :width-1-1
+            (grid/grid :small true
+              (grid/cell :width-1-1 true
                 (form/input :placeholder "Email" :blank true))
-              (hl/div :width-1-1
-                (form/input :placeholder "Password" :type "password" :blank true))
-              (hl/div :width-1-1
-                (form/checkbox "Remember Me"))
-              (hl/div :width-1-2
-                (button/button :text true "Reset Password?")))))
+              (grid/cell :width-1-1 true
+                (form/input :placeholder "Password" :type "password" :blank true)))))
         (card/footer
           (button/button :primary true :class [:uk-width-1-1] "Login")))
       (hl/div))))

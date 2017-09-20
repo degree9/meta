@@ -29,9 +29,8 @@
     user))
 
 (defn- setUser [user]
-  (let [udat (js->clj user :keywordize-keys true)]
-    (obj/set *app* "user" user)
-    user))
+  (obj/set *app* "user" user)
+  user)
 
 ;; Client Auth API ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

@@ -51,8 +51,8 @@
         tasks (conj mtask ptask)]
     (util/info "Loading project tasks...\n")
     (doseq [[n _ r :as req] (remove nil? tasks)]
-      (cond (keyword? r) (util/info "• %s from %s...\n" r n)
-            (vector? r)  (doseq [t r] (util/info "• %s from %s...\n" t n))
+      (cond (keyword? r) (util/info "• %s from %s\n" r n)
+            (vector? r)  (doseq [t r] (util/info "• %s from %s\n" t n))
             :else        (util/fail "Failed to Load Tasks...: %s \n" req))
       (require req)))
   identity)
@@ -83,9 +83,9 @@
         (let [cljs-path (format "%s.cljs" path)
               tmpl-path (format "%s.mustache" path)]
           (if-let [cljs-file (->> in-files (boot/by-path [cljs-path]) first)]
-            (util/info "• %s...\n" cljs-path)
+            (util/info "• %s\n" cljs-path)
             (if-let [tmpl-file (->> in-files (boot/by-path [tmpl-path]) first)]
-              (util/info "• %s...\n" tmpl-path)
+              (util/info "• %s\n" tmpl-path)
               (if-let [tmpl-file (io/resource (format "meta/%s.mustache" path))]
                 (mutil/spit-file tmp tmpl-path (slurp tmpl-file))
                 (util/warn "• %s... missing!\n" tmpl-path))))))
