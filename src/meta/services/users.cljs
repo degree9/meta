@@ -4,9 +4,9 @@
             [meta.services.hooks :as hooks]))
 
 (def pre-hooks {:all    []
-                :find   [(hooks/auth. #js["jwt" "local"])]
-                :get    [(hooks/auth. #js["jwt" "local"])]
-                :create [(hooks/hashpass.)]
+                :find   [(hooks/authenticate. #js["jwt" "local"])]
+                :get    [(hooks/authenticate. #js["jwt" "local"])]
+                :create [(hooks/hash-password.)]
                 :update []
                 :patch  []
                 :remove []})

@@ -25,6 +25,11 @@
   (map     [promise func]     (.then    promise #(map func %))))
 
 (defn promise
-  "Returns a new promise where callback is a constructor."
+  "Returns a new promise, optionally accepts a function as a promise constructor.
+
+   Constructor should be a function of two arguments:
+     * `resolve` - Used to resolve the promise.
+     * `reject`  - Used to reject the promise.
+  "
   ([] js/Promise.)
   ([callback] (js/Promise. callback)))
