@@ -11,7 +11,7 @@
   (reject  [_ value]    "Rejects the promise with value as the reason.")
   (log     [_]          "Output the result of the previous promise to the console.")
   (err     [_]          "Catch and output the error of a promise.")
-  (map     [_ f]  "Map a function to the result of the previous promise."))
+  (map     [_ f]        "Map a function to the result of the previous promise."))
 
 (extend-protocol IPromise
   js/Promise
