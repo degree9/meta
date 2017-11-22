@@ -177,7 +177,9 @@ We are working on joining OpenCollective, and need your help getting 100 :star:'
 ## Appreciation ... with Credits ##
 [meta] would not exist without the fine work of all the technologies mentioned and their respective communities. We encourage you to join one.
 
-> All images/logo's are owned by their respective projects/communities.
+```
+All images/logo's are owned by their respective projects/communities.
+```
 
 ***
 
