@@ -1,5 +1,6 @@
 ;; Add src/resources to classpath
-(set-env! :resource-paths #{"src" "resources"})
+(set-env! :resource-paths #{"src" "resources"}
+          :checkouts '[[degree9/uikit-hl "3.0.0-SNAPSHOT"]])
 
 ;; Load from classpath
 (require '[meta.boot.impl :as impl])

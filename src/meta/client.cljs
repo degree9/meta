@@ -2,6 +2,7 @@
   (:refer-clojure :exclude [find get update remove])
   (:require [cljsjs.socket-io]
             [goog.object :as obj]
+            [javelin.core :as j]
             [feathers.client :as feathers]
             [feathers.client.services :as svc]))
 
@@ -14,14 +15,14 @@
     (feathers/hooks)
     (feathers/authentication #js{:storage (obj/get js/window "localStorage")}))
 
-(def ^:dynamic *users* (feathers/service *app* "/api/users"))
+(def ^:dynamic *users* (feathers/service *app* "/users"))
 
 ;; Helper Functions ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defn- verifyToken [res]
   (let [passport (obj/get *app* "passport")
         token (:accessToken (js->clj res :keywordize-keys true))]
-        (.verifyJWT passport token)))
+       (.verifyJWT passport token)))
 
 (defn- decodePayload [payload]
   (let [uid (:userId (js->clj payload :keywordize-keys true))
@@ -29,43 +30,48 @@
     user))
 
 (defn- setUser [user]
-  (obj/set *app* "user" user)
-  user)
+  (let [udat (if (array? user) (first user) user)]
+    (obj/set *app* "user" udat)
+    udat))
+
+(defn- handle-auth [auth]
+  (-> auth
+    (.then verifyToken)
+    (.then decodePayload)
+    (.then setUser)))
 
 ;; Client Auth API ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defn signup!
   ([email password]
-    (signup! *users* email password))
+   (signup! *users* email password))
   ([users email password]
-    (svc/create users #js{:email email :password password})))
+   (svc/create users #js{:email email :password password})))
 
 (defn login!
   ([email password]
-    (login! *app* email password))
-  ([app email password]
-    (-> app
-      (feathers/authenticate (clj->js {:strategy "local" :email email :password password}))
-      (.then verifyToken)
-      (.then decodePayload)
-      (.then setUser))))
+   (login! "local" email password))
+  ([strategy email password]
+   (login! *app* strategy email password))
+  ([app strategy email password]
+   (-> app
+     (feathers/authenticate (clj->js {:strategy strategy :email email :password password}))
+     (handle-auth))))
 
 (defn logout!
   ([]
-    (logout! *app*))
+   (logout! *app*))
   ([app]
-    (feathers/logout app)))
+   (feathers/logout app)))
 
 (defn auth!
   ([]
-    (auth! *app*))
+   (auth! *app*))
   ([app]
-    (-> app
-      (feathers/authenticate)
-      (.then verifyToken)
-      (.then decodePayload)
-      (.then setUser)
-      (.catch #(.error js/console (obj/get % "message"))))))
+   (-> app
+     (feathers/authenticate)
+     (handle-auth)
+     (.catch #(.error js/console (obj/get % "message"))))))
 
 ;; Client Service API ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

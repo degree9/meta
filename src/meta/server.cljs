@@ -7,17 +7,27 @@
 
 (def public "./")
 
-(-> app
+(defn with-defaults [app]
+  (-> app
     (feathers/configuration public)
     feathers/compress
     feathers/cors
     (feathers/favicon (str public "favicon.ico"))
     (feathers/static public)
     feathers/body-parser
-    feathers/hooks
-    feathers/rest
-    feathers/socketio
-    feathers/authentication)
+    feathers/hooks))
+
+(defn with-rest [app]
+  (-> app
+    feathers/rest))
+
+(defn with-socketio [app]
+  (-> app
+    feathers/socketio))
+
+(defn with-authentication [app]
+  (-> app
+    feathers/authentication))
 
 (defn using
   ([path svc] (using app path svc))

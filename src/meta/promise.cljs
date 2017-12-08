@@ -1,17 +1,18 @@
 (ns meta.promise
   (:refer-clojure :exclude [catch map resolve])
+  (:require [goog.object :as obj])
   (:require-macros meta.promise))
 
 (defprotocol IPromise
   "A CLJS wrapper around JavaScript promises."
-  (all     [_ promises] "Return a promise which resolves/rejects concurrent promises.")
-  (then    [_ callback] "Invokes callback with the result of the previous promise.")
-  (catch   [_ callback] "Invokes callback with the result of the previous promise.")
-  (resolve [_ value]    "Resolves the promise and returns value.")
-  (reject  [_ value]    "Rejects the promise with value as the reason.")
-  (log     [_]          "Output the result of the previous promise to the console.")
-  (err     [_]          "Catch and output the error of a promise.")
-  (map     [_ f]        "Map a function to the result of the previous promise."))
+  (all     [_ promises]    "Return a promise which resolves/rejects concurrent promises.")
+  (then    [_ callback]    "Invokes callback with the result of the previous promise.")
+  (catch   [_ callback]    "Invokes callback with the result of the previous promise.")
+  (resolve [_ value]       "Resolves the promise and returns value.")
+  (reject  [_ value]       "Rejects the promise with value as the reason.")
+  (log     [_]             "Output the result of the previous promise to the console.")
+  (err     [_] [_ message] "Catch and output the error of a promise.")
+  (map     [_ f]           "Map a function to the result of the previous promise."))
 
 (extend-protocol IPromise
   js/Promise
@@ -21,7 +22,7 @@
   (resolve [promise value]    (.resolve promise (clj->js value)))
   (reject  [promise value]    (.reject  promise (clj->js value)))
   (log     [promise]          (.then    promise #(.log js/console %)))
-  (err     [promise]          (.catch   promise #(.error js/console %)))
+  (err     [promise]          (.catch   promise #(.error js/console (obj/get % "message"))))
   (map     [promise func]     (.then    promise #(map func %))))
 
 (defn promise

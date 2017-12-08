@@ -1,8 +1,8 @@
 {:asset-paths #{"assets"}
  :resource-paths #{"resources"}
  :source-paths #{"src"}
- :dependencies [[org.clojure/clojure         "1.9.0-alpha17"]
-                [org.clojure/clojurescript   "1.9.542"]
+ :dependencies [[org.clojure/clojure         "1.9.0-RC2"]
+                [org.clojure/clojurescript   "1.9.946"]
                 [org.clojure/tools.namespace "0.3.0-alpha4"]
                 [org.clojure/test.check      "0.10.0-alpha2"]
                 [proto-repl                  "0.3.1"]
@@ -12,7 +12,7 @@
                 [boot/new                    "0.5.2"]
                 [degree9/boot-nodejs         "1.2.1"]
                 ;[degree9/boot-docker         "0.1.0-SNAPSHOT"    ]
-                [degree9/boot-npm            "1.4.0"]
+                [degree9/boot-npm            "1.7.0-SNAPSHOT"]
                 [degree9/boot-exec           "1.0.0"]
                 [degree9/boot-semver         "1.7.0"]
                 [degree9/boot-semgit         "1.2.1"]
@@ -26,6 +26,4 @@
                 [hoplon/hoplon               "7.1.0-SNAPSHOT"]
                 [hoplon/brew                 "0.3.0"]
                 [degree9/material-hl         "0.10.0"]
-                [degree9/uikit-hl            "3.0.0-SNAPSHOT"]
-                ]
-}
+                [degree9/uikit-hl            "3.0.0-SNAPSHOT"]]}
