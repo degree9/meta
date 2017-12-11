@@ -172,12 +172,14 @@ We are working on joining OpenCollective, and need your help getting 100 :star:'
 
 ***
 
-<img src="https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_copyright_black_24px.svg" width="160" alt="Info" align="right">
+<img src="https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_copyright_black_24px.svg" width="160" alt="Info" align="left">
 
 ## Appreciation ... with Credits ##
 [meta] would not exist without the fine work of all the technologies mentioned and their respective communities. We encourage you to join one.
 
-- [x] All images/logo's are owned by their respective projects/communities.
+```
+All images/logo's are owned by their respective projects/communities.
+```
 
 ***
 
