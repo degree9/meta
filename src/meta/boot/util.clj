@@ -44,12 +44,12 @@
 
 (defn ns->path [n & [ext]]
   (str (clojure.string/join "/"
-    (clojure.string/split
-      (clojure.string/replace (str n) #"-" "_") #"\.")) ext))
+        (clojure.string/split
+          (clojure.string/replace (str n) #"-" "_") #"\.")) ext))
 
 (defn spit-file [dir file content]
   (let [outf (io/file dir file)]
-    (util/info "• %s...\n" file)
+    (util/info "• %s\n" file)
     (doto outf io/make-parents (spit content))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

@@ -35,8 +35,7 @@
 (hl/defelem dashnav [attr kids]
   (navbar/container attr :uk-sticky "media: 960"
     (container/container :expand true
-      (navbar/navbar
-        (navbar/nav kids)))))
+      (navbar/navbar kids))))
 
 (hl/defelem dashboard [attr kids]
   (offcanvas/content
