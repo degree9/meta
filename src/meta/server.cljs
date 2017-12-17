@@ -1,34 +1,39 @@
 (ns meta.server
-  (:require [feathers.app :as feathers]
-            [meta.server.services :as services]
-            ))
+  (:require [feathers.app :as feathers]))
 
 (enable-console-print!)
 
-(def app (feathers/feathers))
+(def app (-> (feathers/feathers) feathers/express))
 
-(def public "./")
+(defn with-defaults [app]
+  (-> app
+    feathers/configuration
+    feathers/json
+    feathers/urlencoded
+    feathers/static))
 
-(-> app
-    (feathers/configuration public)
-    feathers/compress
-    feathers/cors
-    (feathers/favicon (str public "favicon.ico"))
-    (feathers/static public)
-    feathers/body-parser
-    feathers/hooks
-    feathers/rest
-    feathers/socketio
-    feathers/authentication
-    services/users
-    )
+(defn with-rest [app]
+  (-> app
+    feathers/rest))
+
+(defn with-socketio [app]
+  (-> app
+    feathers/socketio))
+
+(defn with-authentication [app]
+  (-> app
+    feathers/authentication))
+
+(defn using
+  ([path svc] (using app path svc))
+  ([app path svc] (feathers/using app path svc)))
 
 (defn api
-  ([path svc hooks] (feathers/api app path svc hooks))
+  ([path svc hooks] (api app path svc hooks))
   ([app path svc hooks] (feathers/api app path svc hooks)))
 
 (defn listen
-  ([port] (feathers/listen app port))
+  ([port] (listen app port))
   ([app port] (feathers/listen app port)))
 
 (defn init! [fname]

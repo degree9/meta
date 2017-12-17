@@ -6,6 +6,16 @@
             ))
 
 (-> server/app
+    (server/with-defaults)
+    {{#rest}}
+    (server/with-rest)
+    {{/rest}}
+    {{#socketio}}
+    (server/with-socketio)
+    {{/socketio}}
+    {{#authentication}}
+    (server/with-authentication)
+    {{/authentication}}
     {{#services}}
     {{.}}
     {{/services}}

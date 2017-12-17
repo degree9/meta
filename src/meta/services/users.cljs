@@ -4,9 +4,9 @@
             [meta.services.hooks :as hooks]))
 
 (def pre-hooks {:all    []
-                :find   [(hooks/auth. #js["jwt" "local"])]
-                :get    [(hooks/auth. #js["jwt" "local"])]
-                :create [(hooks/hashpass.)]
+                :find   [(hooks/authenticate. #js["jwt" "local"])]
+                :get    [(hooks/authenticate. #js["jwt" "local"])]
+                :create [(hooks/hash-password.)]
                 :update []
                 :patch  []
                 :remove []})
@@ -22,5 +22,5 @@
 (def user-hooks {:before pre-hooks :after post-hooks})
 
 (defn users [app & [store]]
-  (let [storef (get services/store store (:memory services/store))]
+  (let [storef (or store services/memory)]
     (feathers/api app "users" (storef) user-hooks)))

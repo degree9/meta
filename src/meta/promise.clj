@@ -1,8 +1,10 @@
 (ns meta.promise)
 
-(defmacro defpromise [args & body]
-  `(meta.promise/promise (fn ~args ~@body)))
+(defmacro defpromise [name args & body]
+  `(def ~name (meta.promise/promise (fn ~args ~@body))))
 
-(defmacro prom-> [& body]
-  `(let [promise# js/Promise.]
-    (-> promise# ~@body)))
+(defmacro with-callback [cb & body]
+  `(meta.promise/promise
+    (fn [resolve# reject#]
+      (let [~cb (fn [err# result#] (if err# (reject# err#) (resolve# result#)))]
+        ~@body))))

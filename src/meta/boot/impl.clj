@@ -33,8 +33,8 @@
   (let [env (:env *opts*)]
     (util/info "Loading project settings...\n")
     (doseq [key env
-      :let [conf (-> key name str)
-            contents (mutil/read-file (str "./" conf ".boot"))]]
+            :let [conf (-> key name str)
+                  contents (mutil/read-file (str "./" conf ".boot"))]]
       (when contents
         (util/info "• %s\n" conf)
         (if (mutil/verify-env key contents)
@@ -51,8 +51,8 @@
         tasks (conj mtask ptask)]
     (util/info "Loading project tasks...\n")
     (doseq [[n _ r :as req] (remove nil? tasks)]
-      (cond (keyword? r) (util/info "• %s from %s...\n" r n)
-            (vector? r)  (doseq [t r] (util/info "• %s from %s...\n" t n))
+      (cond (keyword? r) (util/info "• %s from %s\n" r n)
+            (vector? r)  (doseq [t r] (util/info "• %s from %s\n" t n))
             :else        (util/fail "Failed to Load Tasks...: %s \n" req))
       (require req)))
   identity)
@@ -60,32 +60,39 @@
 (defn initialize-impl
   ([] (initialize-impl {}))
   ([opts]
-    (let [env      (:env opts "./env.boot")
-          settings (:settings opts [:dependencies])
-          tasks    (:tasks opts "./tasks.boot")]
-      (boot/set-env! :meta {})
-      (comp
-        (initialize-welcome)
-        (initialize-env :file env)
-        (initialize-settings :env settings)
-        (initialize-tasks :file tasks)))))
+   (let [env      (:env opts "./env.boot")
+         settings (:settings opts [:dependencies])
+         tasks    (:tasks opts "./tasks.boot")]
+     (boot/set-env! :meta {})
+     (comp
+       (initialize-welcome)
+       (initialize-env :file env)
+       (initialize-settings :env settings)
+       (initialize-tasks :file tasks)))))
 
 (boot/deftask project-files
   "Load project files."
   [n namespaces VAL [sym] "Project namespaces to validate."]
   (boot/with-pre-wrap fs
     (let [gen-ns   (:namespaces *opts*)
+          paths    (map mutil/ns->path gen-ns)
           tmp      (boot/tmp-dir!)
           in-files (boot/input-files fs)]
       (util/info "Loading project files...\n")
-      (doseq [n gen-ns]
-        (let [path      (mutil/ns->path n)
-              cljs-path (format "%s.cljs" path)
+      (doseq [path paths]
+        (let [cljs-path (format "%s.cljs" path)
               tmpl-path (format "%s.mustache" path)]
+          ;; search for project cljs file
           (if-let [cljs-file (->> in-files (boot/by-path [cljs-path]) first)]
-            (util/info "• %s...\n" cljs-path)
-            (when-let [tmpl-file (io/resource (format "meta/%s.mustache" path))]
-              (mutil/spit-file tmp tmpl-path (slurp tmpl-file))))))
+            (util/dbug "• %s... skipping!\n" tmpl-path)
+            ;; search for project template file
+            (if-let [tmpl-file (->> in-files (boot/by-path [tmpl-path]) first)]
+              (util/info "• %s\n" tmpl-path)
+              ;; search for default template file
+              (if-let [tmpl-file (io/resource (format "meta/%s.mustache" path))]
+                (mutil/spit-file tmp tmpl-path (slurp tmpl-file))
+                ;; warn missing project and default template
+                (util/warn "• %s... missing!\n" tmpl-path))))))
       (-> fs (boot/add-resource tmp) boot/commit!))))
 
 (defn proto-impl [_]

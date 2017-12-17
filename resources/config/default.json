@@ -1,5 +1,7 @@
 {
   "auth": {
+    "path": "/api/authentication",
+    "service": "api/users",
     "secret": "somesecretiam"
   }
 }
