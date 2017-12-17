@@ -3,19 +3,14 @@
 
 (enable-console-print!)
 
-(def app (feathers/feathers))
-
-(def public "./")
+(def app (-> (feathers/feathers) feathers/express))
 
 (defn with-defaults [app]
   (-> app
-    (feathers/configuration public)
-    feathers/compress
-    feathers/cors
-    (feathers/favicon (str public "favicon.ico"))
-    (feathers/static public)
-    feathers/body-parser
-    feathers/hooks))
+    feathers/configuration
+    feathers/json
+    feathers/urlencoded
+    feathers/static))
 
 (defn with-rest [app]
   (-> app
