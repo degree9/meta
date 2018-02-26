@@ -4,91 +4,55 @@
             [goog.object :as obj]
             [javelin.core :as j]
             [feathers.client :as feathers]
-            [feathers.client.services :as svc]))
+            [feathers.client.services :as svc]
+            [meta.promise :as prom]))
 
 ;; Feathers Client ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defn app []
+  (feathers/feathers))
 
-(def app (feathers/feathers))
+(defn with-socketio [app]
+  (feathers/socketio app
+    (js/io)))
 
-(-> app
-    (feathers/socketio (js/io))
-    (feathers/authentication #js{:storage (obj/get js/window "localStorage")}))
-
-;; Helper Functions ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;(defn- verifyToken [res]
-;  (let [passport (obj/get app "passport")
-;        token (:accessToken (js->clj res :keywordize-keys true))
-;       (.verifyJWT passport token)))
-
-;(defn- decodePayload [payload users]
-;  (let [uid (:userId (js->clj payload :keywordize-keys true))
-;        user (svc/get users uid))
-;    user)
-
-;(defn- setUser [user app]
-;  (let [udat (if (array? user) (first user) user)]
-;    (obj/set app "user" udat)
-;    udat)
-
-;(defn handle-auth [auth]
-;  (-> auth
-;    (.then verifyToken)
-;    (.then decodePayload)
-;    (.then setUser))
+(defn with-authentication [app]
+  (feathers/authentication app
+    #js{:storage (obj/get js/window "localStorage")}))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Client Auth API ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defn signup! [users email password]
+   (svc/create users #js{:email email :password password}))
 
-(defn signup!
-  ([users email password]
-   (svc/create users #js{:email email :password password})))
+(defn login! [app strategy email password & [opts]]
+  (feathers/authenticate app
+    (clj->js (merge opts {:strategy strategy :email email :password password}))))
 
-(defn login!
-  ([email password]
-   (login! "local" email password))
-  ([strategy email password]
-   (login! app strategy email password))
-  ([app strategy email password]
-   (-> app
-     (feathers/authenticate (clj->js {:strategy strategy :email email :password password})))))
-;     (handle-auth))))
+(defn logout! [app]
+  (feathers/logout app))
 
-(defn logout!
-  ([]
-   (logout! app))
-  ([app]
-   (feathers/logout app)))
-
-(defn auth!
-  ([]
-   (auth! app))
-  ([app]
-   (-> app
-     (feathers/authenticate)
-     ;(handle-auth)
-     (.catch #(.error js/console (obj/get % "message"))))))
+(defn auth! [app]
+  (feathers/authenticate app))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Client Service API ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(def service feathers/service)
 
-(defn service
-  ([svc] (service app svc))
-  ([app svc] (feathers/service app svc)))
+(def find    svc/find)
 
-(def find svc/find)
+(def get     svc/get)
 
-(def get svc/get)
+(def create  svc/create)
 
-(def create svc/create)
+(def update  svc/update)
 
-(def update svc/update)
+(def patch   svc/patch)
 
-(def patch svc/patch)
-
-(def remove svc/remove)
+(def remove  svc/remove)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Client Event API ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(def on svc/on)
+(def on      svc/on)
 
 (def created svc/created)
 
@@ -97,5 +61,4 @@
 (def patched svc/patched)
 
 (def removed svc/removed)
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

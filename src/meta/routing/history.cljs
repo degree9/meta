@@ -1,9 +1,9 @@
 (ns meta.routing.history
   (:require [hoplon.history :as history]
-            [javelin.core :as javelin]))
+            [javelin.core :as j]))
 
 (def ^:dynamic *history* (history/history-cell))
 
-(defn route= [] (javelin/cell= *history*))
+(defn route= [] (j/cell= *history*))
 
 (defn router [route] (reset! *history* (str (name route))))

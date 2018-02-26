@@ -33,7 +33,7 @@
   (navbar/toggle attr :uk-toggle "target: #offcanvas" kids))
 
 (hl/defelem dashnav [attr kids]
-  (navbar/container attr :uk-sticky "media: 960"
+  (navbar/container attr
     (container/container :expand true
       (navbar/navbar kids))))
 

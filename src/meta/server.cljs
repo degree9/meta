@@ -1,5 +1,6 @@
 (ns meta.server
-  (:require [feathers.app :as feathers]))
+  (:require [feathers.app :as feathers]
+            [meta.channels :as chan]))
 
 (enable-console-print!)
 
@@ -23,6 +24,10 @@
 (defn with-authentication [app]
   (-> app
     feathers/authentication))
+
+(defn with-channels [app]
+  (-> app
+    chan/join-anonymous))
 
 (defn using
   ([path svc] (using app path svc))
