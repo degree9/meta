@@ -1,8 +1,8 @@
 (ns meta.nobackend
   (:require [meta.nobackend.firebase :as firebase]
             [meta.nobackend.hoodie :as hoodie]
-            [meta.nobackend.parse :as parse]
-            ))
+            [meta.nobackend.parse :as parse]))
+
 
 (def ^:dynamic *provider* :firebase)
 
