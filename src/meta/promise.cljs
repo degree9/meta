@@ -22,7 +22,7 @@
   (resolve [promise value]    (.resolve promise (clj->js value)))
   (reject  [promise value]    (.reject  promise (clj->js value)))
   (log     [promise]          (.then    promise #(.log js/console %)))
-  (err     [promise]          (.catch   promise #(.error js/console (obj/get % "message"))))
+  (err     [promise]          (.catch   promise #(.error js/console (obj/get % "message") %)))
   (map     [promise func]     (.then    promise #(map func %))))
 
 (defn promise
