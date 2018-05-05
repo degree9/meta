@@ -1,6 +1,6 @@
 (ns meta.routing
-  (:require [meta.routing.history :as history]
-            ))
+  (:require [meta.routing.history :as history]))
+
 
 (def ^:dynamic *router* :history)
 

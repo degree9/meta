@@ -1,30 +1,28 @@
 (ns meta.promise
-  (:refer-clojure :exclude [catch map resolve])
+  (:refer-clojure :exclude [catch map resolve conj])
   (:require [goog.object :as obj])
   (:require-macros meta.promise))
 
 (defprotocol IPromise
-  "A CLJS wrapper around JavaScript promises."
-  (all     [_ promises]    "Return a promise which resolves/rejects concurrent promises.")
-  (then    [_ callback]    "Invokes callback with the result of the previous promise.")
-  (catch   [_ callback]    "Invokes callback with the result of the previous promise.")
-  (resolve [_ value]       "Resolves the promise and returns value.")
-  (reject  [_ value]       "Rejects the promise with value as the reason.")
-  (log     [_]             "Output the result of the previous promise to the console.")
-  (err     [_] [_ message] "Catch and output the error of a promise.")
-  (map     [_ f]           "Map a function to the result of the previous promise."))
+  "A simple protocol implementation for JavaScript Promises.
 
-(extend-protocol IPromise
-  js/Promise
-  (all     [promise promises] (.all     promise (clj->js promises)))
-  (then    [promise callback] (.then    promise callback))
-  (catch   [promise callback] (.catch   promise callback))
-  (resolve [promise value]    (.resolve promise (clj->js value)))
-  (reject  [promise value]    (.reject  promise (clj->js value)))
-  (log     [promise]          (.then    promise #(.log js/console %)))
-  (err     [promise]          (.catch   promise #(.error js/console (obj/get % "message") %)))
-  (map     [promise func]     (.then    promise #(map func %))))
+  If you need advanced promise features see funcool/promesa."
+  (then    [_ callback] "Invokes callback with the result of the previous promise.")
+  (catch   [_ callback] "Invokes callback with the result of the previous promise.")
+  (log     [_]          "Output the result of the previous promise to the console.")
+  (err     [_]          "Catch and output the error of a promise.")
+  (map     [_ func]     "Map a function to the result of the previous promise.")
+  (conj    [_ data]     "Conj data onto the result of the previous promise."))
 
+;; Helpers ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defn- promise-serial [current next]
+  (.then current
+    (fn [data]
+      (.then (next)
+        (fn [result]
+          (cljs.core/conj data result))))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn promise
   "Returns a new promise, optionally accepts a function as a promise constructor.
 
@@ -34,3 +32,36 @@
   "
   ([] js/Promise.)
   ([callback] (js/Promise. callback)))
+
+(defn resolve
+  "Resolves the promise and returns value."
+  ([value] (resolve (promise) value))
+  ([promise value] (.resolve promise value)))
+
+(defn reject
+  "Rejects the promise with value as the reason."
+  ([value] (reject (promise) (clj->js value)))
+  ([promise value] (.reject promise (clj->js value))))
+
+(defn all
+  "Return a promise which resolves/rejects concurrent promises."
+  ([promises]
+   (all (promise) promises))
+  ([promise promises]
+   (.all promise (into-array promises))))
+
+(defn serial
+  "Return a promise which resolves/rejects consecutive promises."
+  ([factories]
+   (serial (promise) factories))
+  ([promise factories]
+   (then (reduce promise-serial (resolve promise []) factories) into-array)))
+
+(extend-protocol IPromise
+  js/Promise
+  (then    [promise callback]   (.then    promise callback))
+  (catch   [promise callback]   (.catch   promise callback))
+  (log     [promise]            (.then    promise #(.log js/console %)))
+  (err     [promise]            (.catch   promise #(.error js/console %)))
+  (map     [promise func]       (.then    promise #(cljs.core/map func %)))
+  (conj    [promise data]       (.then    promise #(cljs.core/conj % data))))
