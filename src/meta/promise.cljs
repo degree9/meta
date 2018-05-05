@@ -62,10 +62,10 @@
 
 (extend-protocol IPromise
   js/Promise
-  (then    [promise callback]   (.then    promise callback))
-  (catch   [promise callback]   (.catch   promise callback))
-  (log     [promise]            (.then    promise #(.log js/console %)))
-  (err     [promise]            (.catch   promise #(.error js/console %)))
-  (map     [promise func]       (.then    promise #(cljs.core/map func %)))
-  (conj    [promise data]       (.then    promise #(cljs.core/conj % data))))
+  (then    [promise callback]   (.then  promise callback))
+  (catch   [promise callback]   (.catch promise callback))
+  (log     [promise]            (.then  promise #(.log js/console %)))
+  (err     [promise]            (.catch promise #(.error js/console %)))
+  (map     [promise func]       (.then  promise #(cljs.core/map func %)))
+  (conj    [promise data]       (.then  promise #(cljs.core/conj % data))))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
