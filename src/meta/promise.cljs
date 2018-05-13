@@ -18,11 +18,10 @@
 
 ;; Helpers ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn- promise-serial [current next]
-  (.then current
+  (then current
     (fn [data]
-      (.then (next)
-        (fn [result]
-          (cljs.core/conj data result))))))
+      (then (next)
+        (fn [result] (cljs.core/conj data result))))))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Promise API ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -61,6 +60,14 @@
    (then (reduce promise-serial (resolve promise []) factories) into-array)))
 
 (extend-protocol IPromise
+  default
+  (then    [promise callback]   (then  (resolve promise) callback))
+  (catch   [promise callback]   (catch (resolve promise) callback))
+  (log     [promise]            (log   (resolve promise)))
+  (err     [promise]            (err   (resolve promise)))
+  (map     [promise func]       (map   (resolve promise) func))
+  (conj    [promise data]       (conj  (resolve promise) data))
+
   js/Promise
   (then    [promise callback]   (.then  promise callback))
   (catch   [promise callback]   (.catch promise callback))
