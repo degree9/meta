@@ -174,15 +174,6 @@ We are working on joining OpenCollective, and need your help getting 100 :star:'
 
 ***
 
-<img src="https://degree9.io/images/degree9.png" width="200" alt="Info" align="right">
-
-## Commercialization ... with Degree9 ##
-[meta] is used extensively by the D9 Enterprise Platform. Commercial support is available for Enterprise Applications.
-
-[![Degree9 Tweet][d9-tweet]](http://twitter.com/degree9io)
-
-***
-
 <img src="https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_copyright_black_24px.svg" width="160" alt="Info" align="left">
 
 ## Appreciation ... with Credits ##
