@@ -35,7 +35,7 @@ Things [meta] has been used for:
 
 ***
 
-<img src="https://raw.githubusercontent.com/cljs/logo/master/cljs.png" width="180" alt="CLJS Logo" align="left">
+<img src="https://raw.githubusercontent.com/cljs/logo/master/cljs.png" width="180" alt="CLJS Logo" align="right">
 
 ## [meta] Internals ##
 [meta] is written in Clojure(Script) and built using:
@@ -76,7 +76,7 @@ Thanks to Boot, [meta] is built with itself.
 
 ***
 
-<img src="http://hoplon.io/images/logos/hoplon-logo.png" width="220" alt="Hoplon Logo" align="left">
+<img src="http://hoplon.io/images/logos/hoplon-logo.png" width="220" alt="Hoplon Logo" align="right">
 
 ## ClojureScript in the Browser ... with Hoplon [![Hoplon][23]][2] ##
 We believe in building universal technologies and the web is the most accessible platform available. [meta] builds upon Hoplon to provide abstractions for the DOM.
@@ -110,7 +110,7 @@ We believe in building universal technologies and the web is the most accessible
 
 ***
 
-<img src="https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg" width="180" alt="Node.js Logo" align="left">
+<img src="https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg" width="180" alt="Node.js Logo" align="right">
 
 ## ClojureScript on the Server ... with Node.js [![Node][29]][4] ##
 [meta] is built entirely out of Clojure(Script) including the backend. This means compiling to JavaScript and running on Node.js.
@@ -138,7 +138,7 @@ We believe in building universal technologies and the web is the most accessible
 
 ***
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Atom_editor_logo.svg/2000px-Atom_editor_logo.svg.png" width="180" alt="Atom Logo" align="left">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Atom_editor_logo.svg/2000px-Atom_editor_logo.svg.png" width="180" alt="Atom Logo" align="right">
 
 ## Developed ... with Atom [![Atom][25]][26] ##
 [meta] is being cultivated within Atom, a hackable text editor
@@ -161,7 +161,7 @@ for the 21st Century.
 
 ***
 
-<img src="https://opencollective.com/public/images/oc-logo-icon.svg" width="160" alt="OpenCollective" align="left">
+<img src="https://opencollective.com/public/images/oc-logo-icon.svg" width="160" alt="OpenCollective" align="right">
 
 ## Funding ... with OpenCollective ##
 We are working on joining OpenCollective, and need your help getting 100 :star:'s on github!
@@ -174,7 +174,7 @@ We are working on joining OpenCollective, and need your help getting 100 :star:'
 
 ***
 
-<img src="https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_copyright_black_24px.svg" width="160" alt="Info" align="left">
+<img src="https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_copyright_black_24px.svg" width="160" alt="Info" align="right">
 
 ## Appreciation ... with Credits ##
 [meta] would not exist without the fine work of all the technologies mentioned and their respective communities. We encourage you to join one.
