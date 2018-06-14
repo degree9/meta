@@ -99,7 +99,7 @@ We believe in building universal technologies and the web is the most accessible
 
 ***
 
-<img src="http://s32.postimg.org/4k9q912x1/aar_QEIys.jpg" width="180" alt="Feathers.js Logo" align="right">
+<img src="https://avatars2.githubusercontent.com/u/5321853?s=200&v=4" width="180" alt="Feathers.js Logo" align="right">
 
 ## Realtime Communication ... with Feathers.js [![Feathers][31]][3] ##
 [meta] provides both REST and Realtime communication via FeatherScript, a wrapper around Feathers.js implemented in ClojureScript. Feathers enables event-based communication between clients and servers and other API's including persistent data stores.
