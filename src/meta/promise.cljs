@@ -3,6 +3,7 @@
   (:require [goog.object :as obj])
   (:require-macros meta.promise))
 
+;; Promise Protocol ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defprotocol IPromise
   "A simple protocol implementation for JavaScript Promises.
 
@@ -13,16 +14,17 @@
   (err     [_]          "Catch and output the error of a promise.")
   (map     [_ func]     "Map a function to the result of the previous promise.")
   (conj    [_ data]     "Conj data onto the result of the previous promise."))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Helpers ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn- promise-serial [current next]
-  (.then current
+  (then current
     (fn [data]
-      (.then (next)
-        (fn [result]
-          (cljs.core/conj data result))))))
-
+      (then (next)
+        (fn [result] (cljs.core/conj data result))))))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Promise API ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn promise
   "Returns a new promise, optionally accepts a function as a promise constructor.
 
@@ -58,10 +60,19 @@
    (then (reduce promise-serial (resolve promise []) factories) into-array)))
 
 (extend-protocol IPromise
+  default
+  (then    [promise callback]   (then  (resolve promise) callback))
+  (catch   [promise callback]   (catch (resolve promise) callback))
+  (log     [promise]            (log   (resolve promise)))
+  (err     [promise]            (err   (resolve promise)))
+  (map     [promise func]       (map   (resolve promise) func))
+  (conj    [promise data]       (conj  (resolve promise) data))
+
   js/Promise
-  (then    [promise callback]   (.then    promise callback))
-  (catch   [promise callback]   (.catch   promise callback))
-  (log     [promise]            (.then    promise #(.log js/console %)))
-  (err     [promise]            (.catch   promise #(.error js/console %)))
-  (map     [promise func]       (.then    promise #(cljs.core/map func %)))
-  (conj    [promise data]       (.then    promise #(cljs.core/conj % data))))
+  (then    [promise callback]   (.then  promise callback))
+  (catch   [promise callback]   (.catch promise callback))
+  (log     [promise]            (.then  promise #(.log js/console %)))
+  (err     [promise]            (.catch promise #(.error js/console %)))
+  (map     [promise func]       (.then  promise #(cljs.core/map func %)))
+  (conj    [promise data]       (.then  promise #(cljs.core/conj % data))))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
