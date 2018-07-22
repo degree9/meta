@@ -1,5 +1,5 @@
-[[org.clojure/clojure         "1.9.0"]
- [org.clojure/clojurescript   "1.9.946"]
+[[org.clojure/clojure         "1.10.0-alpha6"]
+ [org.clojure/clojurescript   "1.10.339"]
  [org.clojure/tools.namespace "0.3.0-alpha4"]
  [org.clojure/test.check      "0.10.0-alpha2"]
  [stencil                     "0.5.0" :exclusions [org.clojure/clojure org.clojure/core.cache]]
