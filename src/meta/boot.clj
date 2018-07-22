@@ -1,5 +1,6 @@
 (ns meta.boot
   {:boot/export-tasks true}
+  (:refer-clojure :exclude [compile])
   (:require [boot.core :as boot]
             [boot.util :as util]
             [boot.new :as new]
@@ -46,18 +47,17 @@
 
 (boot/deftask client
   "Build project client."
-  []
-  (comp (hl/hoplon)
-        (shadow/compiler :build :client)))
-
+  [d develop bool "Development mode will compile with optomizations `:none`."]
+  (cond-> (hl/hoplon)
+    (:develop *opts*)       (comp (shadow/compile :build :client))
+    (not (:develop *opts*)) (comp (shadow/release :build :client))))
 
 (boot/deftask server
   "Build project server."
-  []
-  (comp (njs/nodejs)
-        (shadow/compiler :build :server)))
-        ;(cljs/cljs)))
-
+  [d develop bool "Development mode will compile with optomizations `:none`."]
+  (cond-> (njs/nodejs)
+    (:develop *opts*)       (comp (shadow/compile :build :server))
+    (not (:develop *opts*)) (comp (shadow/compile :build :server))))
 
 (boot/deftask teardown
   "Teardown cross project builds."
@@ -65,6 +65,12 @@
   (comp ;(task/sift :include #{#"node_modules\/(.*)\.html"} :invert true)
         ;(hl/prerender)
         (task/target)))
+
+(boot/deftask compile
+  "Compile a ClojureScript build."
+  []
+  (comp (client)
+        (server)))
 
 (boot/deftask develop
   "Build entire project for local development."
@@ -74,7 +80,6 @@
         (client)
         (server)
         (njs/serve)))
-
 
 (def dev develop)
 
@@ -146,7 +151,9 @@
       develop      (boot/task-options!
                      impl/info              {:message "Running Workflow...: develop"}
                      ver/version            {:develop true :pre-release 'snapshot}
-                     cljs/cljs              {:optimizations :none})
+                     cljs/cljs              {:optimizations :none}
+                     server                 {:develop true}
+                     client                 {:develop true})
       build      (boot/task-options!
                      impl/info              {:message "Running Workflow...: build"})
       generate     (boot/task-options!
