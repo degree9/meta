@@ -1,10 +1,11 @@
 (ns meta.server
   (:require [feathers.app :as feathers]
-            [meta.channels :as chan]))
+            [meta.channels :as chan]
+            ["@feathersjs/feathers" :as fs]))
 
 (enable-console-print!)
 
-(def app (-> (feathers/feathers) feathers/express))
+(def app (feathers/express (fs)))
 
 (defn with-defaults [app]
   (-> app
@@ -31,7 +32,7 @@
 
 (defn using
   ([path svc] (using app path svc))
-  ([app path svc] (feathers/using app path svc)))
+  ([app path svc] (.use app path svc)))
 
 (defn api
   ([path svc hooks] (api app path svc hooks))
@@ -39,7 +40,7 @@
 
 (defn listen
   ([port] (listen app port))
-  ([app port] (feathers/listen app port)))
+  ([app port] (.listen app port)))
 
 (defn init! [fname]
   (set! *main-cli-fn* fname))

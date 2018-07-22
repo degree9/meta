@@ -1,19 +1,19 @@
 (ns meta.client
   (:refer-clojure :exclude [find get update remove])
-  (:require [cljsjs.socket-io]
+  (:require ["socket.io-client" :as io]
             [goog.object :as obj]
             [javelin.core :as j]
             [feathers.client :as feathers]
+            ["@feathersjs/client" :as client]
             [feathers.client.services :as svc]
             [meta.promise :as prom]))
 
 ;; Feathers Client ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defn app []
-  (feathers/feathers))
+(def app client)
 
 (defn with-socketio [app]
   (feathers/socketio app
-    (js/io)))
+    (io)))
 
 (defn with-authentication [app]
   (feathers/authentication app
