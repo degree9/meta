@@ -12,6 +12,7 @@
             [degree9.boot-semgit :as sg]
             [degree9.boot-semgit.workflow :refer [sync-repo]]
             [degree9.boot-semver :as ver]
+            [degree9.boot-shadow :as shadow]
             [degree9.boot-welcome :refer [welcome]]
             [feathers.boot-feathers :as fs]
             [hoplon.boot-hoplon :as hl]))
@@ -53,7 +54,8 @@
   "Build project server."
   []
   (comp (njs/nodejs)
-        (cljs/cljs)))
+        (shadow/compiler)))
+        ;(cljs/cljs)))
 
 
 (boot/deftask teardown
@@ -143,7 +145,8 @@
       develop      (boot/task-options!
                      impl/info              {:message "Running Workflow...: develop"}
                      ver/version            {:develop true :pre-release 'snapshot}
-                     cljs/cljs              {:optimizations :none})
+                     cljs/cljs              {:optimizations :none}
+                     shadow/compiler        {:build :app})
       build      (boot/task-options!
                      impl/info              {:message "Running Workflow...: build"})
       generate     (boot/task-options!
