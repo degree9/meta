@@ -6,6 +6,5 @@
  [degree9.boot-semver          :refer :all]
  [degree9.boot-semgit          :refer :all]
  [degree9.boot-semgit.workflow :refer [feature sync-repo]]
- [degree9.boot-shadow          :refer :all]
  [feathers.boot-feathers       :refer [feathers]]
  [hoplon.boot-hoplon           :refer [hoplon]]]
