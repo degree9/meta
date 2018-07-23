@@ -57,7 +57,7 @@
   [d develop bool "Development mode will compile with optomizations `:none`."]
   (cond-> (njs/nodejs)
     (:develop *opts*)       (comp (shadow/compile :build :server))
-    (not (:develop *opts*)) (comp (shadow/compile :build :server))))
+    (not (:develop *opts*)) (comp (shadow/release :build :server))))
 
 (boot/deftask teardown
   "Teardown cross project builds."
