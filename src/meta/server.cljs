@@ -1,11 +1,10 @@
 (ns meta.server
   (:require [feathers.app :as feathers]
-            [meta.channels :as chan]
-            ["@feathersjs/feathers" :as fs]))
+            [meta.channels :as chan]))
 
 (enable-console-print!)
 
-(def app (feathers/express (fs)))
+(def app (feathers/express (feathers/app)))
 
 (defn with-defaults [app]
   (-> app
