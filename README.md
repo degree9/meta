@@ -195,10 +195,10 @@ All images/logo's are owned by their respective projects/communities.
 [8]: https://clojars.org/degree9/meta
 [9]: https://circleci.com/gh/degree9/meta.svg?style=shield
 [10]: https://circleci.com/gh/degree9/meta
-[11]: https://jarkeeper.com/degree9/meta/status.svg
-[12]: https://jarkeeper.com/degree9/meta
-[13]: https://jarkeeper.com/degree9/meta/downloads.svg
-[14]: https://jarkeeper.com/degree9/meta
+[11]: https://versions.deps.co/degree9/meta/status.svg
+[12]: https://versions.deps.co/degree9/meta
+[13]: https://versions.deps.co/degree9/meta/downloads.svg
+[14]: https://versions.deps.co/degree9/meta
 [15]: https://github.com/degree9/boot-exec
 [16]: https://github.com/degree9/boot-nodejs
 [17]: https://github.com/degree9/boot-semver
