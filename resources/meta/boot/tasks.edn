@@ -1,6 +1,4 @@
-[[adzerk.boot-cljs             :refer [cljs]]
- [adzerk.boot-reload           :refer [reload]]
- [degree9.boot-exec            :refer [exec]]
+[[degree9.boot-exec            :refer [exec]]
  [degree9.boot-nodejs          :refer [nodejs serve]]
  [degree9.boot-npm             :refer [npm]]
  [degree9.boot-semver          :refer :all]
