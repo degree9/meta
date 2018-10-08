@@ -5,20 +5,6 @@
 
 ;; Meta Task Utils ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defn meta-banner  []
-  (util/info (str #"      ___           ___           ___          ___      " "\n"))
-  (util/info (str #"     /\  \         /\__\         /\__\        /\  \     " "\n"))
-  (util/info (str #"    |::\  \       /:/ _/_       /:/  /       /::\  \    " "\n"))
-  (util/info (str #"    |:|:\  \     /:/ /\__\     /:/__/       /:/\:\  \   " "\n"))
-  (util/info (str #"  __|:|\:\  \   /:/ /:/ _/_   /::\  \      /:/ /::\  \  " "\n"))
-  (util/info (str #" /::::|_\:\__\ /:/_/:/ /\__\ /:/\:\  \    /:/_/:/\:\__\ " "\n"))
-  (util/info (str #" \:\--\  \/__/ \:\/:/ /:/  / \/__\:\  \   \:\/:/  \/__/ " "\n"))
-  (util/info (str #"  \:\  \        \::/_/:/  /       \:\  \   \::/__/      " "\n"))
-  (util/info (str #"   \:\  \        \:\/:/  /         \:\  \   \:\  \      " "\n"))
-  (util/info (str #"    \:\__\        \::/  /           \:\__\   \:\__\     " "\n"))
-  (util/info (str #"     \/__/         \/__/             \/__/    \/__/     " "\n"))
-  (util/info "\n"))
-
 (defn read-file [file]
   (when (.exists (io/file file))
     (read-string (slurp file))))

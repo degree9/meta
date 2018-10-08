@@ -5,9 +5,9 @@
             [boot.util :as util]
             [boot.new :as new]
             [boot.task.built-in :as task]
+            [meta.boot.init :as init]
             [meta.boot.impl :as impl]
             [meta.boot.templates :as tmpl]
-            [adzerk.boot-cljs :as cljs]
             [degree9.boot-npm :as npm]
             [degree9.boot-nodejs :as njs]
             [degree9.boot-semgit :as sg]
@@ -28,7 +28,7 @@
 (boot/deftask dependencies
   "Download additional project dependencies."
   []
-  (comp (fs/feathers)
+  (comp ;(fs/feathers)
         (npm/node-modules)))
 
 (def deps dependencies)
@@ -38,12 +38,6 @@
   []
   (comp (ver/version)
         (dependencies)))
-
-(boot/deftask build
-  "Build project namespaces."
-  []
-  (comp (impl/project-files)
-        (tmpl/project-templates)))
 
 (boot/deftask client
   "Build project client."
@@ -57,7 +51,7 @@
   [d develop bool "Development mode will compile with optomizations `:none`."]
   (cond-> (njs/nodejs)
     (:develop *opts*)       (comp (shadow/compile :build :server))
-    (not (:develop *opts*)) (comp (shadow/compile :build :server))))
+    (not (:develop *opts*)) (comp (shadow/release :build :server))))
 
 (boot/deftask teardown
   "Teardown cross project builds."
@@ -66,32 +60,23 @@
         ;(hl/prerender)
         (task/target)))
 
-(boot/deftask compile
-  "Compile a ClojureScript build."
+(boot/deftask templates
+  "Load project template files."
   []
-  (comp (client)
-        (server)))
-
-(boot/deftask develop
-  "Build entire project for local development."
-  []
-  (comp (task/watch)
-        (build)
-        (client)
-        (server)
-        (njs/serve)))
-
-(def dev develop)
+  (comp
+    (impl/project-files)
+    (tmpl/project-templates)))
 
 (boot/deftask clojars
   "Deploy project to clojars."
   []
+  (util/warn "TODO: Clojars! \n")
   identity)
 
 (boot/deftask circle
   "Preload dependencies for Circle CI."
   []
-  (util/info "Hello from Circle CI! \n")
+  (util/warn "TODO: Circle CI! \n")
   identity)
 
 (boot/deftask cloudbuilder
@@ -100,7 +85,7 @@
   (util/info "Building for Google Cloud Builder (pre-loaded npm dependencies)! \n")
   (comp (ver/version)
         (npm/node-modules)
-        (build)
+        (templates)
         (client)
         (server)
         (teardown)))
@@ -108,82 +93,89 @@
 (boot/deftask tests
   "Run project tests."
   []
-  (util/info "Running Tests...")
+  (util/warn "TODO: Running Tests...")
   identity)
 
-(boot/deftask initialize
+(boot/deftask compile
+  "Compile project for release."
+  []
+  (boot/task-options!
+    impl/info  {:message "Running Workflow...: compile"}
+    njs/nodejs {:init-fn 'app.server/init})
+  (comp
+    (impl/info)
+    (setup)
+    (client)
+    (server)
+    (teardown)))
+
+(boot/deftask develop
+  "Start development workflow."
+  []
+  (boot/task-options!
+    impl/info   {:message "Running Workflow...: develop"}
+    ver/version {:develop true :pre-release 'snapshot}
+    server      {:develop true}
+    client      {:develop true}
+    njs/nodejs  {:init-fn 'app.server/init})
+  (comp
+    (impl/info)
+    (sync-repo)
+    (setup)
+    (task/watch)
+    (client)
+    (server)
+    (njs/serve)
+    (teardown)))
+
+(def dev develop)
+
+(boot/deftask nobackend
+  "Start a nobackend workflow."
+  []
+  (boot/task-options!
+    impl/info {:message "Running Workflow...: nobackend"}
+    ver/version {:develop true :pre-release 'snapshot}
+    client      {:develop true})
+  (comp
+    (impl/info)
+    (sync-repo)
+    (setup)
+    (task/watch)
+    (client)
+    (teardown)))
+
+(boot/deftask microservice
+  "Start a microservice workflow."
+  []
+  (boot/task-options!
+    impl/info  {:message "Running Workflow...: microservice"}
+    ver/version {:develop true :pre-release 'snapshot}
+    server      {:develop true}
+    njs/nodejs  {:init-fn 'app.server/init})
+  (comp
+    (impl/info)
+    (sync-repo)
+    (setup)
+    (task/watch)
+    (server)
+    (njs/serve)
+    (teardown)))
+
+(boot/deftask generate
+  "Generate a new [meta] project."
+  []
+  (boot/task-options!
+    impl/info {:message "Running Workflow...: generate"}
+    new/new   {:template "meta" :name (str name)})
+  (comp
+    (impl/info)
+    (new/new)))
+
+(defn initialize
   "Initialize [meta]."
-  [e env      VAL str  "EDN file containing default environment settings. (env.boot)"
-   s settings VAL [kw] "A list of environment keys to load from files. ([:dependencies])"
-   t tasks    VAL str  "EDN file containing a list of namespaces and tasks to require. (tasks.boot)"]
-  (impl/initialize-impl *opts*))
-
-(defn current-workflow [{:keys [develop build nobackend generate]}]
-  (let [not-true?    (fn [& args] (not-any? true? args))
-        build        (and build        (not-true? develop generate nobackend))
-        develop      (and develop      (not-true? build generate nobackend))
-        nobackend    (and nobackend    (not-true? build generate develop))
-        generate     (and generate     (not-true? build develop  nobackend))
-        default      (not-true? develop build generate nobackend)]
-    {:build build :develop develop :default default :generate generate :nobackend nobackend}))
-
-(boot/deftask project
-  "Load [meta] project."
-  [p project     VAL sym   "Current project name. (app)"
-   n namespaces  VAL [sym] "Project app namespaces. ([app.client ...])"
-   d develop         bool  "Project development workflow."
-   b build           bool  "Project build workflow."
-   o nobackend       bool  "Project nobackend workflow."
-   g generate        bool  "Generate an empty project template."]
-  (let [name    (:project *opts* 'app)
-        gen-ns  (:namespaces *opts* '[app.client app.index app.server
-                                      app.services app.routing])
-        msg     (if (and name (not= 'app name)) (str name) "Welcome!")
-        wfmsg   #(format "Running Workflow...: %s" %)
-        {:keys [develop build default generate nobackend] :as workflows} (current-workflow *opts*)]
-    (boot/set-env! :project name)
-    (boot/task-options!
-      impl/project-files     {:namespaces gen-ns}
-      tmpl/project-templates {:namespaces gen-ns}
-      njs/nodejs             {:init-fn 'app.server/init}) ;; this needs to be optionall
-
-    (cond
-      develop      (boot/task-options!
-                     impl/info              {:message "Running Workflow...: develop"}
-                     ver/version            {:develop true :pre-release 'snapshot}
-                     cljs/cljs              {:optimizations :none}
-                     server                 {:develop true}
-                     client                 {:develop true})
-      build      (boot/task-options!
-                     impl/info              {:message "Running Workflow...: build"})
-      generate     (boot/task-options!
-                     impl/info              {:message "Running Workflow...: generate"}
-                     new/new                {:template "meta" :name (str name)})
-      nobackend    (boot/task-options!
-                     impl/info              {:message "Running Workflow...: nobackend"}
-                     impl/project-files     {:namespaces (filter '#{app.client app.server
-                                                                    app.services app.nobackend} (conj gen-ns 'app.nobackend))}
-                     tmpl/project-templates {:namespaces (filter '#{app.client app.server
-                                                                    app.services app.nobackend} gen-ns)})
-      default      (boot/task-options!
-                     impl/info              {:message "Running Workflow...: default"}))
-    (cond-> (welcome :message msg)
-      develop      (comp (impl/info)
-                         (sync-repo)
-                         (setup)
-                         (meta.boot/develop)
-                         (teardown))
-      build        (comp (impl/info)
-                         (setup)
-                         (meta.boot/build)
-                         (client)
-                         (server)
-                         (teardown))
-      nobackend    (comp (impl/info)
-                         (sync-repo)
-                         (setup)
-                         (meta.boot/develop))
-      generate     (comp (impl/info)
-                         (new/new))
-      default      (comp (impl/info)))))
+  [& opts]
+  (boot/task-options!
+    impl/info {:message "Running Workflow...: default"})
+  (init/initialize-impl opts))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
