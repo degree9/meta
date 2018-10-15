@@ -1,23 +1,27 @@
 (ns meta.client
   (:refer-clojure :exclude [find get update remove])
   (:require ["socket.io-client" :as io]
-            [goog.object :as obj]
-            [javelin.core :as j]
-            [feathers.client :as feathers]
             ["@feathersjs/client" :as client]
+            ["jquery" :as jquery]
+            [goog.object :as obj]
+            [feathers.client :as feathers]
             [feathers.client.services :as svc]
             [meta.promise :as prom]))
 
 ;; Feathers Client ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (def app client)
 
-(defn with-socketio [app]
-  (feathers/socketio app
-    (io)))
+(defn with-jquery [app uri]
+  (feathers/jquery app uri (jquery)))
 
-(defn with-authentication [app]
-  (feathers/authentication app
-    #js{:storage (obj/get js/window "localStorage")}))
+(defn with-socketio [app & [uri opts]]
+  (feathers/socketio app (io uri opts)))
+
+(defn with-authentication
+  ([app]
+   (with-authentication app (obj/get js/window "localStorage")))
+  ([app storage]
+   (feathers/authentication app #js{:storage storage})))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Client Auth API ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
