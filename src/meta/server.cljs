@@ -8,7 +8,7 @@
 (enable-console-print!)
 
 (defn app []
-  (debug "Starting [meta] server")
+  (debug "Starting application server")
   (feathers/app))
 
 (defn with-defaults [app]
