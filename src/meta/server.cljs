@@ -8,7 +8,7 @@
 (enable-console-print!)
 
 (defn app []
-  (debug "Starting [meta] server")
+  (debug "Starting application server")
   (feathers/app))
 
 (defn with-defaults [app]
@@ -41,25 +41,19 @@
     chan/join-anonymous))
 
 (defn using
-  ([path svc]
-   (using app path svc))
-  ([app path svc]
-   (debug "Passing app.use call to feathers")
-   (.use app path svc)))
+  [app path svc]
+  (debug "Passing app.use call to feathers")
+  (.use app path svc))
 
 (defn api
-  ([path svc hooks]
-   (api app path svc hooks))
-  ([app path svc hooks]
-   (debug "Passing app.api call to feathers")
-   (feathers/api app path svc hooks)))
+  [app path svc hooks]
+  (debug "Passing app.api call to feathers")
+  (feathers/api app path svc hooks))
 
 (defn listen
-  ([port]
-   (listen app port))
-  ([app port]
-   (debug "Passing app.listen call to feathers")
-   (.listen app port)))
+  [app port]
+  (debug "Passing app.listen call to feathers")
+  (.listen app port))
 
 (defn init! [fname]
   (debug "Setting nodejs *main-cli-fn*")
