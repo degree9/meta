@@ -227,4 +227,4 @@ All images/logo's are owned by their respective projects/communities.
 [gh-stars]: https://img.shields.io/github/stars/degree9/meta.svg?style=social&label=Stars
 [d9-tweet]: https://img.shields.io/twitter/follow/degree9io.svg?style=social&label=Follow
 [slack]: https://img.shields.io/badge/clojurians-degree9-%23e01563.svg?logo=slack
-[d9-slack]: https://clojurians.slack.com/messages/degree9/
+[d9-slack]: https://clojurians.slack.com/channel/degree9/
