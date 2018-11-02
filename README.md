@@ -2,7 +2,7 @@
 
 # [meta]
 
-[![Clojars Project][7]][8] [![CircleCI][9]][10] [![Downloads][13]][14]
+[![Clojars Project][7]][8] [![CircleCI][9]][10] [![Downloads][13]][14] [![Slack][slack]][d9-slack]
 <!---[![Dependencies Status][11]][12]--->
 
 A stack. A framework. A conversation.
@@ -226,3 +226,5 @@ All images/logo's are owned by their respective projects/communities.
 [uikit-hl]: https://github.com/degree9/uikit-hl
 [gh-stars]: https://img.shields.io/github/stars/degree9/meta.svg?style=social&label=Stars
 [d9-tweet]: https://img.shields.io/twitter/follow/degree9io.svg?style=social&label=Follow
+[slack]: https://img.shields.io/badge/clojurians-degree9-%23e01563.svg?logo=slack
+[d9-slack]: slack://clojurians.slack.com/messages/degree9/
