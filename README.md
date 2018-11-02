@@ -1,10 +1,11 @@
 <p align="center"><img src="resources/logo/logomark.png" alt="meta" height="200px"></p>
 
-# [meta] [![Clojars Project][7]][8] [![CircleCI][9]][10] [![Downloads][13]][14]
-<!---[![Dependencies Status][11]][12]--->
-A stack. A framework. A conversation.
+# [meta]
 
-<img src="https://raw.githubusercontent.com/cljs/logo/master/cljs.png" width="100" alt="CLJS Logo"><img src="http://boot-clj.com/assets/images/logos/boot-logo-3.png" width="100" alt="Boot Logo"><img src="http://hoplon.io/images/logos/hoplon-logo.png" width="100" alt="Hoplon Logo"><img src="https://avatars2.githubusercontent.com/u/5321853?s=200&v=4" width="100" alt="Feathers.js Logo"><img src="https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg" width="90" alt="Node.js Logo"><img src="https://camo.githubusercontent.com/79904b8ba0d1bce43022bbd5710f0ea1db33f54f/68747470733a2f2f7261776769742e636f6d2f73696e647265736f726875732f617765736f6d652d656c656374726f6e2f6d61737465722f656c656374726f6e2d6c6f676f2e737667" width="90" alt="Electron Logo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Atom_editor_logo.svg/2000px-Atom_editor_logo.svg.png" width="100" alt="Atom Logo"><img src="https://cdn.worldvectorlogo.com/logos/docker.svg" width="100" alt="Docker Logo">
+[![Clojars Project][7]][8] [![CircleCI][9]][10] [![Downloads][13]][14] [![Slack][slack]][d9-slack]
+<!---[![Dependencies Status][11]][12]--->
+
+A stack. A framework. A conversation.
 
 ---
 
@@ -18,6 +19,7 @@ A stack. A framework. A conversation.
 
 ---
 
+<img src="https://raw.githubusercontent.com/cljs/logo/master/cljs.png" width="100" alt="CLJS Logo"><img src="http://boot-clj.com/assets/images/logos/boot-logo-3.png" width="100" alt="Boot Logo"><img src="http://hoplon.io/images/logos/hoplon-logo.png" width="100" alt="Hoplon Logo"><img src="https://avatars2.githubusercontent.com/u/5321853?s=200&v=4" width="100" alt="Feathers.js Logo"><img src="https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg" width="90" alt="Node.js Logo"><img src="https://camo.githubusercontent.com/79904b8ba0d1bce43022bbd5710f0ea1db33f54f/68747470733a2f2f7261776769742e636f6d2f73696e647265736f726875732f617765736f6d652d656c656374726f6e2f6d61737465722f656c656374726f6e2d6c6f676f2e737667" width="90" alt="Electron Logo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Atom_editor_logo.svg/2000px-Atom_editor_logo.svg.png" width="100" alt="Atom Logo"><img src="https://cdn.worldvectorlogo.com/logos/docker.svg" width="100" alt="Docker Logo">
 
 ## What is [meta]? ##
 [meta] is a stack for building software using Clojure(Script).
@@ -195,10 +197,10 @@ All images/logo's are owned by their respective projects/communities.
 [8]: https://clojars.org/degree9/meta
 [9]: https://circleci.com/gh/degree9/meta.svg?style=shield
 [10]: https://circleci.com/gh/degree9/meta
-[11]: https://jarkeeper.com/degree9/meta/status.svg
-[12]: https://jarkeeper.com/degree9/meta
-[13]: https://jarkeeper.com/degree9/meta/downloads.svg
-[14]: https://jarkeeper.com/degree9/meta
+[11]: https://versions.deps.co/degree9/meta/status.svg
+[12]: https://versions.deps.co/degree9/meta
+[13]: https://versions.deps.co/degree9/meta/downloads.svg
+[14]: https://versions.deps.co/degree9/meta
 [15]: https://github.com/degree9/boot-exec
 [16]: https://github.com/degree9/boot-nodejs
 [17]: https://github.com/degree9/boot-semver
@@ -224,3 +226,5 @@ All images/logo's are owned by their respective projects/communities.
 [uikit-hl]: https://github.com/degree9/uikit-hl
 [gh-stars]: https://img.shields.io/github/stars/degree9/meta.svg?style=social&label=Stars
 [d9-tweet]: https://img.shields.io/twitter/follow/degree9io.svg?style=social&label=Follow
+[slack]: https://img.shields.io/badge/clojurians-degree9-%23e01563.svg?logo=slack
+[d9-slack]: https://clojurians.slack.com/channels/degree9/
