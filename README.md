@@ -163,27 +163,10 @@ for the 21st Century.
 
 ***
 
-<img src="https://opencollective.com/public/images/oc-logo-icon.svg" width="160" alt="OpenCollective" align="right">
+## Support Us ... on Patreon ##
+Degree9 develops and maintains a wide collection of Clojure(Script) projects on Github. Help us maintain these projects by fueling our developers with coffee!
 
-## Funding ... with OpenCollective ##
-We are working on joining OpenCollective, and need your help getting 100 :star:'s on github!
-
-- 100 GitHub :star:'s
-- Set Development Goals
-- Pay Contributors!
-
-[![GitHub stars][gh-stars]](http://github.com/degree9/meta)
-
-***
-
-<img src="https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_copyright_black_24px.svg" width="160" alt="Info" align="right">
-
-## Appreciation ... with Credits ##
-[meta] would not exist without the fine work of all the technologies mentioned and their respective communities. We encourage you to join one.
-
-```
-All images/logo's are owned by their respective projects/communities.
-```
+<img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160" alt="Patreon">
 
 ***
 
