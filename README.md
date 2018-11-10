@@ -161,14 +161,17 @@ for the 21st Century.
 
 [![Clojars Project](https://img.shields.io/clojars/v/degree9/boot-docker.svg)](https://clojars.org/degree9/boot-docker)
 
-***
+---
 
-## Support Us ... on Patreon ##
-Degree9 develops and maintains a wide collection of Clojure(Script) projects on Github. Help us maintain these projects by fueling our developers with coffee!
+<p align="center">
+  <a href="https://www.patreon.com/degree9" align="center">
+    <img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160" alt="Patreon">
+  </a>
+  <br>
+  <b>Support this and other open-source projects on Patreon!</b>
+</p>
 
-<a href="https://www.patreon.com/degree9" alt="Patreon"><img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160" alt="Patreon"></a>
-
-***
+---
 
 [1]: http://boot-clj.com
 [2]: http://hoplon.io
