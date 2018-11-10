@@ -166,7 +166,7 @@ for the 21st Century.
 ## Support Us ... on Patreon ##
 Degree9 develops and maintains a wide collection of Clojure(Script) projects on Github. Help us maintain these projects by fueling our developers with coffee!
 
-<img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160" alt="Patreon">
+<a href="https://www.patreon.com/degree9" alt="Patreon"><img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160" alt="Patreon"></a>
 
 ***
 
