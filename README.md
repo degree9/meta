@@ -161,31 +161,17 @@ for the 21st Century.
 
 [![Clojars Project](https://img.shields.io/clojars/v/degree9/boot-docker.svg)](https://clojars.org/degree9/boot-docker)
 
-***
+---
 
-<img src="https://opencollective.com/public/images/oc-logo-icon.svg" width="160" alt="OpenCollective" align="right">
+<p align="center">
+  <a href="https://www.patreon.com/degree9" align="center">
+    <img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160" alt="Patreon">
+  </a>
+  <br>
+  <b>Support this and other open-source projects on Patreon!</b>
+</p>
 
-## Funding ... with OpenCollective ##
-We are working on joining OpenCollective, and need your help getting 100 :star:'s on github!
-
-- 100 GitHub :star:'s
-- Set Development Goals
-- Pay Contributors!
-
-[![GitHub stars][gh-stars]](http://github.com/degree9/meta)
-
-***
-
-<img src="https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_copyright_black_24px.svg" width="160" alt="Info" align="right">
-
-## Appreciation ... with Credits ##
-[meta] would not exist without the fine work of all the technologies mentioned and their respective communities. We encourage you to join one.
-
-```
-All images/logo's are owned by their respective projects/communities.
-```
-
-***
+---
 
 [1]: http://boot-clj.com
 [2]: http://hoplon.io
