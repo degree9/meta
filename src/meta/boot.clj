@@ -38,6 +38,7 @@
   []
   (comp (ver/version)
         (dependencies)))
+        ;(shadow/server)))
 
 (boot/deftask client
   "Build project client."
@@ -49,16 +50,21 @@
 (boot/deftask server
   "Build project server."
   [d develop bool "Development mode will compile with optomizations `:none`."]
-  (cond-> (njs/nodejs)
+  (cond-> identity
     (:develop *opts*)       (comp (shadow/compile :build :server))
     (not (:develop *opts*)) (comp (shadow/release :build :server))))
 
 (boot/deftask teardown
   "Teardown cross project builds."
   []
-  (comp ;(task/sift :include #{#"node_modules\/(.*)\.html"} :invert true)
+  (comp identity))
+        ;(task/sift :include #{#"node_modules\/(.*)\.html"} :invert true)
         ;(hl/prerender)
-        (task/target)))
+
+(boot/deftask package
+  "Package project builds."
+  []
+  (comp (task/target)))
 
 (boot/deftask templates
   "Load project template files."
@@ -114,7 +120,7 @@
   []
   (boot/task-options!
     impl/info   {:message "Running Workflow...: develop"}
-    ver/version {:develop true :pre-release 'snapshot}
+    ver/version {:develop true :pre-release 'degree9.boot-semver/snapshot}
     server      {:develop true}
     client      {:develop true}
     njs/nodejs  {:init-fn 'app.server/init})
@@ -135,7 +141,7 @@
   []
   (boot/task-options!
     impl/info {:message "Running Workflow...: nobackend"}
-    ver/version {:develop true :pre-release 'snapshot}
+    ver/version {:develop true :pre-release 'degree9.boot-semver/snapshot}
     client      {:develop true})
   (comp
     (impl/info)
@@ -150,7 +156,7 @@
   []
   (boot/task-options!
     impl/info  {:message "Running Workflow...: microservice"}
-    ver/version {:develop true :pre-release 'snapshot}
+    ver/version {:develop true :pre-release 'degree9.boot-semver/snapshot}
     server      {:develop true}
     njs/nodejs  {:init-fn 'app.server/init})
   (comp
