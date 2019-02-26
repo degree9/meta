@@ -4,58 +4,41 @@
             [meta.boot.util :as mutil]
             [clojure.java.io :as io]))
 
-(defn initialize-env
-  "Load project environment."
-  [file]
-  (let [menv (mutil/read-resource "meta/boot/environment.edn")
-        penv (mutil/read-file file)]
-    (util/info "Loading project environment...\n")
-    (doseq [[key val] (merge menv penv)]
-      (if (mutil/verify-env key val)
-        (boot/merge-env! key val)
-        (util/fail "• %s validation failed...: %s\n" (name key) val))))
-  identity)
+(defn- loading-msg [name]
+  (util/info "Loading project %s...\n" name))
 
-(defn initialize-settings
-  "Load project settings."
-  [env]
-  (let []
-    (util/info "Loading project settings...\n")
-    (doseq [key env
-            :let [conf (-> key name str)
-                  contents (mutil/read-file (str "./" conf ".boot"))]]
-      (when contents
-        (util/info "• %s\n" conf)
-        (if (mutil/verify-env key contents)
-          (boot/merge-env! key contents)
-          (util/fail "• %s validation failed...: %s\n" (name key) contents)))))
-  identity)
+(defn- task-msg [req sym]
+  (util/info "• %s from %s\n" req sym))
+
+(defn- merge-env [env]
+  (doseq [[key val] env]
+    (if (mutil/verify-env key val)
+      (boot/merge-env! key val)
+      (util/fail "• %s validation failed...: %s\n" (name key) val))))
+
+(defn initialize-env
+  "Load project environment from file (accepts optional key)."
+  [file msg & [key]]
+  (when-let [env (mutil/read-file file)]
+    (loading-msg msg)
+    (merge-env (if key {key (get env key)} env))))
 
 (defn initialize-tasks
-  "Load project tasks."
+  "Load project tasks from file."
   [file]
-  (let [mtask (mutil/read-resource "meta/boot/tasks.edn")
-        ptask (mutil/read-file file)
-        tasks (conj mtask ptask)]
-    (util/info "Loading project tasks...\n")
-    (doseq [[n _ r :as req] (remove nil? tasks)]
-      (cond (keyword? r) (util/info "• %s from %s\n" r n)
-            (vector? r)  (doseq [t r] (util/info "• %s from %s\n" t n))
-            :else        (util/fail "Failed to Load Tasks...: %s \n" req))
-      (require req)))
-  identity)
+  (when-let [tasks (mutil/read-file file)]
+    (loading-msg "tasks")
+    (doseq [task tasks] (require task))))
 
 (defn initialize-impl
   ([] (initialize-impl {}))
   ([opts]
    (let [name     (:project opts 'app)
          env      (:env opts "./env.boot")
-         settings (:settings opts [:dependencies])
+         shadow   (:shadow opts "./shadow-cljs.edn")
          tasks    (:tasks opts "./tasks.boot")
          msg      (if (and name (not= 'app name)) (str name) "Welcome!")]
-     (boot/set-env!
-       :meta {:project name})
-     ;; convert from task; (welcome :message msg)
-     (initialize-env env)
-     ;(initialize-settings settings)
+     (boot/set-env! :meta {:project name})
+     (initialize-env env "environment")
+     (initialize-env shadow "dependencies" :dependencies)
      (initialize-tasks tasks))))
