@@ -170,7 +170,7 @@
 
 (boot/deftask generate
   "Generate a new [meta] project."
-  [n name VAL string "Name of target folder to generate project in."]
+  [n name VAL str "Name of target folder to generate project in."]
   (boot/task-options!
     impl/info {:message "Running Workflow...: generate"}
     new/new   {:template "meta" :name (:name *opts* "app")})
