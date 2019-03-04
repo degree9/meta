@@ -1,4 +1,4 @@
-<p align="center"><img src="resources/logo/logomark.png" alt="meta" height="200px"></p>
+<p align="center"><img src=".github/D9 Meta.png" alt="meta" height="200px"></p>
 
 # [meta]
 
@@ -11,7 +11,7 @@ A stack. A framework. A conversation.
 
 <p align="center">
   <a href="https://degree9.io" align="center">
-    <img width="135" src="http://degree9.io/images/degree9.png">
+    <img width="135" src=".github/logo.png">
   </a>
   <br>
   <b>Meta is developed and maintained by Degree9</b>
