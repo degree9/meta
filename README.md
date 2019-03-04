@@ -109,7 +109,10 @@ We believe in building universal technologies and the web is the most accessible
 
 <img src="https://avatars2.githubusercontent.com/u/5321853?s=200&v=4" width="180" alt="Feathers.js Logo" align="right">
 
-## Realtime Communication ... with Feathers.js [![Feathers][31]][3] ##
+## Realtime Communication ... with Feathers.js ##
+
+[![Feathers][31]][3]
+
 [meta] provides both REST and Realtime communication via FeatherScript, a wrapper around Feathers.js implemented in ClojureScript. Feathers enables event-based communication between clients and servers and other API's including persistent data stores.
 
 - [featherscript][20] - A feathers.js wrapper for ClojureScript.
@@ -120,7 +123,10 @@ We believe in building universal technologies and the web is the most accessible
 
 <img src="https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg" width="180" alt="Node.js Logo" align="right">
 
-## ClojureScript on the Server ... with Node.js [![Node][29]][4] ##
+## ClojureScript on the Server ... with Node.js ##
+
+[![Node][29]][4]
+
 [meta] is built entirely out of Clojure(Script) including the backend. This means compiling to JavaScript and running on Node.js.
 
 - [boot-nodejs][16] - Node.js tasks for boot-clj.
@@ -135,7 +141,10 @@ We believe in building universal technologies and the web is the most accessible
 
 <img src="https://camo.githubusercontent.com/79904b8ba0d1bce43022bbd5710f0ea1db33f54f/68747470733a2f2f7261776769742e636f6d2f73696e647265736f726875732f617765736f6d652d656c656374726f6e2f6d61737465722f656c656374726f6e2d6c6f676f2e737667" width="180" alt="Electron Logo" align="right">
 
-## ClojureScript on the Client ... with Electron [![Electron][30]][5] ##
+## ClojureScript on the Client ... with Electron ##
+
+[![Electron][30]][5]
+
 [meta] can package Client/Server applications with Electron. Building cross-platform Clojure(Script) applications.
 
 - [electron-cljs][22] - Electron bindings for CLJS.
@@ -148,7 +157,10 @@ We believe in building universal technologies and the web is the most accessible
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Atom_editor_logo.svg/2000px-Atom_editor_logo.svg.png" width="180" alt="Atom Logo" align="right">
 
-## Developed ... with Atom [![Atom][25]][26] ##
+## Developed ... with Atom ##
+
+[![Atom][25]][26]
+
 [meta] is being cultivated within Atom, a hackable text editor
 for the 21st Century.
 
@@ -201,9 +213,9 @@ for the 21st Century.
 [20]: https://github.com/degree9/featherscript
 [21]: https://github.com/degree9/nodejs-cljs
 [22]: https://github.com/degree9/electron-cljs
-[23]: https://img.shields.io/clojars/v/hoplon.svg
-[24]: https://img.shields.io/github/release/boot-clj/boot.svg?colorB=dfb317&label=boot
-[25]: https://img.shields.io/github/release/atom/atom.svg?label=atom
+[23]: https://img.shields.io/clojars/v/hoplon.svg?colorB=orange
+[24]: https://img.shields.io/clojars/v/boot.svg?colorB=dfb317
+[25]: https://img.shields.io/github/release/atom/atom.svg
 [26]: https://atom.io
 [27]: https://github.com/degree9/boot-docker
 [28]: https://github.com/jasongilman/proto-repl
