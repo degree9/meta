@@ -55,7 +55,10 @@ Things [meta] has been used for:
 
 <img src="http://boot-clj.com/assets/images/logos/boot-logo-3.png" width="180" alt="Boot Logo" align="right">
 
-## Using [meta] ... with Boot [![Boot][24]][1] [![Wiki][34]][35] ##
+## Using [meta] ... with Boot ##
+
+[![Boot][24]][1] [![Wiki][34]][35]
+
 [meta] is powered by Boot, an environment for building applications using clojure.
 
 __Generate an empty project:__
@@ -80,7 +83,10 @@ Thanks to Boot, [meta] is built with itself.
 
 <img src="http://hoplon.io/images/logos/hoplon-logo.png" width="220" alt="Hoplon Logo" align="right">
 
-## ClojureScript in the Browser ... with Hoplon [![Hoplon][23]][2] ##
+## ClojureScript in the Browser ... with Hoplon ##
+
+[![Hoplon][23]][2]
+
 We believe in building universal technologies and the web is the most accessible platform available. [meta] builds upon Hoplon to provide abstractions for the DOM.
 
 ```clojure
@@ -195,7 +201,7 @@ for the 21st Century.
 [20]: https://github.com/degree9/featherscript
 [21]: https://github.com/degree9/nodejs-cljs
 [22]: https://github.com/degree9/electron-cljs
-[23]: https://img.shields.io/badge/hoplon-v7.0.1-orange.svg
+[23]: https://img.shields.io/clojars/v/hoplon.svg
 [24]: https://img.shields.io/github/release/boot-clj/boot.svg?colorB=dfb317&label=boot
 [25]: https://img.shields.io/github/release/atom/atom.svg?label=atom
 [26]: https://atom.io
