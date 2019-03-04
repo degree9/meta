@@ -59,10 +59,10 @@ Things [meta] has been used for:
 [meta] is powered by Boot, an environment for building applications using clojure.
 
 __Generate an empty project:__
-> $ boot -d degree9/meta project --generate
+> $ boot -d degree9/meta generate --name my-app
 
 __Start a development workflow:__
-> $ boot project --develop
+> $ boot develop
 
 Thanks to Boot, [meta] is built with itself.
 
