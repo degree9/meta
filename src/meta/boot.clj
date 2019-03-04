@@ -102,8 +102,8 @@
   (util/warn "TODO: Running Tests...")
   identity)
 
-(boot/deftask compile
-  "Compile project for release."
+(boot/deftask build
+  "Build project for release."
   []
   (boot/task-options!
     impl/info  {:message "Running Workflow...: compile"}
