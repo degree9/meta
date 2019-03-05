@@ -14,10 +14,8 @@
             [degree9.boot-semgit.workflow :refer [sync-repo]]
             [degree9.boot-semver :as ver]
             [degree9.boot-shadow :as shadow]
-            [degree9.boot-welcome :refer [welcome]]
-            [feathers.boot-feathers :as fs]
-            [hoplon.boot-hoplon :as hl]))
-
+            [degree9.boot-welcome :refer [welcome]]))
+            
 ;; Meta Boot Tasks ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (boot/deftask proto
@@ -43,7 +41,7 @@
 (boot/deftask client
   "Build project client."
   [d develop bool "Development mode will compile with optomizations `:none`."]
-  (cond-> (hl/hoplon)
+  (cond-> identity
     (:develop *opts*)       (comp (shadow/compile :build :client))
     (not (:develop *opts*)) (comp (shadow/release :build :client))))
 
