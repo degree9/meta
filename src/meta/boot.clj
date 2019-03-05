@@ -15,7 +15,7 @@
             [degree9.boot-semver :as ver]
             [degree9.boot-shadow :as shadow]
             [degree9.boot-welcome :refer [welcome]]))
-            
+
 ;; Meta Boot Tasks ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (boot/deftask proto
@@ -31,8 +31,13 @@
 
 (def deps dependencies)
 
-(boot/deftask setup
-  "Setup cross project builds."
+(boot/deftask info
+  "Display project info."
+  []
+  (comp (impl/info)))
+
+(boot/deftask standup
+  "Standup cross project builds."
   []
   (comp (ver/version)
         (dependencies)))
@@ -107,8 +112,8 @@
     impl/info  {:message "Running Workflow...: compile"}
     njs/nodejs {:init-fn 'app.server/init})
   (comp
-    (impl/info)
-    (setup)
+    (info)
+    (standup)
     (client)
     (server)
     (teardown)))
@@ -123,9 +128,9 @@
     client      {:develop true}
     njs/nodejs  {:init-fn 'app.server/init})
   (comp
-    (impl/info)
+    (info)
     (sync-repo)
-    (setup)
+    (standup)
     (task/watch)
     (client)
     (server)
@@ -142,9 +147,9 @@
     ver/version {:develop true :pre-release 'degree9.boot-semver/snapshot}
     client      {:develop true})
   (comp
-    (impl/info)
+    (info)
     (sync-repo)
-    (setup)
+    (standup)
     (task/watch)
     (client)
     (teardown)))
@@ -158,9 +163,9 @@
     server      {:develop true}
     njs/nodejs  {:init-fn 'app.server/init})
   (comp
-    (impl/info)
+    (info)
     (sync-repo)
-    (setup)
+    (standup)
     (task/watch)
     (server)
     (njs/serve)
@@ -173,7 +178,7 @@
     impl/info {:message "Running Workflow...: generate"}
     new/new   {:template "meta" :name (:name *opts* "app")})
   (comp
-    (impl/info)
+    (info)
     (new/new)))
 
 (defn initialize
