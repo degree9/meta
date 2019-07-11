@@ -25,8 +25,8 @@
                           ;[degree9/firebase-cljs       "1.3.0"]
                           ;[degree9/nodejs-cljs         "0.1.0"]
                           [degree9/meta-template       "0.5.0-SNAPSHOT"]
-                          [hoplon/hoplon               "7.3.0-SNAPSHOT"]])
-                          ;[hoplon/brew                 "7.2.0-SNAPSHOT"]])
+                          [hoplon/hoplon               "7.3.0-SNAPSHOT"]
+                          [hoplon/brew                 "7.2.0-SNAPSHOT"]])
 
 ;; Load from classpath
 (require '[meta.boot.init               :as init]

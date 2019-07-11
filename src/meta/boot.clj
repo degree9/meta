@@ -102,8 +102,7 @@
 (boot/deftask tests
   "Run project tests."
   []
-  (util/warn "TODO: Running Tests...")
-  identity)
+  (shadow/compile :build :test))
 
 (boot/deftask build
   "Build project for release."

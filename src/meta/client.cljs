@@ -28,9 +28,9 @@
 (defn signup! [users email password]
    (svc/create users #js{:email email :password password}))
 
-(defn login! [app strategy email password & [opts]]
+(defn login! [app strategy & [opts]]
   (feathers/authenticate app
-    (clj->js (merge opts {:strategy strategy :email email :password password}))))
+    (clj->js (merge opts {:strategy strategy}))))
 
 (defn logout! [app]
   (feathers/logout app))

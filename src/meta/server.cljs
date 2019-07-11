@@ -25,6 +25,10 @@
   (-> app
     feathers/rest))
 
+(defn with-session [app]
+  (debug "Loading server Sessions api")
+  (feathers/session app))
+
 (defn with-socketio [app]
   (debug "Loading server SocketIO api")
   (-> app
@@ -32,8 +36,16 @@
 
 (defn with-authentication [app]
   (debug "Loading server Authentication api")
-  (-> app
-    feathers/authentication))
+  (feathers/authentication app))
+
+
+(defn with-authentication-local [app]
+  (debug "Loading server Authentication Local api")
+  (feathers/authentication-local app))
+
+(defn with-authentication-oauth2 [app config]
+  (debug "Loading server Authentication OAuth2 api")
+  (feathers/authentication-oauth2 app config))
 
 (defn with-channels [app]
   (debug "Loading server Channels api")
