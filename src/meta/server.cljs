@@ -22,40 +22,27 @@
 
 (defn with-rest [app]
   (debug "Loading server REST api")
-  (-> app
-    feathers/rest))
-
-(defn with-session [app]
-  (debug "Loading server Sessions api")
-  (feathers/session app))
+  (feathers/rest app))
 
 (defn with-socketio [app]
   (debug "Loading server SocketIO api")
-  (-> app
-    feathers/socketio))
+  (feathers/socketio app))
 
 (defn with-authentication [app]
   (debug "Loading server Authentication api")
   (feathers/authentication app))
 
-
-(defn with-authentication-local [app]
-  (debug "Loading server Authentication Local api")
-  (feathers/authentication-local app))
-
-(defn with-authentication-oauth2 [app config]
-  (debug "Loading server Authentication OAuth2 api")
-  (feathers/authentication-oauth2 app config))
-
 (defn with-channels [app]
   (debug "Loading server Channels api")
-  (-> app
-    chan/join-anonymous))
+  (chan/join-anonymous app))
 
 (defn using
-  [app path svc]
-  (debug "Passing app.use call to feathers")
-  (.use app path svc))
+  ([app svc]
+   (debug "Passing app.use call to feathers")
+   (.use app svc))
+  ([app path svc]
+   (debug "Passing app.use call to feathers")
+   (.use app path svc)))
 
 (defn api
   [app path svc hooks]

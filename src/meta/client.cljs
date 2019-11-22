@@ -1,8 +1,8 @@
 (ns meta.client
   (:refer-clojure :exclude [find get update remove])
   (:require ["socket.io-client" :as io]
-            ["@feathersjs/client" :as client]
             ["jquery" :as jquery]
+            ["@feathersjs/client" :as client]
             [goog.object :as obj]
             [feathers.client :as feathers]
             [feathers.client.services :as svc]
@@ -36,7 +36,7 @@
   (feathers/logout app))
 
 (defn auth! [app]
-  (feathers/authenticate app))
+  (feathers/reauthenticate app))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Client Service API ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
