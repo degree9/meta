@@ -34,7 +34,7 @@
 
 (defn with-authentication [app]
   (debug "Loading server Authentication api")
-  (auth/configure app))
+  (auth/authentication app))
 
 (defn with-channels [app]
   (debug "Loading server Channels api")
