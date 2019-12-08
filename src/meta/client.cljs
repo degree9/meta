@@ -3,67 +3,72 @@
   (:require ["socket.io-client" :as io]
             ["jquery" :as jquery]
             [goog.object :as obj]
-            [feathers.client :as client]
+            [feathers.client :as feathers]
             [feathers.client.services :as svc]))
 
 ;; Feathers Client ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(def app client)
+(def app feathers/client)
 
 (defn with-jquery [app uri]
-  (client/jquery app uri (jquery)))
+  (feathers/jquery app uri (jquery)))
 
 (defn with-socketio [app & [uri opts]]
-  (client/socketio app (io uri opts)))
+  (feathers/socketio app (io uri opts)))
 
 (defn with-authentication
   ([app]
    (with-authentication app (obj/get js/window "localStorage")))
   ([app storage]
-   (client/authentication app #js{:storage storage})))
+   (feathers/authentication app #js{:storage storage})))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Client Auth API ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn login! [app strategy & [opts]]
-  (client/authenticate app
+  (feathers/authenticate app
     (clj->js (merge opts {:strategy strategy}))))
 
 (defn logout! [app]
-  (client/logout app))
+  (feathers/logout app))
 
 (defn auth! [app]
-  (client/reauthenticate app))
+  (feathers/reauthenticate app))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Client Service API ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(def service client/service)
+(def service feathers/service)
 
 (defn find [service & [params]]
-  (client/find service (clj->js params)))
+  (svc/find service (clj->js params)))
 
 (defn get [service id & [params]]
-  (client/get service id (clj->js params)))
+  (svc/get service id (clj->js params)))
 
 (defn create [service data & [params]]
-  (client/create service (clj->js data) (clj->js params)))
+  (svc/create service (clj->js data) (clj->js params)))
 
 (defn update [service id data & [params]]
-  (client/update service id (clj->js data) (clj->js params)))
+  (svc/update service id (clj->js data) (clj->js params)))
 
 (defn patch [service id data & [params]]
-  (client/patch service id (clj->js data) (clj->js params)))
+  (svc/patch service id (clj->js data) (clj->js params)))
 
 (defn remove [service id & [params]]
-  (client/remove service id (clj->js params)))
+  (svc/remove service id (clj->js params)))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Client Event API ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(def on      svc/on)
+(defn on [service event callback]
+  (svc/on service event (comp js->clj callback)))
 
-(def created svc/created)
+(defn created [service callback]
+  (svc/on service "created" (comp js->clj callback)))
 
-(def updated svc/updated)
+(defn updated [service callback]
+  (svc/on service "updated" (comp js->clj callback)))
 
-(def patched svc/patched)
+(defn patched [service callback]
+  (svc/on service "patched" (comp js->clj callback)))
 
-(def removed svc/removed)
+(defn removed [service callback]
+  (svc/on service "removed" (comp js->clj callback)))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
