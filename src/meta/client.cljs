@@ -2,14 +2,12 @@
   (:refer-clojure :exclude [find get update remove])
   (:require ["socket.io-client" :as io]
             ["jquery" :as jquery]
-            ["@feathersjs/client" :as client]
             [goog.object :as obj]
             [feathers.client :as feathers]
-            [feathers.client.services :as svc]
-            [meta.promise :as prom]))
+            [feathers.client.services :as svc]))
 
 ;; Feathers Client ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(def app client)
+(def app feathers/client)
 
 (defn with-jquery [app uri]
   (feathers/jquery app uri (jquery)))
@@ -39,27 +37,38 @@
 ;; Client Service API ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (def service feathers/service)
 
-(def find    svc/find)
+(defn find [service & [params]]
+  (svc/find service (clj->js params)))
 
-(def get     svc/get)
+(defn get [service id & [params]]
+  (svc/get service id (clj->js params)))
 
-(def create  svc/create)
+(defn create [service data & [params]]
+  (svc/create service (clj->js data) (clj->js params)))
 
-(def update  svc/update)
+(defn update [service id data & [params]]
+  (svc/update service id (clj->js data) (clj->js params)))
 
-(def patch   svc/patch)
+(defn patch [service id data & [params]]
+  (svc/patch service id (clj->js data) (clj->js params)))
 
-(def remove  svc/remove)
+(defn remove [service id & [params]]
+  (svc/remove service id (clj->js params)))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Client Event API ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(def on      svc/on)
+(defn on [service event callback]
+  (svc/on service event (comp js->clj callback)))
 
-(def created svc/created)
+(defn created [service callback]
+  (svc/on service "created" (comp js->clj callback)))
 
-(def updated svc/updated)
+(defn updated [service callback]
+  (svc/on service "updated" (comp js->clj callback)))
 
-(def patched svc/patched)
+(defn patched [service callback]
+  (svc/on service "patched" (comp js->clj callback)))
 
-(def removed svc/removed)
+(defn removed [service callback]
+  (svc/on service "removed" (comp js->clj callback)))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
