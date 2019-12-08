@@ -25,9 +25,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Client Auth API ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defn signup! [users email password]
-   (svc/create users #js{:email email :password password}))
-
 (defn login! [app strategy & [opts]]
   (feathers/authenticate app
     (clj->js (merge opts {:strategy strategy}))))
