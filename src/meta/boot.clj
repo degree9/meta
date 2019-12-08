@@ -14,9 +14,7 @@
             [degree9.boot-semgit.workflow :refer [sync-repo]]
             [degree9.boot-semver :as ver]
             [degree9.boot-shadow :as shadow]
-            [degree9.boot-welcome :refer [welcome]]
-            [feathers.boot-feathers :as fs]
-            [hoplon.boot-hoplon :as hl]))
+            [degree9.boot-welcome :refer [welcome]]))
 
 ;; Meta Boot Tasks ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -33,8 +31,13 @@
 
 (def deps dependencies)
 
-(boot/deftask setup
-  "Setup cross project builds."
+(boot/deftask info
+  "Display project info."
+  []
+  (comp (impl/info)))
+
+(boot/deftask standup
+  "Standup cross project builds."
   []
   (comp (ver/version)
         (dependencies)))
@@ -43,7 +46,7 @@
 (boot/deftask client
   "Build project client."
   [d develop bool "Development mode will compile with optomizations `:none`."]
-  (cond-> (hl/hoplon)
+  (cond-> identity
     (:develop *opts*)       (comp (shadow/compile :build :client))
     (not (:develop *opts*)) (comp (shadow/release :build :client))))
 
@@ -99,18 +102,17 @@
 (boot/deftask tests
   "Run project tests."
   []
-  (util/warn "TODO: Running Tests...")
-  identity)
+  (shadow/compile :build :test))
 
-(boot/deftask compile
-  "Compile project for release."
+(boot/deftask build
+  "Build project for release."
   []
   (boot/task-options!
     impl/info  {:message "Running Workflow...: compile"}
     njs/nodejs {:init-fn 'app.server/init})
   (comp
-    (impl/info)
-    (setup)
+    (info)
+    (standup)
     (client)
     (server)
     (teardown)))
@@ -125,9 +127,9 @@
     client      {:develop true}
     njs/nodejs  {:init-fn 'app.server/init})
   (comp
-    (impl/info)
+    (info)
     (sync-repo)
-    (setup)
+    (standup)
     (task/watch)
     (client)
     (server)
@@ -144,9 +146,9 @@
     ver/version {:develop true :pre-release 'degree9.boot-semver/snapshot}
     client      {:develop true})
   (comp
-    (impl/info)
+    (info)
     (sync-repo)
-    (setup)
+    (standup)
     (task/watch)
     (client)
     (teardown)))
@@ -160,9 +162,9 @@
     server      {:develop true}
     njs/nodejs  {:init-fn 'app.server/init})
   (comp
-    (impl/info)
+    (info)
     (sync-repo)
-    (setup)
+    (standup)
     (task/watch)
     (server)
     (njs/serve)
@@ -170,12 +172,12 @@
 
 (boot/deftask generate
   "Generate a new [meta] project."
-  []
+  [n name VAL str "Name of target folder to generate project in."]
   (boot/task-options!
     impl/info {:message "Running Workflow...: generate"}
-    new/new   {:template "meta" :name (str name)})
+    new/new   {:template "meta" :name (:name *opts* "app")})
   (comp
-    (impl/info)
+    (info)
     (new/new)))
 
 (defn initialize
