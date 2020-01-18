@@ -21,7 +21,7 @@
                           ;[degree9/boot-electron       "0.2.0"]
                           [degree9/boot-welcome        "1.0.0"]
                           ;[degree9/electron-cljs       "0.1.0"]
-                          [degree9/featherscript       "0.5.0-SNAPSHOT"]
+                          [degree9/featherscript       "0.6.0-SNAPSHOT"]
                           ;[degree9/firebase-cljs       "1.3.0"]
                           ;[degree9/nodejs-cljs         "0.1.0"]
                           [degree9/meta-template       "0.5.0-SNAPSHOT"]

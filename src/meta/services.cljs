@@ -1,8 +1,9 @@
 (ns meta.services
   (:refer-clojure :exclude [find get update remove])
-  (:require [feathers.services :as svc]))
+  (:require [feathers.application :as app]
+            [feathers.services :as svc]))
 
-(def service svc/service)
+(def service app/service)
 
 (def find svc/find)
 
