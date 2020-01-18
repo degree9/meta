@@ -18,11 +18,11 @@
 (defn with-defaults [app]
   (debug "Loading server defaults")
   (-> app
-    exp/express
-    config/configuration
-    exp/json
-    exp/urlencoded
-    exp/static))
+    (exp/express)
+    (config/configuration)
+    (exp/json)
+    (exp/urlencoded #js{:extended true})
+    (exp/static)))
 
 (defn with-rest [app]
   (debug "Loading server REST api")
